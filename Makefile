@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
+#    By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/24 18:15:13 by elilliu          ###   ########.fr        #
+#    Updated: 2025/01/27 15:11:31 by nelbi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,20 +31,22 @@ OBJS = ${addprefix ${OBJS_DIR}/, ${SRCS:.c=.o}}
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
+RM				= rm -rf
+
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c ${INCLUDE}
-		mkdir -p ${OBJS_DIR}
-		${CC} ${CFLAGS} -c $< -o $@ -g3
+		@mkdir -p ${OBJS_DIR}
+		@${CC} ${CFLAGS} -c $< -o $@ -g3
 
 ${NAME}: ${OBJS} ${LIBFT_PATH} ${MLX_PATH}
-		${CC} ${CFLAGS} ${OBJS} -o $@ -L${LIBFT_DIR} -lft ${MLX_PATH} -L${MLX_DIR} -lX11 -lXext -lmlx
+		@${CC} ${CFLAGS} ${OBJS} -o $@ -L${LIBFT_DIR} -lft ${MLX_PATH} -L${MLX_DIR} -lX11 -lXext -lmlx
 
 all: ${NAME}
 
 clean:
-		rm -rf ${OBJS} ${OBJS_DIR}
+		@${RM} ${OBJS} ${OBJS_DIR}
 
 fclean: clean;
-		rm -f ${NAME}
+		@${RM} ${NAME}
 
 re: fclean all
 
