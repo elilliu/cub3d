@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/28 14:43:29 by neleon           ###   ########.fr        #
+#    Updated: 2025/01/28 15:06:39 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,9 @@ SRC_DIR			= ./srcs
 OBJ_DIR			= ./objs/
 # OBJ_DIR_B		= ./objs_bonus/
 
-SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c
-
+SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
+				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c
+	
 # SRCS_BONUS		= 
 
 OBJS			= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}%.o}
