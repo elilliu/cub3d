@@ -3,12 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
+#    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/24 18:15:13 by elilliu          ###   ########.fr        #
+#    Updated: 2025/01/27 16:17:11 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+GREEN			= \033[0;32m\e[1m
+RESET			= \e[0m\033[0m
 
 NAME = cub3d
 
@@ -27,25 +30,30 @@ MLX_PATH = mlx/libmlx.a
 OBJS_DIR = objs
 
 OBJS = ${addprefix ${OBJS_DIR}/, ${SRCS:.c=.o}}
+DEPS = ${OBJS:.o=.d}
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
+
+RM				= rm -rf
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c ${INCLUDE}
-		mkdir -p ${OBJS_DIR}
-		${CC} ${CFLAGS} -c $< -o $@ -g3
+		@mkdir -p ${OBJS_DIR}
+		@${CC} ${CFLAGS} -c $< -o $@ -g3
 
 ${NAME}: ${OBJS} ${LIBFT_PATH} ${MLX_PATH}
-		${CC} ${CFLAGS} ${OBJS} -o $@ -L${LIBFT_DIR} -lft ${MLX_PATH} -L${MLX_DIR} -lX11 -lXext -lmlx
+		@${CC} ${CFLAGS} ${OBJS} -o $@ -L${LIBFT_DIR} -lft ${MLX_PATH} -L${MLX_DIR} -lX11 -lXext -lmlx
 
 all: ${NAME}
 
 clean:
-		rm -rf ${OBJS} ${OBJS_DIR}
+		@${RM} ${OBJS} ${DEPS} ${OBJS_DIR}
 
-fclean: clean;
-		rm -f ${NAME}
+fclean: clean
+		@${RM} ${NAME}
 
 re: fclean all
 
-.PHONY: al clean fclean re ${OBJS_DIR}
+-include ${DEPS}
+
+.PHONY: all clean fclean re ${OBJS_DIR}
