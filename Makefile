@@ -3,12 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+         #
+#    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/27 15:11:31 by nelbi            ###   ########.fr        #
+#    Updated: 2025/01/27 16:17:11 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+GREEN			= \033[0;32m\e[1m
+RESET			= \e[0m\033[0m
 
 NAME = cub3d
 
@@ -27,9 +30,10 @@ MLX_PATH = mlx/libmlx.a
 OBJS_DIR = objs
 
 OBJS = ${addprefix ${OBJS_DIR}/, ${SRCS:.c=.o}}
+DEPS = ${OBJS:.o=.d}
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
 
 RM				= rm -rf
 
@@ -43,11 +47,13 @@ ${NAME}: ${OBJS} ${LIBFT_PATH} ${MLX_PATH}
 all: ${NAME}
 
 clean:
-		@${RM} ${OBJS} ${OBJS_DIR}
+		@${RM} ${OBJS} ${DEPS} ${OBJS_DIR}
 
-fclean: clean;
+fclean: clean
 		@${RM} ${NAME}
 
 re: fclean all
 
-.PHONY: al clean fclean re ${OBJS_DIR}
+-include ${DEPS}
+
+.PHONY: all clean fclean re ${OBJS_DIR}
