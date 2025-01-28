@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
+#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/28 15:06:39 by neleon           ###   ########.fr        #
+#    Updated: 2025/01/28 17:06:52 by elilliu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ OBJ_DIR			= ./objs/
 # OBJ_DIR_B		= ./objs_bonus/
 
 SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
-				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c
+				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c\
+				srcs/utils_gc.c
 	
 # SRCS_BONUS		= 
 
@@ -102,7 +103,7 @@ ${OBJ_DIR}%.o: ${SRC_DIR}/%.c ${HEADER}
 ${NAME}: ${OBJS} ${LIBMLX}${NAME_MLX}
 	@${MAKE} --no-print-directory -C ${LIBFTDIR}
 	@echo "${GREEN}Libft		: DONE!${RESET}"
-	@${CC} ${OBJS} ${LFLAGS} ${LIBFT} -o ${NAME} ${INCLUDE}
+	@${CC} ${CFLAGS} ${OBJS} ${LFLAGS} ${LIBFT} -o ${NAME} ${INCLUDE}
 	@echo "${GREEN}Cub3d		: DONE!${RESET}"
 
 ${NAME_BONUS}: ${OBJS_BONUS} ${LIBMLX}${NAME_MLX}

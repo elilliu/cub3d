@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/28 15:00:41 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/28 17:20:41 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_map
 {
 	char				**tab;
 	int					rows;
-	int					length;
 }						t_map;
 
 typedef struct s_data
@@ -57,6 +56,10 @@ typedef struct s_data
 	void				*mlx_ptr;
 	void				*win_ptr;
 	char				*map_path;
+	int					player_x;
+	int					player_y;
+	int					sizex;
+	int					sizey;
 	t_map				map;
 	t_garbage_co		*garbage;
 
@@ -71,5 +74,6 @@ void					print_error(char *s);
 void					*gc_mem(t_mem type, size_t size, void *ptr);
 int						fill_window(t_data *data);
 int						map_init(t_data *data);
+char					*gc_strdup(const char *s1);
 
 #endif
