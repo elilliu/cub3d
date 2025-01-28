@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 14:22:16 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:51:53 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,20 @@ int	clean_all(t_data *data)
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	gc_mem(FULL_CLEAN, 0, NULL);
+	return (1);
 }
 
 int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		clean_all(data);
-	return (0);
+	return (1);
 }
 
 int	render(t_data *data)
 {
 	fill_window(data);
-	return (0);
+	return (1);
 }
 
 int	main(int ac, char **av)
