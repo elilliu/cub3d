@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/28 14:34:26 by neleon           ###   ########.fr        #
+#    Updated: 2025/01/28 14:43:29 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c
 
 OBJS			= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}%.o}
 # OBJS_BONUS		= ${SRCS_BONUS:${SRC_DIR_B}/%.c=${OBJ_DIR_B}%.o}
+# DEPS			= ${OBJS:.o=.d}
 
 LIBFTDIR		= ./libft/
 INCLUDE 		= -L./libft -lft
@@ -118,12 +119,12 @@ ${LIBMLX}${NAME_MLX}:
 # bonus: ${NAME_BONUS}
 
 clean:
-	@${RM} ${OBJ_DIR} ${OBJ_DIR_B}
+	@${RM} ${OBJ_DIR}
 	@${MAKE} --no-print-directory -C ${LIBFTDIR} fclean
 	@echo "${GREEN}Clean       : DONE!${RESET}"
 
 fclean: clean
-	@${RM} ${NAME} ${NAME_BONUS}
+	@${RM} ${NAME}
 	@${RM} $(OUTPUT_LEAKS)
 	@echo "${GREEN}Full clean  : DONE!${RESET}"
 
