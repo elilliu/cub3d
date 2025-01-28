@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif_map.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 18:14:17 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 14:00:24 by neleon           ###   ########.fr       */
+/*   Created: 2023/11/28 15:32:02 by neleon            #+#    #+#             */
+/*   Updated: 2024/03/25 23:32:53 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-// int	verif_map(t_data *data)
-// {
-	
-// }
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
+
+	i = 0;
+	if (s && f)
+	{
+		while (s[i])
+		{
+			(*f)(i, &s[i]);
+			i++;
+		}
+	}
+}

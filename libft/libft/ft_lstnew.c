@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif_map.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 18:14:17 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 14:00:24 by neleon           ###   ########.fr       */
+/*   Created: 2023/11/30 17:21:51 by neleon            #+#    #+#             */
+/*   Updated: 2024/03/25 23:24:57 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-// int	verif_map(t_data *data)
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new;
+
+	new = malloc(1 * sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}
+
 // {
-	
+// 	t_list	*test;
+
+// 	test = NULL;
+// 	test = ft_lstnew((void*) 1);
+// 	printf("%p\n", test);
+// 	return (0);
 // }

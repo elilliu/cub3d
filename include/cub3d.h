@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 17:48:44 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 13:59:00 by elilliu          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/01/28 14:31:29 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -19,8 +21,8 @@
 # include <stdlib.h>
 # include <math.h>
 # include "../mlx/mlx.h"
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
+# include "../libft/libft/libft.h"
+# include "../libft/gnl/get_next_line_bonus.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 

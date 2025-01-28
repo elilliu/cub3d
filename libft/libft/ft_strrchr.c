@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif_map.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 18:14:17 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 14:00:24 by neleon           ###   ########.fr       */
+/*   Created: 2023/11/07 16:10:24 by neleon            #+#    #+#             */
+/*   Updated: 2023/12/05 16:25:55 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-// int	verif_map(t_data *data)
-// {
-	
-// }
+char	*ft_strrchr(const char *s, int c)
+{
+	int		len;
+	char	to_find;
+
+	to_find = (char)c;
+	len = ft_strlen(s);
+	if (to_find == '\0')
+		return ((char *)s + len);
+	while (len >= 0)
+	{
+		if (s[len] == to_find)
+			return ((char *)&s[len]);
+		len--;
+	}
+	return (NULL);
+}
