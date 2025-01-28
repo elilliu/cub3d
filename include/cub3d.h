@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:44 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/27 17:01:50 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:58:45 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "../mlx/mlx.h"
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
+# include "../libft/libft/libft.h"
+# include "../libft/gnl/get_next_line_bonus.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 

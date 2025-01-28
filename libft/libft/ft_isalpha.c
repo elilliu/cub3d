@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif_map.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 18:14:17 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 14:00:24 by neleon           ###   ########.fr       */
+/*   Created: 2023/11/07 13:54:14 by neleon            #+#    #+#             */
+/*   Updated: 2023/11/23 19:46:10 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-// int	verif_map(t_data *data)
+int	ft_isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
+}
+
+// int	main(int ac, char **av)
 // {
-	
+// 	char	testChar;
+
+// 	if (ac == 2)
+// 	{
+// 		testChar = av[1][0];
+// 		if (ft_isalpha(testChar))
+// 			printf("%c is an alphabetical character\n", testChar);
+// 		else
+// 			printf("%c is not alphabetical character\n", testChar);
+// 	}
+// 	return (0);
 // }

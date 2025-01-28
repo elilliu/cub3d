@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif_map.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 18:14:17 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 14:00:24 by neleon           ###   ########.fr       */
+/*   Created: 2023/11/07 18:26:40 by neleon            #+#    #+#             */
+/*   Updated: 2023/12/05 17:28:19 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-// int	verif_map(t_data *data)
-// {
-	
-// }
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	const unsigned char	*mem_s;
+
+	mem_s = s;
+	while (n-- > 0)
+	{
+		if (*mem_s == (unsigned char)c)
+			return ((void *)mem_s);
+		mem_s++;
+	}
+	return (NULL);
+}
