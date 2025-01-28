@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 17:25:48 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:56:16 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	handle_keypress(int keysym, t_data *data)
 	if (keysym == XK_Escape)
 		clean_all(data);
 	if (keysym == XK_d)
-		data->player_x += 5;
+		data->player.x += 5;
 	if (keysym == XK_a)
-		data->player_x -= 5;
+		data->player.x -= 5;
 	if (keysym == XK_w)
-		data->player_y -= 5;
+		data->player.y -= 5;
 	if (keysym == XK_s)
-		data->player_y += 5;
+		data->player.y += 5;
 	return (1);
 }
 
