@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 11:55:21 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:26:40 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,18 @@ void  print_error(char *s)
   ft_putstr_fd("Error\n", 2);
   ft_putstr_fd(s, 2);
   ft_putstr_fd("\n", 2);
+}
+
+t_bool	is_whitespace(char c)
+{
+	if ((c == 32 || (c >= 9 && c <= 13)))
+		return (true);
+	return (false);
+}
+
+int	skip_whitespaces(char *line, int i)
+{
+	while (line[i] && is_whitespace(line[i]))
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:05:23 by neleon            #+#    #+#             */
-/*   Updated: 2024/05/24 16:17:52 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:22:13 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char				*ft_strnstr(const char *haystack, const char *needle,
 long				ft_atoi(const char *nptr);
 void				*ft_calloc(size_t nmemb, size_t size);
 char				*ft_strdup(const char *s1);
+int					ft_strcmp(const char *s1, const char *s2);
 
 // 2nd part
 

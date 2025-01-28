@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:35:15 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 15:04:11 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/28 15:32:19 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int	map_init(t_data *data)
 	free(line);
 	data->map.tab = gc_mem(MALLOC, sizeof(char *) * (data->map.rows + 1), NULL);
 	if (fill_tab(data) == 0)
-		return (free(data->map.tab), 0);
+		return (gc_mem(FREE, 0, data->map.tab), 0); 
 	return (1);
 }

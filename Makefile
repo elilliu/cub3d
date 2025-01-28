@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/28 15:06:39 by neleon           ###   ########.fr        #
+#    Updated: 2025/01/28 16:50:20 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,14 +102,8 @@ ${OBJ_DIR}%.o: ${SRC_DIR}/%.c ${HEADER}
 ${NAME}: ${OBJS} ${LIBMLX}${NAME_MLX}
 	@${MAKE} --no-print-directory -C ${LIBFTDIR}
 	@echo "${GREEN}Libft		: DONE!${RESET}"
-	@${CC} ${OBJS} ${LFLAGS} ${LIBFT} -o ${NAME} ${INCLUDE}
+	@${CC} ${CFLAGS} ${OBJS} ${LFLAGS} ${LIBFT} -o ${NAME} ${INCLUDE}
 	@echo "${GREEN}Cub3d		: DONE!${RESET}"
-
-${NAME_BONUS}: ${OBJS_BONUS} ${LIBMLX}${NAME_MLX}
-	@${MAKE} --no-print-directory -C ${LIBFTDIR}
-	@echo "${GREEN}Libft		: DONE!${RESET}"
-	@${CC} ${OBJS_BONUS} ${LFLAGS} ${LIBFT} -o ${NAME_BONUS} ${INCLUDE}
-	@echo "${GREEN}Cub3d bonus	: DONE!${RESET}"
 
 all: ${NAME}
 

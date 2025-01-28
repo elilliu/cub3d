@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/28 15:00:41 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:27:00 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef enum e_bool
+{
+	false,
+	true
+}						t_bool;
 
 typedef enum e_mem
 {
@@ -71,5 +77,7 @@ void					print_error(char *s);
 void					*gc_mem(t_mem type, size_t size, void *ptr);
 int						fill_window(t_data *data);
 int						map_init(t_data *data);
+t_bool					is_whitespace(char c);
+int						skip_whitespaces(char *line, int i);
 
 #endif
