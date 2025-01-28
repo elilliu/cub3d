@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/28 18:06:27 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/28 18:15:45 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,21 @@ typedef struct s_map
 	int					rows;
 }						t_map;
 
+typedef struct s_player
+{
+	int					square_x;
+	int					square_y;
+	int					x;
+	int					y;
+
+}						t_player;
+
 typedef struct s_data
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
 	char				*map_path;
-	int					player_x;
-	int					player_y;
+	t_player			player;
 	int					sizex;
 	int					sizey;
 	t_map				map;
