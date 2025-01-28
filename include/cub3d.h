@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/28 16:27:00 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/28 18:06:27 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_map
 {
 	char				**tab;
 	int					rows;
-	int					length;
 }						t_map;
 
 typedef struct s_data
@@ -63,6 +62,10 @@ typedef struct s_data
 	void				*mlx_ptr;
 	void				*win_ptr;
 	char				*map_path;
+	int					player_x;
+	int					player_y;
+	int					sizex;
+	int					sizey;
 	t_map				map;
 	t_garbage_co		*garbage;
 
@@ -79,5 +82,6 @@ int						fill_window(t_data *data);
 int						map_init(t_data *data);
 t_bool					is_whitespace(char c);
 int						skip_whitespaces(char *line, int i);
+char					*gc_strdup(const char *s1);
 
 #endif

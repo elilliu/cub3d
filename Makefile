@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/28 16:50:20 by neleon           ###   ########.fr        #
+#    Updated: 2025/01/28 18:07:28 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ OBJ_DIR			= ./objs/
 # OBJ_DIR_B		= ./objs_bonus/
 
 SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
-				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c
+				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c\
+				srcs/utils_gc.c
 	
 # SRCS_BONUS		= 
 
