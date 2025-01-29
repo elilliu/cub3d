@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/28 18:15:45 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/29 17:53:04 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@ typedef enum e_mem
 	FULL_CLEAN
 }						t_mem;
 
+typedef enum e_chars_game
+{
+	PL_NO = 'N',
+	PL_SO = 'S',
+	PL_WE = 'W',
+	PL_EA = 'E',
+	WALL = '1',
+	FLOOR = '0'
+}						t_chars_game;
+
+typedef enum e_textures
+{
+	T_NO,
+	T_SO,
+	T_WE,
+	T_EA,
+	T_CE,
+	T_FL
+}						t_textures;
+
 typedef struct s_garbage_co
 {
 	void				*ptr;
@@ -63,8 +83,17 @@ typedef struct s_player
 	int					square_y;
 	int					x;
 	int					y;
-
 }						t_player;
+
+typedef struct s_tex_path
+{
+	char				*t_no;
+	char				*t_so;
+	char				*t_we;
+	char				*t_ea;
+	char				*t_fl;
+	char				*t_ce;
+}						t_tex_path;
 
 typedef struct s_data
 {
@@ -74,7 +103,9 @@ typedef struct s_data
 	t_player			player;
 	int					sizex;
 	int					sizey;
+	int					fd_cub;
 	t_map				map;
+	t_tex_path			tex_path;
 	t_garbage_co		*garbage;
 
 }						t_data;
@@ -91,5 +122,10 @@ int						map_init(t_data *data);
 t_bool					is_whitespace(char c);
 int						skip_whitespaces(char *line, int i);
 char					*gc_strdup(const char *s1);
+void					clean_map_reading(char *line, int map_fd);
+t_bool					is_texture(char *line);
+t_bool					empty_line(char *line);
+int						clean_all(t_data *data);
+t_bool					is_valid_char_map(char c);
 
 #endif

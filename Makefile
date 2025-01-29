@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/28 18:07:28 by neleon           ###   ########.fr        #
+#    Updated: 2025/01/29 15:09:21 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,19 +110,20 @@ all: ${NAME}
 
 ${LIBMLX}${NAME_MLX}:
 	@${MAKE} --no-print-directory -C ${LIBMLX}
-	@echo "${GREEN}MLX         : DONE!${RESET}"
+	@echo "${GREEN}Mlx		: DONE!${RESET}"
 
 # bonus: ${NAME_BONUS}
 
 clean:
 	@${RM} ${OBJ_DIR}
 	@${MAKE} --no-print-directory -C ${LIBFTDIR} fclean
-	@echo "${GREEN}Clean       : DONE!${RESET}"
+	@${MAKE} --no-print-directory -C ${LIBMLX} clean
+	@echo "${GREEN}Clean		: DONE!${RESET}"
 
 fclean: clean
 	@${RM} ${NAME}
 	@${RM} $(OUTPUT_LEAKS)
-	@echo "${GREEN}Full clean  : DONE!${RESET}"
+	@echo "${GREEN}Full clean	: DONE!${RESET}"
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 16:26:40 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/29 14:09:58 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,13 @@ int	skip_whitespaces(char *line, int i)
 	while (line[i] && is_whitespace(line[i]))
 		i++;
 	return (i);
+}
+
+void	clean_map_reading(char *line, int map_fd)
+{
+	if (line)
+		free(line);
+	line = NULL;
+	get_next_line(map_fd, 1);
+	close(map_fd);
 }
