@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/28 18:08:57 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/29 17:09:49 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	player_init(t_data *data)
 		{
 			if (data->map.tab[row][i] == 'N')
 			{
-				data->player.square_x = i;
-				data->player.square_y = row;
+				data->player.column = i;
+				data->player.line = row;
 				data->player.x = 28;
 				data->player.y = 28;
 				return (1);
@@ -59,8 +59,8 @@ int	data_init(t_data *data, char *str)
 	if (!data->mlx_ptr)
 		return (0);
 	mlx_get_screen_size(data->mlx_ptr, &data->sizex, &data->sizey);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->sizex,
-			data->sizey, "cub3d");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1080,
+			1080, "cub3d");
 	if (!data->win_ptr)
 		return (free(data->mlx_ptr), 0);
 	return (1);

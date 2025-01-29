@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/29 14:53:37 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:03:35 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int	square_x;
-	int	square_y;
+	int	line;
+	int	column;
 	int	x;
 	int	y;
 
@@ -91,5 +91,9 @@ int		map_init(t_data *data);
 t_bool	is_whitespace(char c);
 int		skip_whitespaces(char *line, int i);
 char	*gc_strdup(const char *s1);
+void	move_player_up(t_data *data);
+void	move_player_left(t_data *data);
+void	move_player_down(t_data *data);
+void	move_player_right(t_data *data);
 
 #endif

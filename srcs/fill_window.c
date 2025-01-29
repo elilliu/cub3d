@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:23:29 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/28 18:00:34 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:04:34 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ int	fill_window(t_data *data)
 		y += 64;
 		row++;
 	}
-	put_red_square(data, data->player.square_x * 64 + data->player.x, data->player.square_y * 64 + data->player.y, 8);
+	put_red_square(data, data->player.column * 64 + data->player.x, data->player.line * 64 + data->player.y, 8);
 	return (1);
 }
