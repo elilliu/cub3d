@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/29 17:03:35 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/30 18:03:35 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/gnl/get_next_line_bonus.h"
 # include "../libft/libft/libft.h"
 # include "../mlx/mlx.h"
+# include "../mlx/mlx_int.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -23,6 +24,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define PI 3.1415926535
 
 typedef enum e_bool
 {
@@ -59,10 +62,11 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int	line;
-	int	column;
-	int	x;
-	int	y;
+	float	x;
+	float	y;
+	float	delta_x;
+	float	delta_y;
+	float	angle;
 
 }			t_player;
 
@@ -74,6 +78,7 @@ typedef struct s_data
 	t_player		player;
 	int				sizex;
 	int				sizey;
+	t_img			background;
 	t_map			map;
 	t_garbage_co	*garbage;
 
@@ -86,7 +91,7 @@ int		data_init(t_data *data, char *str);
 int		verif_map(t_data *data);
 void	print_error(char *s);
 void	*gc_mem(t_mem type, size_t size, void *ptr);
-int		fill_window(t_data *data);
+void	fill_window(t_data *data);
 int		map_init(t_data *data);
 t_bool	is_whitespace(char c);
 int		skip_whitespaces(char *line, int i);

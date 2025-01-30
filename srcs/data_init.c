@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/29 17:23:44 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:38:31 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int	player_init(t_data *data)
 	int	i;
 	int	row;
 
+	data->player.angle = PI * 1.5;
+	data->player.delta_x = cos(data->player.angle) * 5;
+	data->player.delta_y = sin(data->player.angle) * 5;
 	row = 0;
 	while (data->map.tab[row])
 	{
@@ -32,10 +35,8 @@ int	player_init(t_data *data)
 		{
 			if (data->map.tab[row][i] == 'N')
 			{
-				data->player.column = i;
-				data->player.line = row;
-				data->player.x = 28;
-				data->player.y = 28;
+				data->player.x = i * 64 + 32;
+				data->player.y = row * 64 + 32;
 				return (1);
 			}
 			i++;
@@ -55,7 +56,7 @@ int	data_init(t_data *data, char *str)
 		return (0);
 	if (!player_init(data))
 		return (0);
-	data->mlx_ptr = mlx_init();
+	data->mlx_ptr = mlx_init()	;
 	if (!data->mlx_ptr)
 		return (0);
 	mlx_get_screen_size(data->mlx_ptr, &data->sizex, &data->sizey);
