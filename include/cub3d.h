@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/29 17:53:04 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/30 17:51:49 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ typedef struct s_map
 	int					rows;
 }						t_map;
 
+typedef struct s_map2
+{
+	char				*line;
+	struct s_map2 *next;
+}						  t_map2;
+
 typedef struct s_player
 {
 	int					square_x;
@@ -105,13 +111,22 @@ typedef struct s_data
 	int					sizey;
 	int					fd_cub;
 	t_map				map;
-	t_tex_path			tex_path;
+  t_map2      *map2;
+  int          row_count;
+	// t_tex_path			tex_path;
+  char				*t_no;
+	char				*t_so;
+	char				*t_we;
+	char				*t_ea;
+	char				*t_fl;
+	char				*t_ce;
 	t_garbage_co		*garbage;
 
 }						t_data;
 
 int						main(int ac, char **av);
 int						verif_path(char *str);
+int					parse_textures(t_data *data);
 int						data_init(t_data *data, char *str);
 int						verif_map(t_data *data);
 t_data					*get_data(void);
@@ -127,5 +142,7 @@ t_bool					is_texture(char *line);
 t_bool					empty_line(char *line);
 int						clean_all(t_data *data);
 t_bool					is_valid_char_map(char c);
+t_bool        is_wall_texture(char *line);
+char          *gc_dup_map(const char *s1);
 
 #endif

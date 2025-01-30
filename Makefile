@@ -6,7 +6,7 @@
 #    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/30 12:20:58 by bineleon         ###   ########.fr        #
+#    Updated: 2025/01/30 16:25:31 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,9 +132,9 @@ OBJS_DIR	= ./objs/
 
 SRCS_FILE	= main.c data_init.c utils.c verif_map.c\
 			  garbage_collector.c map_init.c fill_window.c\
-			  utils_gc.c
-
+			  utils_gc.c parsing.c parsing_utils.c
 SRC			= $(addprefix $(SRCS_DIR), $(SRCS_FILE))
+
 OBJ			= $(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRC:.c=.o))
 DEP			= $(OBJ:.o=.d)
 
@@ -143,8 +143,8 @@ OMLX		= -I/usr/include -Imlx
 CLIB		= -L${LIBMLX} -lmlx -lbsd -lXext -lX11 -lm
 CLIB		+= -lz -Llibft -lft
 
-CFLAGS		= -Wall -Wextra -Werror -g3 -MMD -MP -Isrc -Ilibft -Imlx_linux -Wuninitialized
-export		CFLAGS
+CFLAGS		= -Wall -Wextra -Werror -g3 -MMD -MP -Isrc -Ilibft -Imlx
+# export		CFLAGS
 
 CC			= cc
 MAKE		= make

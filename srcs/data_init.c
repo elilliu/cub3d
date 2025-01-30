@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/28 18:08:57 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/30 17:52:54 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,28 @@ int	data_init(t_data *data, char *str)
 {
 	data->map_path = ft_strdup(str);
 	data->map.rows = 0;
+  data->row_count = 0;
 	data->sizex = 0;
 	data->sizey = 0;
-	if (!map_init(data))
-		return (0);
-	if (!player_init(data))
-		return (0);
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
-		return (0);
-	mlx_get_screen_size(data->mlx_ptr, &data->sizex, &data->sizey);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->sizex,
-			data->sizey, "cub3d");
-	if (!data->win_ptr)
-		return (free(data->mlx_ptr), 0);
+  data->map2 = NULL;
+  data->t_no = NULL;
+  data->t_so = NULL;
+  data->t_ea = NULL;
+  data->t_we = NULL;
+  data->t_ce = NULL;
+  data->t_fl = NULL;
+	// if (!map_init(data))
+	// 	return (0);
+  parse_textures(data);
+	// if (!player_init(data))
+	// 	return (0);
+	// data->mlx_ptr = mlx_init();
+	// if (!data->mlx_ptr)
+	// 	return (0);
+	// mlx_get_screen_size(data->mlx_ptr, &data->sizex, &data->sizey);
+	// data->win_ptr = mlx_new_window(data->mlx_ptr, data->sizex,
+	// 		data->sizey, "cub3d");
+	// if (!data->win_ptr)
+	// 	return (free(data->mlx_ptr), 0);
 	return (1);
 }

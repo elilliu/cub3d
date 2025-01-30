@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/29 14:09:58 by neleon           ###   ########.fr       */
+/*   Updated: 2025/01/30 18:05:43 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void  print_error(char *s)
 
 t_bool	is_whitespace(char c)
 {
+  if (!c)
+    return (false);
 	if ((c == 32 || (c >= 9 && c <= 13)))
 		return (true);
 	return (false);
