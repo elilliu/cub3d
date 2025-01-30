@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:23:29 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/30 18:16:23 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:57:27 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_player(t_data *data)
 		y = data->player.y - 4;
 		while (y != data->player.y + 4)
 		{
-			mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xcd5c5c);
+			put_pixel_img(data->background, x, y, 0xcd5c5c);
 			y++;
 		}
 		x++;
@@ -35,16 +35,16 @@ void	put_white_square(t_data *data, int x, int y, int size)
 	int	i;
 	int	j;
 
-	j = 0;
-	while (j < size)
+	i = 0;
+	while (i < size)
 	{
-		i = 0;
-		while (i < size)
+		j = 0;
+		while (j < size)
 		{
-			mlx_pixel_put(data->mlx_ptr, data->background.image, x + i, y + j, 0xf8f8ff);
-			i++;
+			put_pixel_img(data->background, x + i, y + j, 0xf8f8ff);
+			j++;
 		}
-		j++;
+		i++;
 	}
 }
 
@@ -53,17 +53,16 @@ void	put_grey_square(t_data *data, int x, int y, int size)
 	int	i;
 	int	j;
 
-	j = 0;
-	while (j < size)
+	i = 0;
+	while (i < size)
 	{
-		i = 0;
-		while (i < size)
+		j = 0;
+		while (j < size)
 		{
-			printf("je suis la\n");
-			mlx_pixel_put(data->mlx_ptr, data->background.image, x + i, y + j, 0x2f4f4f);
-			i++;
+			put_pixel_img(data->background, x + i, y + j, 0x2f4f4f);
+			j++;
 		}
-		j++;
+		i++;
 	}
 }
 
@@ -80,7 +79,11 @@ void	fill_window(t_data *data)
 	int	row;
 	int	i;
 
-	data->background.image = mlx_new_image(data->mlx_ptr, 1080, 1080);
+	data->background.img_ptr = mlx_new_image(data->mlx_ptr, 1080, 1080);
+	data->background.w = 1080;
+	data->background.h = 1080;
+	data->background.addr = mlx_get_data_addr(data->background.img_ptr,
+		&data->background.bpp, &data->background.line_len, &data->background.endian);
 	row = 0;
 	while (data->map.tab[row])
 	{
@@ -94,6 +97,6 @@ void	fill_window(t_data *data)
 	}
 	add_player(data);
 	// add_ray(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.image, 0, 0);
-	mlx_destroy_image(data->mlx_ptr, data->background.image);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.img_ptr, 0, 0);
+	mlx_destroy_image(data->mlx_ptr, data->background.img_ptr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/30 18:03:35 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:19:40 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/gnl/get_next_line_bonus.h"
 # include "../libft/libft/libft.h"
 # include "../mlx/mlx.h"
-# include "../mlx/mlx_int.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -70,6 +69,17 @@ typedef struct s_player
 
 }			t_player;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		h;
+	int		w;
+	int		bpp;
+	int		endian;
+	int		line_len;
+}			t_img;
+
 typedef struct s_data
 {
 	void			*mlx_ptr;
@@ -100,5 +110,6 @@ void	move_player_up(t_data *data);
 void	move_player_left(t_data *data);
 void	move_player_down(t_data *data);
 void	move_player_right(t_data *data);
+void	put_pixel_img(t_img img, int x, int y, int color);
 
 #endif

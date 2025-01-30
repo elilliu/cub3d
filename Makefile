@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
+#    By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/29 15:17:31 by elilliu          ###   ########.fr        #
+#    Updated: 2025/01/30 22:34:27 by elilliu@stu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ INC     		= /usr/include
 LIBMLX  		= ./mlx/
 NAME_MLX		= libmlx.a
 CC				= cc
-CFLAGS			= -Wall -Werror -Wextra -g3 -I$(INC) -I$(INCS_PATH) -MMD -MP
+CFLAGS			= -Wall -Werror -Wextra -g3 -I$(INC) -I$(INCS_PATH) -MMD
 LFLAGS			= -L$(LIBMLX) -lmlx
 RM				= rm -rf
 
@@ -75,7 +75,7 @@ OBJ_DIR			= ./objs/
 
 SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
 				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c\
-				srcs/utils_gc.c srcs/move_player.c
+				srcs/utils_gc.c srcs/move_player.c srcs/put_img_to_img.c
 	
 # SRCS_BONUS		= 
 
