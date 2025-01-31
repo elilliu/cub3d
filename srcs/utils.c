@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/30 18:05:43 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:30:10 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_bool	is_whitespace(char c)
 
 int	skip_whitespaces(char *line, int i)
 {
+  if (!line)
+    return (-1);
 	while (line[i] && is_whitespace(line[i]))
 		i++;
 	return (i);

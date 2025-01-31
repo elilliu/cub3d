@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:48:09 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/30 18:21:49 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:33:50 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ t_bool	empty_line(char *line)
 	i = skip_whitespaces(line, 0);
 	if (line[i] == '\0' || line[i] == '\n')
 		return (true);
-
 	return (false);
 }

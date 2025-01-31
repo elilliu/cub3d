@@ -6,7 +6,7 @@
 #    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/30 16:25:31 by bineleon         ###   ########.fr        #
+#    Updated: 2025/01/31 11:43:56 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ GREEN		= \033[0;32m\e[1m
 YELLOW		= \033[1;33m
 BLUE		= \033[1;34m
 CYAN		= \033[1;36m
+
 # NAME 			= cub3d
 
 # INCLUDE 		= include/cub3d.h
@@ -75,7 +76,7 @@ CYAN		= \033[1;36m
 
 # SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
 # 				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c\
-# 				srcs/utils_gc.c
+# 				srcs/utils_gc.c srcs/parsing.c srcs/parsing_utils.c
 
 # OBJS			= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}%.o}
 # # DEPS			= ${OBJS:.o=.d}
@@ -143,7 +144,7 @@ OMLX		= -I/usr/include -Imlx
 CLIB		= -L${LIBMLX} -lmlx -lbsd -lXext -lX11 -lm
 CLIB		+= -lz -Llibft -lft
 
-CFLAGS		= -Wall -Wextra -Werror -g3 -MMD -MP -Isrc -Ilibft -Imlx
+CFLAGS		= -Wall -Wextra -Werror -g3 -Isrc -Ilibft -Imlx
 # export		CFLAGS
 
 CC			= cc

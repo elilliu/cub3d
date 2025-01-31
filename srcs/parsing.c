@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/31 10:21:51 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:48:53 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,25 +276,6 @@ void add_map_line(t_data *data, char *line)
     }
 }
 
-void parse_map(t_data *data, char *line)
-{
-    skip_empty_line(&line, data->fd_cub);
-    while (line && !empty_line(line))
-    {
-        add_map_line(data, line);
-        data->row_count += 1;
-        free(line);
-        line = get_next_line(data->fd_cub, 0);
-    }
-    skip_empty_line(&line, data->fd_cub);
-    if (line)
-    {
-      print_error("Empty line in map");
-      clean_map_reading(line, data->fd_cub);
-      clean_all(data);
-    }
-    clean_map_reading(line, data->fd_cub);
-}
 
 int	fill_map(t_data *data)
 {
@@ -314,59 +295,31 @@ int	fill_map(t_data *data)
 	return (1);
 }
 
-// int	parse_textures(t_data *data)
-// {
-// 	char	*line;
-// 	int     texture_count;
-
-// 	texture_count = 0;
-// 	data->fd_cub = open(data->map_path, O_RDONLY);
-// 	if (data->fd_cub < 0)
-// 		return (print_error("Failed to open file"), 0);
-// 	line = get_next_line(data->fd_cub, 0);
-// 	if (!line)
-// 		return (close(data->fd_cub), 0);
-// 	while (line && texture_count < 6)
-// 	{
-//     if (is_texture(line) && texture_count == 6)
-//     {
-//         print_error("Too many textures in .cub file");
-//         clean_map_reading(line, data->fd_cub);
-//         clean_all(data);
-//     }
-//     if (!is_texture(line) && !empty_line(line) && texture_count < 6)
-//     {
-//         printf("[%s]\n", line);
-//         print_error("Wrong texture");
-//         clean_map_reading(line, data->fd_cub);
-//         clean_all(data);
-//     }
-//     if (is_texture(line) && !empty_line(line))
-//     {
-//         extract_line(line, data);
-//         texture_count++;
-//     }
-// 		free(line);
-// 		line = get_next_line(data->fd_cub, 0);
-// 	}
-//   parse_map(data, line);
-// 	clean_map_reading(line, data->fd_cub);
-//   fill_map(data);
-//   return (1);
-// }
-
-int	parse_textures(t_data *data)
+void parse_map(t_data *data, char *line)
 {
-	char	*line;
+    skip_empty_line(&line, data->fd_cub);
+    while (line && !empty_line(line))
+    {
+        add_map_line(data, line);
+        data->row_count += 1;
+        free(line);
+        line = get_next_line(data->fd_cub, 0);
+    }
+    skip_empty_line(&line, data->fd_cub);
+    if (line)
+    {
+      print_error("Empty line in map");
+      clean_map_reading(line, data->fd_cub);
+      clean_all(data);
+    }
+    // clean_map_reading(line, data->fd_cub);
+}
+
+int	parse_textures(t_data *data, char *line)
+{
 	int     texture_count;
 
 	texture_count = 0;
-	data->fd_cub = open(data->map_path, O_RDONLY);
-	if (data->fd_cub < 0)
-		return (print_error("Failed to open file"), 0);
-	line = get_next_line(data->fd_cub, 0);
-	if (!line)
-		return (close(data->fd_cub), 0);
 	while (line && texture_count < 6)
 	{
         if (texture_count >= 6)
@@ -396,8 +349,22 @@ int	parse_textures(t_data *data)
 		free(line);
 		line = get_next_line(data->fd_cub, 0);
 	}
-	parse_map(data, line);
+	return (1);
+}
+
+int parse_file(t_data *data)
+{
+  char	*line;
+
+	data->fd_cub = open(data->map_path, O_RDONLY);
+	if (data->fd_cub < 0)
+		return (print_error("Failed to open file"), 0);
+	line = get_next_line(data->fd_cub, 0);
+	if (!line)
+		return (close(data->fd_cub), 0);
+  parse_textures(data, line);
+  parse_map(data, line);
 	clean_map_reading(line, data->fd_cub);
 	fill_map(data);
-	return (1);
+  return (1);
 }

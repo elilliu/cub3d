@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/30 17:51:49 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:34:23 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_data
 
 int						main(int ac, char **av);
 int						verif_path(char *str);
-int					parse_textures(t_data *data);
+int					parse_textures(t_data *data, char *line);
 int						data_init(t_data *data, char *str);
 int						verif_map(t_data *data);
 t_data					*get_data(void);
@@ -144,5 +144,6 @@ int						clean_all(t_data *data);
 t_bool					is_valid_char_map(char c);
 t_bool        is_wall_texture(char *line);
 char          *gc_dup_map(const char *s1);
+int           parse_file(t_data *data);
 
 #endif
