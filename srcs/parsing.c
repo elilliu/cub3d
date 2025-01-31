@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/31 18:23:13 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:39:17 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,67 +76,16 @@ int extract_t_path(char *line, t_data *data)
         return (print_error("Invalid texture identifier"), 0);
     i = skip_tex_type(line, 0, 2);
     if (texture == T_NO)
-        return set_texture_path(&data->t_no, line, i);
+        return set_texture_path(&data->t_paths.t_no, line, i);
     if (texture == T_SO)
-        return set_texture_path(&data->t_so, line, i);
+        return set_texture_path(&data->t_paths.t_so, line, i);
     if (texture == T_WE)
-        return set_texture_path(&data->t_we, line, i);
+        return set_texture_path(&data->t_paths.t_we, line, i);
     if (texture == T_EA)
-        return set_texture_path(&data->t_ea, line, i);
+        return set_texture_path(&data->t_paths.t_ea, line, i);
 
     return (0);
 }
-
-// int    extract_t_path(char *line, t_data *data)
-// {
-//     int texture;
-//     int i;
-
-//     i = 0;
-//     texture = check_texture(line);
-//     i = skip_tex_type(line, i, 2);
-//     if (texture == T_NO)
-//     {
-//         if (!data->t_no)
-//         {
-//             data->t_no = gc_mem(MALLOC,  path_len(&line[i] + 1), NULL);
-//             ft_strlcpy(data->t_no, &line[i], path_len(&line[i] + 1));
-//             return (1);
-//         }
-//         return (0);
-//     }
-//     else if (texture == T_SO)
-//     {
-//         if (!data->t_so)
-//         {
-//             data->t_so = gc_mem(MALLOC,  path_len(&line[i] + 1), NULL);
-//             ft_strlcpy(data->t_so, &line[i], path_len(&line[i] + 1));
-//             return (1);
-//         }
-//         return (0);
-//     }
-//     else if (texture == T_WE)
-//     {
-//         if (!data->t_we)
-//         {
-//             data->t_we = gc_mem(MALLOC,  path_len(&line[i] + 1), NULL);
-//             ft_strlcpy(data->t_we, &line[i], path_len(&line[i] + 1));
-//             return (1);
-//         }
-//         return (0);
-//     }
-//     else if (texture == T_EA)
-//     {
-//         if (!data->t_ea)
-//         {
-//             data->t_ea = gc_mem(MALLOC,  path_len(&line[i] + 1), NULL);
-//             ft_strlcpy(data->t_ea, &line[i], path_len(&line[i] + 1));
-//             return (1);
-//         }
-//         return (0);
-//     }
-//     return (0);
-// }
 
 int extract_rgb(char *line, t_data *data)
 {
@@ -148,44 +97,12 @@ int extract_rgb(char *line, t_data *data)
         return (print_error("Invalid RGB identifier"), 0);
     i = skip_tex_type(line, 0, 1);
     if (texture == T_FL)
-        return set_texture_path(&data->t_fl, line, i);
+        return set_texture_path(&data->t_paths.t_fl, line, i);
     if (texture == T_CE)
-        return set_texture_path(&data->t_ce, line, i);
+        return set_texture_path(&data->t_paths.t_ce, line, i);
 
     return (0);
 }
-
-
-// int    extract_rgb(char *line, t_data *data)
-// {
-//     int texture;
-//     int i;
-
-//     i = 0;
-//     texture = check_texture(line);
-//     i = skip_tex_type(line, i, 1);
-//     if (texture == T_FL)
-//     {
-//         if (!data->t_fl)
-//         {
-//             data->t_fl = gc_mem(MALLOC,  path_len(&line[i] + 1), NULL);
-//             ft_strlcpy(data->t_fl, &line[i], path_len(&line[i] + 1));
-//             return (1);
-//         }
-//         return (0);
-//     }
-//     else if (texture == T_CE)
-//     {
-//         if (!data->t_ce)
-//         {
-//             data->t_ce = gc_mem(MALLOC,  path_len(&line[i] + 1), NULL);
-//             ft_strlcpy(data->t_ce, &line[i], path_len(&line[i] + 1));
-//             return (1);
-//         }
-//         return (0);
-//     }
-//     return (0);
-// }
 
 int extract_line(char *line, t_data *data)
 {
@@ -200,45 +117,6 @@ int extract_line(char *line, t_data *data)
         return extract_t_path(line, data);
     return (0);
 }
-
-
-// int extract_line(char *line, t_data *data)
-// {
-//     int texture;
-
-//     texture = check_texture(line);
-//     if (texture == -1)
-//         print_error("invalid line in .cub file");
-//     if (texture == T_FL || texture == T_CE)
-//     {
-//         // printf("Ligne sol/plafond : [%s]\n", line);
-//         extract_rgb(line, data);
-//     }
-//     else if (texture == T_NO || texture == T_SO
-//           || texture == T_EA || texture == T_WE)
-//     {
-//         extract_t_path(line, data);
-//     }
-
-//     return (0);
-// }
-
-
-// int extract_line(char *line, t_data *data)
-// {
-//   int texture;
-
-//   texture = check_texture(line);
-//   if (texture == T_FL || texture == T_CE)
-//   {
-
-//     printf("line : [%s]\n", line);
-//     extract_rgb(line, data);
-//   }
-//   else if (texture == T_NO || texture == T_SO
-//           || texture == T_EA || texture == T_WE)
-//     extract_t_path(line, data);
-// }
 
 int  skip_empty_line(char  **line, int fd)
 {

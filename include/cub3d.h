@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/31 18:09:48 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:59:17 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,18 +114,18 @@ typedef struct s_data
 	t_map				map;
   t_map2      *map2;
   int          row_count;
-	// t_tex_path			tex_path;
-  char				*t_no;
-	char				*t_so;
-	char				*t_we;
-	char				*t_ea;
-	char				*t_fl;
-	char				*t_ce;
+	t_tex_path			t_paths;
+  // char				*t_no;
+	// char				*t_so;
+	// char				*t_we;
+	// char				*t_ea;
+	// char				*t_fl;
+	// char				*t_ce;
 	t_garbage_co		*garbage;
 }			t_data;
 
 int						main(int ac, char **av);
-int						verif_path(char *str);
+int						verif_path(char *str, char *extension);
 int					parse_textures(t_data *data, char **line);
 int						data_init(t_data *data, char *str);
 int						verif_map(t_data *data);
@@ -149,5 +149,6 @@ void	move_player_up(t_data *data);
 void	move_player_left(t_data *data);
 void	move_player_down(t_data *data);
 void	move_player_right(t_data *data);
+void  error_t_path(t_data *data);
 
 #endif
