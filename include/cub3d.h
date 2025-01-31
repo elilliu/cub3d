@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/30 21:19:40 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/01/31 17:38:10 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ void	move_player_left(t_data *data);
 void	move_player_down(t_data *data);
 void	move_player_right(t_data *data);
 void	put_pixel_img(t_img img, int x, int y, int color);
+void	rotate_player_left(t_data *data);
+void	rotate_player_right(t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+         #
+#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/01/30 22:34:27 by elilliu@stu      ###   ########.fr        #
+#    Updated: 2025/01/31 18:22:35 by elilliu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ OBJ_DIR			= ./objs/
 
 SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
 				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c\
-				srcs/utils_gc.c srcs/move_player.c srcs/put_img_to_img.c
+				srcs/utils_gc.c srcs/move_player.c srcs/put_img_to_img.c\
+				srcs/rotate_player.c
 	
 # SRCS_BONUS		= 
 

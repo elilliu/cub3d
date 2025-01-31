@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:23:29 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/30 21:57:27 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/01/31 19:41:11 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@ void	add_player(t_data *data)
 			y++;
 		}
 		x++;
+	}
+}
+
+void	add_ray(t_data *data)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	i = 0;
+	x = data->player.x;
+	y = data->player.y;
+	while (i <= 50)
+	{
+		put_pixel_img(data->background, x, y, 0xcd5c5c);
+		x += data->player.delta_x;
+		y += data->player.delta_y;
+		i++;
 	}
 }
 
@@ -96,7 +114,7 @@ void	fill_window(t_data *data)
 		row++;
 	}
 	add_player(data);
-	// add_ray(data);
+	add_ray(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->background.img_ptr);
 }
