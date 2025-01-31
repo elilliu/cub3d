@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/30 17:52:54 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:23:19 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ int	data_init(t_data *data, char *str)
 	// if (!map_init(data))
 	// 	return (0);
   parse_textures(data);
-	// if (!player_init(data))
-	// 	return (0);
-	// data->mlx_ptr = mlx_init();
-	// if (!data->mlx_ptr)
-	// 	return (0);
-	// mlx_get_screen_size(data->mlx_ptr, &data->sizex, &data->sizey);
-	// data->win_ptr = mlx_new_window(data->mlx_ptr, data->sizex,
-	// 		data->sizey, "cub3d");
-	// if (!data->win_ptr)
-	// 	return (free(data->mlx_ptr), 0);
+	if (!player_init(data))
+		return (0);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		return (0);
+	mlx_get_screen_size(data->mlx_ptr, &data->sizex, &data->sizey);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->sizex,
+			data->sizey, "cub3d");
+	if (!data->win_ptr)
+		return (free(data->mlx_ptr), 0);
 	return (1);
 }

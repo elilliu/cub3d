@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/30 19:08:01 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:21:51 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int extract_t_path(char *line, t_data *data)
     return (0);
 }
 
-
 // int    extract_t_path(char *line, t_data *data)
 // {
 //     int texture;
@@ -147,9 +146,7 @@ int extract_rgb(char *line, t_data *data)
     texture = check_texture(line);
     if (texture == -1)
         return (print_error("Invalid RGB identifier"), 0);
-
-    i = skip_tex_type(line, 0, 1); // Saute "F" ou "C"
-
+    i = skip_tex_type(line, 0, 1);
     if (texture == T_FL)
         return set_texture_path(&data->t_fl, line, i);
     if (texture == T_CE)
@@ -197,12 +194,10 @@ int extract_line(char *line, t_data *data)
     texture = check_texture(line);
     if (texture == -1)
         return (print_error("Invalid line in .cub file"), 0);
-
     if (texture == T_FL || texture == T_CE)
         return extract_rgb(line, data);
     if (texture == T_NO || texture == T_SO || texture == T_EA || texture == T_WE)
         return extract_t_path(line, data);
-
     return (0);
 }
 
@@ -372,9 +367,8 @@ int	parse_textures(t_data *data)
 	line = get_next_line(data->fd_cub, 0);
 	if (!line)
 		return (close(data->fd_cub), 0);
-	while (line)
+	while (line && texture_count < 6)
 	{
-		    printf("Read line: %s", line);
         if (texture_count >= 6)
         {
             print_error("Too many textures in .cub file");
@@ -399,11 +393,9 @@ int	parse_textures(t_data *data)
             else
                 texture_count++;
         }
-
 		free(line);
 		line = get_next_line(data->fd_cub, 0);
 	}
-
 	parse_map(data, line);
 	clean_map_reading(line, data->fd_cub);
 	fill_map(data);
