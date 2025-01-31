@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/31 11:48:53 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:09:11 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,7 +276,6 @@ void add_map_line(t_data *data, char *line)
     }
 }
 
-
 int	fill_map(t_data *data)
 {
 	int		i;
@@ -295,6 +294,13 @@ int	fill_map(t_data *data)
 	return (1);
 }
 
+void  print_clean(t_data *data, char *line, char *mess)
+{
+  print_error(mess);
+  clean_map_reading(line, data->fd_cub);
+  clean_all(data);
+}
+
 void parse_map(t_data *data, char *line)
 {
     skip_empty_line(&line, data->fd_cub);
@@ -307,47 +313,34 @@ void parse_map(t_data *data, char *line)
     }
     skip_empty_line(&line, data->fd_cub);
     if (line)
-    {
-      print_error("Empty line in map");
-      clean_map_reading(line, data->fd_cub);
-      clean_all(data);
-    }
-    // clean_map_reading(line, data->fd_cub);
+      print_clean(data, line, "Empty line in map");
 }
 
-int	parse_textures(t_data *data, char *line)
+void  check_textures(t_data *data, char *line, int *texture_count)
+{
+  if (*texture_count >= 6)
+      print_clean(data, line, "Too many textures in .cub file");
+  if (!is_texture(line) && !empty_line(line))
+      print_clean(data, line, "Wrong texture format in .cub file");
+  if (is_texture(line) && !empty_line(line))
+  {
+      if (!extract_line(line, data))
+          print_clean(data, line, "Duplicate texture path or invalid texture");
+      else
+          *texture_count += 1;
+  }
+}
+
+int	parse_textures(t_data *data, char **line)
 {
 	int     texture_count;
 
 	texture_count = 0;
-	while (line && texture_count < 6)
+	while (*line && texture_count < 6)
 	{
-        if (texture_count >= 6)
-        {
-            print_error("Too many textures in .cub file");
-            clean_map_reading(line, data->fd_cub);
-            clean_all(data);
-        }
-        if (!is_texture(line) && !empty_line(line))
-        {
-            printf("[%s]\n", line);
-            print_error("Wrong texture format in .cub file");
-            clean_map_reading(line, data->fd_cub);
-            clean_all(data);
-        }
-        if (is_texture(line) && !empty_line(line))
-        {
-            if (!extract_line(line, data))
-            {
-                print_error("Duplicate texture path or invalid texture");
-                clean_map_reading(line, data->fd_cub);
-                clean_all(data);
-            }
-            else
-                texture_count++;
-        }
-		free(line);
-		line = get_next_line(data->fd_cub, 0);
+    check_textures(data, *line, &texture_count);
+		free(*line);
+		*line = get_next_line(data->fd_cub, 0);
 	}
 	return (1);
 }
@@ -362,7 +355,7 @@ int parse_file(t_data *data)
 	line = get_next_line(data->fd_cub, 0);
 	if (!line)
 		return (close(data->fd_cub), 0);
-  parse_textures(data, line);
+  parse_textures(data, &line);
   parse_map(data, line);
 	clean_map_reading(line, data->fd_cub);
 	fill_map(data);

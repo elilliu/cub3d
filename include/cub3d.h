@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/31 10:34:23 by bineleon         ###   ########.fr       */
+/*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
+/*   Updated: 2025/01/31 18:09:48 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ typedef enum e_bool
 {
 	false,
 	true
-}						t_bool;
+}			t_bool;
 
 typedef enum e_mem
 {
 	MALLOC,
 	FREE,
 	FULL_CLEAN
-}						t_mem;
+}			t_mem;
 
 typedef enum e_chars_game
 {
@@ -61,21 +61,21 @@ typedef struct s_garbage_co
 {
 	void				*ptr;
 	struct s_garbage_co	*next;
-}						t_garbage_co;
+}			t_garbage_co;
 
 typedef struct s_fill_tab
 {
-	int					fd;
-	int					i;
-	int					row;
-	char				*line;
-}						t_fill_tab;
+	int		fd;
+	int		i;
+	int		row;
+	char	*line;
+}			t_fill_tab;
 
 typedef struct s_map
 {
-	char				**tab;
-	int					rows;
-}						t_map;
+	char	**tab;
+	int		rows;
+}			t_map;
 
 typedef struct s_map2
 {
@@ -85,11 +85,12 @@ typedef struct s_map2
 
 typedef struct s_player
 {
-	int					square_x;
-	int					square_y;
-	int					x;
-	int					y;
-}						t_player;
+	int	line;
+	int	column;
+	int	x;
+	int	y;
+
+}			t_player;
 
 typedef struct s_tex_path
 {
@@ -121,12 +122,11 @@ typedef struct s_data
 	char				*t_fl;
 	char				*t_ce;
 	t_garbage_co		*garbage;
-
-}						t_data;
+}			t_data;
 
 int						main(int ac, char **av);
 int						verif_path(char *str);
-int					parse_textures(t_data *data, char *line);
+int					parse_textures(t_data *data, char **line);
 int						data_init(t_data *data, char *str);
 int						verif_map(t_data *data);
 t_data					*get_data(void);
@@ -145,5 +145,9 @@ t_bool					is_valid_char_map(char c);
 t_bool        is_wall_texture(char *line);
 char          *gc_dup_map(const char *s1);
 int           parse_file(t_data *data);
+void	move_player_up(t_data *data);
+void	move_player_left(t_data *data);
+void	move_player_down(t_data *data);
+void	move_player_right(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/31 10:23:05 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:01:58 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		clean_all(data);
-	if (keysym == XK_d)
-		data->player.x += 5;
-	if (keysym == XK_a)
-		data->player.x -= 5;
 	if (keysym == XK_w)
-		data->player.y -= 5;
+		move_player_up(data);
+	if (keysym == XK_a)
+		move_player_left(data);
 	if (keysym == XK_s)
-		data->player.y += 5;
+		move_player_down(data);
+	if (keysym == XK_d)
+		move_player_right(data);
 	return (1);
 }
 

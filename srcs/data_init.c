@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/31 11:35:29 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:04:19 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	player_init(t_data *data)
 		{
 			if (data->map.tab[row][i] == 'N')
 			{
-				data->player.square_x = i;
-				data->player.square_y = row;
+				data->player.column = i;
+				data->player.line = row;
 				data->player.x = 28;
 				data->player.y = 28;
 				return (1);
