@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/31 18:09:11 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:23:13 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,19 +301,19 @@ void  print_clean(t_data *data, char *line, char *mess)
   clean_all(data);
 }
 
-void parse_map(t_data *data, char *line)
+void parse_map(t_data *data, char **line)
 {
-    skip_empty_line(&line, data->fd_cub);
-    while (line && !empty_line(line))
+    skip_empty_line(line, data->fd_cub);
+    while (*line && !empty_line(*line))
     {
-        add_map_line(data, line);
+        add_map_line(data, *line);
         data->row_count += 1;
-        free(line);
-        line = get_next_line(data->fd_cub, 0);
+        free(*line);
+        *line = get_next_line(data->fd_cub, 0);
     }
-    skip_empty_line(&line, data->fd_cub);
-    if (line)
-      print_clean(data, line, "Empty line in map");
+    skip_empty_line(line, data->fd_cub);
+    if (*line)
+      print_clean(data, *line, "Empty line in map");
 }
 
 void  check_textures(t_data *data, char *line, int *texture_count)
@@ -356,7 +356,7 @@ int parse_file(t_data *data)
 	if (!line)
 		return (close(data->fd_cub), 0);
   parse_textures(data, &line);
-  parse_map(data, line);
+  parse_map(data, &line);
 	clean_map_reading(line, data->fd_cub);
 	fill_map(data);
   return (1);
