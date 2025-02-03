@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/03 12:21:37 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:11:14 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	data_init(t_data *data, char *str)
   data->t_paths.t_fl = NULL;
 	// if (!map_init(data))
 	// 	return (0);
-  parse_file(data);
+  if (!parse_file(data))
+    return(0);
 	if (!player_init(data))
 		return (0);
 	data->mlx_ptr = mlx_init();

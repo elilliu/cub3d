@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/31 18:39:17 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:14:29 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int set_texture_path(char **texture, char *line, int start)
     int len;
 
     if (*texture)
-        return (print_error("Duplicate texture path"), 0);
+        return (0);
     len = path_len(&line[start]);
     *texture = gc_mem(MALLOC, len + 1, NULL);
     if (!*texture)
@@ -172,13 +172,6 @@ int	fill_map(t_data *data)
 	return (1);
 }
 
-void  print_clean(t_data *data, char *line, char *mess)
-{
-  print_error(mess);
-  clean_map_reading(line, data->fd_cub);
-  clean_all(data);
-}
-
 void parse_map(t_data *data, char **line)
 {
     skip_empty_line(line, data->fd_cub);
@@ -191,19 +184,19 @@ void parse_map(t_data *data, char **line)
     }
     skip_empty_line(line, data->fd_cub);
     if (*line)
-      print_clean(data, *line, "Empty line in map");
+      print_clean_reading(data, *line, "Empty line in map");
 }
 
 void  check_textures(t_data *data, char *line, int *texture_count)
 {
   if (*texture_count >= 6)
-      print_clean(data, line, "Too many textures in .cub file");
+      print_clean_reading(data, line, "Too many textures in .cub file");
   if (!is_texture(line) && !empty_line(line))
-      print_clean(data, line, "Wrong texture format in .cub file");
+      print_clean_reading(data, line, "Wrong texture format in .cub file");
   if (is_texture(line) && !empty_line(line))
   {
       if (!extract_line(line, data))
-          print_clean(data, line, "Duplicate texture path or invalid texture");
+          print_clean_reading(data, line, "Duplicate texture path or invalid texture");
       else
           *texture_count += 1;
   }
@@ -232,7 +225,10 @@ int parse_file(t_data *data)
 		return (print_error("Failed to open file"), 0);
 	line = get_next_line(data->fd_cub, 0);
 	if (!line)
+  {
+    print_error("Empty .cub file");
 		return (close(data->fd_cub), 0);
+  }
   parse_textures(data, &line);
   parse_map(data, &line);
 	clean_map_reading(line, data->fd_cub);

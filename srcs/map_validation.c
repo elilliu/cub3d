@@ -6,70 +6,88 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/03 12:32:16 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:44:31 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_bool	is_closed_map(char **map)
+static t_bool empty_around(char **map, int i, int j)
 {
-	int i;
-	int j;
-	int len;
+  	int len;
 
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == '0' || is_player_char(map[i][j]))
+    if (map[i][j] == '0' || is_player_char(map[i][j]))
 			{
 				if (i - 1 < 0)
-					return (false);
+					return (true);
 				len = ft_strlen(map[i - 1]);
 				if (j >= len || map[i - 1][j] == ' ')
-					return (false);
+					return (true);
 				if (map[i + 1] == 0)
-					return (false);
+					return (true);
 				len = ft_strlen(map[i + 1]);
 				if (j >= len || map[i + 1][j] == ' ')
-					return (false);
+					return (true);
 				if (j - 1 < 0)
-					return (false);
+					return (true);
 				if (map[i][j - 1] == ' ')
-					return (false);
+					return (true);
 				len = ft_strlen(map[i]);
 				if (j + 1 >= len || map[i][j + 1] == ' ')
-					return (false);
+					return (true);
 			}
-			j = j + 1;
-		}
-		i = i + 1;
-	}
-	return (true);
+			return (false);
 }
 
-t_bool	is_valid_p_count(char **map)
+void	map_validation(t_data *data, char **map)
 {
 	int i;
 	int j;
-  int player;
+	int player;
 
 	i = 0;
+  player = 0;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (is_player_char(map[i][j]))
+      if (!is_valid_char_map(map[i][j]))
+      {
+        printf("wrong char : [%c]\n", map[i][j]);
+        print_clean_map(data, "Unvalid char in map");
+      }
+      if (is_player_char(map[i][j]))
         player++;
+			if (empty_around(map, i, j))
+        print_clean_map(data, "Unclosed map");
 			j = j + 1;
 		}
 		i = i + 1;
 	}
   if (player != 1)
-    return (false);
-	return (true);
+    print_clean_map(data, "Map should have 1 player");
 }
+
+// t_bool	is_valid_p_count(char **map)
+// {
+// 	int i;
+// 	int j;
+//   int player;
+
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		j = 0;
+// 		while (map[i][j])
+// 		{
+// 			if (is_player_char(map[i][j]))
+//         player++;
+// 			j = j + 1;
+// 		}
+// 		i = i + 1;
+// 	}
+//   if (player != 1)
+//     return (false);
+// 	return (true);
+// }

@@ -6,7 +6,7 @@
 #    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/02/03 12:20:51 by bineleon         ###   ########.fr        #
+#    Updated: 2025/02/03 14:47:05 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,7 +134,7 @@ OBJS_DIR	= ./objs/
 SRCS_FILE	= main.c data_init.c utils.c verif_map.c\
 			  garbage_collector.c map_init.c fill_window.c\
 			  utils_gc.c parsing.c parsing_utils.c move_player.c\
-				parsing_error.c map_validation.c
+				parsing_error.c map_validation.c error.c
 SRC			= $(addprefix $(SRCS_DIR), $(SRCS_FILE))
 
 OBJ			= $(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRC:.c=.o))
