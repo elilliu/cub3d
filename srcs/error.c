@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:46:45 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/03 15:03:35 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:46:13 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void  print_error(char *s)
 {
+  ft_putstr_fd(RED, 2);
   ft_putstr_fd("Error\n", 2);
   ft_putstr_fd(s, 2);
   ft_putstr_fd("\n", 2);
+  ft_putstr_fd(RESET, 2);
 }
 
 void print_clean_map(t_data *data, char *err_mess)

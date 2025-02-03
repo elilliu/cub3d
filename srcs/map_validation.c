@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/03 15:44:31 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:25:33 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ void	map_validation(t_data *data, char **map)
 		while (map[i][j])
 		{
       if (!is_valid_char_map(map[i][j]))
-      {
-        printf("wrong char : [%c]\n", map[i][j]);
         print_clean_map(data, "Unvalid char in map");
-      }
       if (is_player_char(map[i][j]))
         player++;
 			if (empty_around(map, i, j))
