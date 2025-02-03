@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/31 18:04:19 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:21:37 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	data_init(t_data *data, char *str)
 	data->sizex = 0;
 	data->sizey = 0;
   data->map2 = NULL;
-  data->t_no = NULL;
-  data->t_so = NULL;
-  data->t_ea = NULL;
-  data->t_we = NULL;
-  data->t_ce = NULL;
-  data->t_fl = NULL;
+  data->t_paths.t_no = NULL;
+  data->t_paths.t_so = NULL;
+  data->t_paths.t_ea = NULL;
+  data->t_paths.t_we = NULL;
+  data->t_paths.t_ce = NULL;
+  data->t_paths.t_fl = NULL;
 	// if (!map_init(data))
 	// 	return (0);
   parse_file(data);

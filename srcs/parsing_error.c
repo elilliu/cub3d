@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:34:03 by bineleon          #+#    #+#             */
-/*   Updated: 2025/01/31 19:58:21 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/01/31 20:04:16 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,4 @@ void  error_t_path(t_data *data)
     }
     i++;
   }
-  // if (!verif_path(data->t_paths.t_so, ".xpm"))
-  // {
-  //   print_error("Texture path must be in .xpm");
-  //   clean_all(data);
-  // }
-  // if (!verif_path(data->t_paths.t_we, ".xpm"))
-  // {
-  //   print_error("Texture path must be in .xpm");
-  //   clean_all(data);
-  // }
-  // if (!verif_path(data->t_paths.t_ea, ".xpm"))
-  // {
-  //   print_error("Texture path must be in .xpm");
-  //   clean_all(data);
-  // }
 }

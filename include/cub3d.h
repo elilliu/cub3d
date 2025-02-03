@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/31 19:59:17 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:26:32 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,6 @@ void	move_player_left(t_data *data);
 void	move_player_down(t_data *data);
 void	move_player_right(t_data *data);
 void  error_t_path(t_data *data);
+t_bool	is_player_char(char c);
 
 #endif
