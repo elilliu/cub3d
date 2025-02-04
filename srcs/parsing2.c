@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 14:46:45 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/04 12:01:22 by neleon           ###   ########.fr       */
+/*   Created: 2025/02/04 13:57:24 by neleon            #+#    #+#             */
+/*   Updated: 2025/02/04 15:36:00 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	print_error(char *s)
+t_bool  is_valid_rgb_char(char c)
 {
-	ft_putstr_fd(RED, 2);
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(s, 2);
-	ft_putstr_fd("\n", 2);
-	ft_putstr_fd(RESET, 2);
+    if (ft_isdigit(c) || is_whitespace(c) || c == ',')
+        return (true);
+    return (false);    
 }
 
-void	print_clean_map(t_data *data, char *err_mess)
+t_bool  is_valid_rgb(char *str)
 {
-	if (err_mess)
-		print_error(err_mess);
-	clean_all(data);
-}
+    int i;
 
-void	print_clean_reading(t_data *data, char *line, char *mess)
-{
-    if (mess)
-	    print_error(mess);
-	clean_map_reading(line, data->fd_cub);
-	clean_all(data);
+    i = 0;
+    while (str[i])
+    {
+        if (!is_valid_rgb_char(str[i]))
+            return (false);
+    }
+    return (true);
 }

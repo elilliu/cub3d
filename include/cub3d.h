@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/04 11:55:50 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/04 13:59:55 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,13 @@ typedef struct s_tex_path
 	char				*t_fl;
 	char				*t_ce;
 }						t_tex_path;
+
+typedef struct s_rgb
+{
+	int					r;
+	int					g;
+	int					b;
+}						t_rgb;
 
 typedef struct s_data
 {

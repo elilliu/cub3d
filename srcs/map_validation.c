@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/04 11:56:52 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/04 12:47:29 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,3 @@ void	map_validation(t_data *data, char **map)
 	if (player != 1)
 		print_clean_map(data, "Map should have 1 player");
 }
-
-// t_bool	is_valid_p_count(char **map)
-// {
-// 	int i;
-// 	int j;
-//   int player;
-
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		while (map[i][j])
-// 		{
-// 			if (is_player_char(map[i][j]))
-//         player++;
-// 			j = j + 1;
-// 		}
-// 		i = i + 1;
-// 	}
-//   if (player != 1)
-//     return (false);
-// 	return (true);
-// }
