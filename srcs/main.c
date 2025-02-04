@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/31 19:32:55 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/04 11:56:41 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int	clean_all(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	if (data->mlx_ptr)
+	{
+		if (data->win_ptr)
+			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+	}
 	gc_mem(FULL_CLEAN, 0, NULL);
-	exit (0);
+	exit(0);
 }
 
 int	handle_keypress(int keysym, t_data *data)
@@ -45,21 +49,49 @@ int	render(void)
 	return (1);
 }
 
+void	print_map(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->map.tab[i])
+	{
+		printf("%s\n", data->map.tab[i]);
+		i++;
+	}
+}
+
+void	print_textures(t_data *data)
+{
+	printf("%s\n", data->t_paths.t_no);
+	printf("%s\n", data->t_paths.t_so);
+	printf("%s\n", data->t_paths.t_ea);
+	printf("%s\n", data->t_paths.t_we);
+	printf("%s\n", data->t_paths.t_ce);
+	printf("%s\n", data->t_paths.t_fl);
+	printf("\n");
+}
+
 int	main(int ac, char **av)
 {
 	t_data	*data;
 
 	data = get_data();
 	if (ac != 2)
-		return (printf("Please follow this format: ./cub3d map_path\n"), 1);
-	if (!verif_path(av[1]))
-		return (printf("Map must be a .cub type file\n"), 1);
+		return (print_error("Please follow this format: ./cub3d map_path"), 1);
+	if (!verif_path(av[1], ".cub"))
+		return (print_error("Map must be a .cub type file"), 1);
 	if (!data_init(data, av[1]))
 		return (1);
-	fill_window(data);
+	print_textures(data);
+	print_map(data);
+	error_t_path(data);
+	map_validation(data, data->map.tab);
+  fill_window(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
-	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &clean_all, data);
+	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &clean_all,
+		data);
 	mlx_loop(data->mlx_ptr);
 	return (0);
 }
