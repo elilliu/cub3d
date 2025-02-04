@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/04 13:59:55 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:42:30 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,19 @@ typedef struct s_map2
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	delta_x;
-	float	delta_y;
-	float	angle;
+	float				x;
+	float				y;
+	float				delta_x;
+	float				delta_y;
+	float				angle;
 }						t_player;
+
+typedef struct s_rgb
+{
+	int					r;
+	int					g;
+	int					b;
+}						t_rgb;
 
 typedef struct s_tex_path
 {
@@ -115,25 +122,20 @@ typedef struct s_tex_path
 	char				*t_ea;
 	char				*t_fl;
 	char				*t_ce;
+	t_rgb				fl;
+	t_rgb				ce;
 }						t_tex_path;
-
-typedef struct s_rgb
-{
-	int					r;
-	int					g;
-	int					b;
-}						t_rgb;
 
 typedef struct s_img
 {
-	void	*img_ptr;
-	char	*addr;
-	int		h;
-	int		w;
-	int		bpp;
-	int		endian;
-	int		line_len;
-}			t_img;
+	void				*img_ptr;
+	char				*addr;
+	int					h;
+	int					w;
+	int					bpp;
+	int					endian;
+	int					line_len;
+}						t_img;
 
 typedef struct s_data
 {
@@ -144,7 +146,7 @@ typedef struct s_data
 	int					sizex;
 	int					sizey;
 	int					fd_cub;
-	t_img			background;
+	t_img				background;
 	t_map				map;
 	t_map2				*map2;
 	int					row_count;
@@ -183,8 +185,8 @@ void					print_clean_map(t_data *data, char *err_mess);
 void					print_clean_reading(t_data *data, char *line,
 							char *mess);
 void					map_validation(t_data *data, char **map);
-void	put_pixel_img(t_img img, int x, int y, int color);
-void	rotate_player_left(t_data *data);
-void	rotate_player_right(t_data *data);
+void					put_pixel_img(t_img img, int x, int y, int color);
+void					rotate_player_left(t_data *data);
+void					rotate_player_right(t_data *data);
 
 #endif
