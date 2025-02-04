@@ -61,6 +61,31 @@ CYAN		= \033[1;36m
 
 # .PHONY: all clean fclean re ${OBJS_DIR}INCS_PATH		= ./include
 
+NAME 			= cub3d
+HEADER	 		= include/cub3d.h
+INC     		= /usr/include
+LIBMLX  		= ./mlx/
+NAME_MLX		= libmlx.a
+CC				= cc
+CFLAGS			= -Wall -Werror -Wextra -g3 -I$(INC) -I$(INCS_PATH) -MMD
+LFLAGS			= -L$(LIBMLX) -lmlx
+RM				= rm -rf
+
+SRC_DIR			= ./srcs
+# SRC_DIR_B		= ./bonus
+OBJ_DIR			= ./objs/
+# OBJ_DIR_B		= ./objs_bonus/
+
+SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
+				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c\
+				srcs/utils_gc.c srcs/move_player.c srcs/put_img_to_img.c\
+				srcs/rotate_player.c
+	
+# SRCS_BONUS		= 
+
+OBJS			= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}%.o}
+# OBJS_BONUS		= ${SRCS_BONUS:${SRC_DIR_B}/%.c=${OBJ_DIR_B}%.o}
+# DEPS			= ${OBJS:.o=.d}
 # NAME 			= cub3d
 # # HEADER	 		= include/cub3d.h
 # INC     		= /usr/include

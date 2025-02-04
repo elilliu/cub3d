@@ -24,6 +24,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define PI 3.1415926535
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
 # define SMGREEN "\033[0;32m"
@@ -31,7 +32,6 @@
 # define SMBLUE "\033[0;34m"
 # define SMMAGENTA "\033[0;35m"
 # define SMCYAN "\033[0;36m"
-
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
 # define YELLOW "\033[1;33m"
@@ -100,11 +100,11 @@ typedef struct s_map2
 
 typedef struct s_player
 {
-	int					line;
-	int					column;
-	int					x;
-	int					y;
-
+	float	x;
+	float	y;
+	float	delta_x;
+	float	delta_y;
+	float	angle;
 }						t_player;
 
 typedef struct s_tex_path
@@ -124,6 +124,17 @@ typedef struct s_rgb
 	int					b;
 }						t_rgb;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		h;
+	int		w;
+	int		bpp;
+	int		endian;
+	int		line_len;
+}			t_img;
+
 typedef struct s_data
 {
 	void				*mlx_ptr;
@@ -133,11 +144,11 @@ typedef struct s_data
 	int					sizex;
 	int					sizey;
 	int					fd_cub;
+	t_img			background;
 	t_map				map;
 	t_map2				*map2;
 	int					row_count;
 	t_tex_path			t_paths;
-
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -149,7 +160,7 @@ int						verif_map(t_data *data);
 t_data					*get_data(void);
 void					print_error(char *s);
 void					*gc_mem(t_mem type, size_t size, void *ptr);
-int						fill_window(t_data *data);
+void					fill_window(t_data *data);
 int						map_init(t_data *data);
 t_bool					is_whitespace(char c);
 int						skip_whitespaces(char *line, int i);
@@ -172,5 +183,8 @@ void					print_clean_map(t_data *data, char *err_mess);
 void					print_clean_reading(t_data *data, char *line,
 							char *mess);
 void					map_validation(t_data *data, char **map);
+void	put_pixel_img(t_img img, int x, int y, int color);
+void	rotate_player_left(t_data *data);
+void	rotate_player_right(t_data *data);
 
 #endif

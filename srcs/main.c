@@ -37,12 +37,15 @@ int	handle_keypress(int keysym, t_data *data)
 		move_player_down(data);
 	if (keysym == XK_d)
 		move_player_right(data);
+	if (keysym == XK_Right)
+		rotate_player_right(data);
+	if (keysym == XK_Left)
+		rotate_player_left(data);
 	return (1);
 }
 
-int	render(t_data *data)
+int	render(void)
 {
-	fill_window(data);
 	return (1);
 }
 
@@ -84,6 +87,7 @@ int	main(int ac, char **av)
 	print_map(data);
 	error_t_path(data);
 	map_validation(data, data->map.tab);
+  fill_window(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &clean_all,
