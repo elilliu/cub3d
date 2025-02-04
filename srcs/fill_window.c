@@ -6,16 +6,28 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:23:29 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/31 19:41:11 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/04 15:35:50 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+int	check_wall(t_data *data, float x, float y)
+{
+	int	xx;
+	int	yy;
+
+	xx = (int)x;
+	yy = (int)y;
+	if (data->map.tab[yy / 64][xx / 64] == '1')
+		return (1);
+	return (0);
+}
+
 void	add_player(t_data *data)
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 
 	x = data->player.x - 4;
 	while (x != data->player.x + 4)
@@ -23,7 +35,7 @@ void	add_player(t_data *data)
 		y = data->player.y - 4;
 		while (y != data->player.y + 4)
 		{
-			put_pixel_img(data->background, x, y, 0xcd5c5c);
+			put_pixel_img(data->background, x, y, 0x0);
 			y++;
 		}
 		x++;
@@ -32,19 +44,50 @@ void	add_player(t_data *data)
 
 void	add_ray(t_data *data)
 {
-	int	i;
-	int	x;
-	int	y;
+	int		i;
+	float	angle;
+	float	x;
+	float	y;
+	float	delta_x;
+	float	delta_y;
 
-	i = 0;
-	x = data->player.x;
-	y = data->player.y;
-	while (i <= 50)
+	angle = data->player.angle;
+	while (angle >= data->player.angle - 0.5)
 	{
-		put_pixel_img(data->background, x, y, 0xcd5c5c);
-		x += data->player.delta_x;
-		y += data->player.delta_y;
-		i++;
+		i = 0;
+		x = data->player.x;
+		y = data->player.y;
+		while (i <= 500)
+		{
+			put_pixel_img(data->background, x, y, 0xcd5c5c);
+			delta_x = cos(angle);
+			delta_y = sin(angle);
+			x += delta_x;
+			y += delta_y;
+			if (check_wall(data, x, y) == 1)
+				break ;
+			i++;
+		}
+		angle -= 0.01;
+	}
+	angle = data->player.angle;
+	while (angle <= data->player.angle + 0.5)
+	{
+		i = 0;
+		x = data->player.x;
+		y = data->player.y;
+		while (i <= 500)
+		{
+			put_pixel_img(data->background, x, y, 0xcd5c5c);
+			delta_x = cos(angle);
+			delta_y = sin(angle);
+			x += delta_x;
+			y += delta_y;
+			if (check_wall(data, x, y) == 1)
+				break ;
+			i++;
+		}
+		angle += 0.01;
 	}
 }
 
@@ -113,8 +156,8 @@ void	fill_window(t_data *data)
 		}
 		row++;
 	}
-	add_player(data);
 	add_ray(data);
+	add_player(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->background.img_ptr);
 }
