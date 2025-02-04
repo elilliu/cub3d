@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_gc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 00:33:46 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/30 17:34:37 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:58:56 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*gc_strdup(const char *s1)
 	str[i] = '\0';
 	return (str);
 }
+
 char	*gc_dup_map(const char *s1)
 {
 	size_t	len;

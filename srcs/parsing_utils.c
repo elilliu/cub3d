@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:48:09 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/03 15:45:21 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:58:09 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_bool	is_wall_texture(char *line)
 {
 	int	i;
 
-  i = 0;
+	i = 0;
 	i = skip_whitespaces(line, 0);
 	if (line[i] && line[i] == 'N' && line[i + 1] && line[i + 1] == 'O'
-    && line[i + 2] && is_whitespace(line[i + 2]))
+		&& line[i + 2] && is_whitespace(line[i + 2]))
 		return (true);
 	else if (line[i] && line[i] == 'S' && line[i + 1] && line[i + 1] == 'O'
 		&& line[i + 2] && is_whitespace(line[i + 2]))
@@ -51,11 +51,12 @@ static t_bool	is_other_texture(char *line)
 {
 	int	i;
 
-  i = 0;
+	i = 0;
 	i = skip_whitespaces(line, 0);
 	if (line[i] && line[i] == 'F' && line[i + 1] && is_whitespace(line[i + 1]))
 		return (true);
-	else if (line[i] && line[i] == 'C' && line[i + 1] && is_whitespace(line[i + 1]))
+	else if (line[i] && line[i] == 'C' && line[i + 1] && is_whitespace(line[i
+			+ 1]))
 		return (true);
 	return (false);
 }
@@ -71,7 +72,7 @@ t_bool	empty_line(char *line)
 {
 	int	i;
 
-  i = 0;
+	i = 0;
 	if (!line)
 		return (true);
 	i = skip_whitespaces(line, 0);

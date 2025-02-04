@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:23:29 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/29 23:52:39 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/04 11:56:34 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	is_player(t_data *data, int x, int y)
 
 	player_x = data->player.column * 64 + data->player.x;
 	player_y = data->player.line * 64 + data->player.y;
-	if (x >= player_x && x <= player_x + 8 && y >= player_y && y <= player_y + 8)
+	if (x >= player_x && x <= player_x + 8
+		&& y >= player_y && y <= player_y + 8)
 		return (1);
 	return (0);
 }
@@ -36,9 +37,11 @@ void	put_white_square(t_data *data, int x, int y, int size)
 		while (i < size)
 		{
 			if (is_player(data, x + i, y + j))
-				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, 0xcd5c5c);
+				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j,
+					0xcd5c5c);
 			else
-				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, 0xf8f8ff);
+				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j,
+					0xf8f8ff);
 			i++;
 		}
 		j++;
@@ -100,7 +103,8 @@ int	fill_window(t_data *data)
 		{
 			if (data->map.tab[row][i] == '1')
 				put_grey_square(data, x, y, 63);
-			else if (data->map.tab[row][i] == '0' || data->map.tab[row][i] == 'N')
+			else if (data->map.tab[row][i] == '0'
+				|| data->map.tab[row][i] == 'N')
 				put_white_square(data, x, y, 63);
 			x += 64;
 			i++;
