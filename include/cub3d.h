@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/04 13:59:55 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:18:30 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # include <unistd.h>
 
 # define PI 3.1415926535
+
+# define WIDTH 1600
+# define HEIGHT 800
+
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
 # define SMGREEN "\033[0;32m"
@@ -141,8 +145,6 @@ typedef struct s_data
 	void				*win_ptr;
 	char				*map_path;
 	t_player			player;
-	int					sizex;
-	int					sizey;
 	int					fd_cub;
 	t_img			background;
 	t_map				map;
