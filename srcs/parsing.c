@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/05 13:10:53 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:32:37 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	skip_empty_line(char **line, int fd)
 {
 	if (!*line)
 		return (0);
-	while (empty_line(*line))
+	while (*line && empty_line(*line))
 	{
 		if (*line)
 			free(*line);
@@ -221,6 +221,7 @@ int	parse_file(t_data *data)
 	if (data->fd_cub < 0)
 		return (print_error("Failed to open file"), 0);
 	line = get_next_line(data->fd_cub, 0);
+  skip_empty_line(&line, data->fd_cub);
 	if (!line)
 	{
 		print_error("Empty .cub file");
