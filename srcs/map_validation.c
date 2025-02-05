@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/04 12:47:29 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/05 12:24:27 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ void	map_validation(t_data *data, char **map)
 		while (map[i][j])
 		{
 			if (!is_valid_char_map(map[i][j]))
-				print_clean_map(data, "Unvalid char in map");
+				print_clean(data, "Invalid char in map");
 			if (is_player_char(map[i][j]))
 				player++;
 			if (empty_around(map, i, j))
-				print_clean_map(data, "Unclosed map");
+				print_clean(data, "Unclosed map");
 			j = j + 1;
 		}
 		i = i + 1;
 	}
 	if (player != 1)
-		print_clean_map(data, "Map should have 1 player");
+		print_clean(data, "Map should have 1 player");
 }

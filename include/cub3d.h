@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/04 16:42:30 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/05 12:50:17 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,12 +181,13 @@ void					move_player_down(t_data *data);
 void					move_player_right(t_data *data);
 void					error_t_path(t_data *data);
 t_bool					is_player_char(char c);
-void					print_clean_map(t_data *data, char *err_mess);
+void					print_clean(t_data *data, char *err_mess);
 void					print_clean_reading(t_data *data, char *line,
 							char *mess);
 void					map_validation(t_data *data, char **map);
 void					put_pixel_img(t_img img, int x, int y, int color);
 void					rotate_player_left(t_data *data);
 void					rotate_player_right(t_data *data);
+void					set_rgb(t_data *data);
 
 #endif

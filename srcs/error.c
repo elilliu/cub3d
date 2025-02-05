@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:46:45 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/04 12:01:22 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/05 12:06:20 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_error(char *s)
 	ft_putstr_fd(RESET, 2);
 }
 
-void	print_clean_map(t_data *data, char *err_mess)
+void	print_clean(t_data *data, char *err_mess)
 {
 	if (err_mess)
 		print_error(err_mess);
