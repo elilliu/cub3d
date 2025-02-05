@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:54:16 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/01/31 19:33:12 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:12:54 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	move_player_up(t_data *data)
 {
 	data->player.x += data->player.delta_x;
 	data->player.y += data->player.delta_y;
-	printf("je suis la\n");
 	fill_window(data);
 }
 
