@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/04 11:58:23 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/05 13:10:53 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	path_len(char *path)
 	int	len;
 
 	len = 0;
-	while (path[len] && !is_whitespace(path[len]))
+	while (path[len] && !is_whitespace(path[len]) && path[len] != '\n')
 		len++;
 	// printf("path : [%s], len : [%d]\n", path, len);
 	return (len);
@@ -119,9 +119,6 @@ int	extract_line(char *line, t_data *data)
 
 int	skip_empty_line(char **line, int fd)
 {
-	int	i;
-
-	i = 0;
 	if (!*line)
 		return (0);
 	while (empty_line(*line))

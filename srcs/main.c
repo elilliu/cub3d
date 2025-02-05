@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/04 11:56:41 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/05 13:22:26 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,22 @@ void	print_textures(t_data *data)
 	printf("%s\n", data->t_paths.t_so);
 	printf("%s\n", data->t_paths.t_ea);
 	printf("%s\n", data->t_paths.t_we);
-	printf("%s\n", data->t_paths.t_ce);
 	printf("%s\n", data->t_paths.t_fl);
+	printf("%s\n", data->t_paths.t_ce);
+	printf("\n");
+}
+
+void	print_rgb(t_data *data)
+{
+  printf("Floor RGB :\n");
+	printf("red : %d\n", data->t_paths.fl.r);
+	printf("green : %d\n", data->t_paths.fl.g);
+	printf("blue : %d\n", data->t_paths.fl.b);
+
+	printf("Ceiling RGB :\n");
+	printf("red : %d\n", data->t_paths.ce.r);
+	printf("green : %d\n", data->t_paths.ce.g);
+	printf("blue : %d\n", data->t_paths.ce.b);
 	printf("\n");
 }
 
@@ -84,6 +98,8 @@ int	main(int ac, char **av)
 	if (!data_init(data, av[1]))
 		return (1);
 	print_textures(data);
+  set_rgb(data);
+  print_rgb(data);
 	print_map(data);
 	error_t_path(data);
 	map_validation(data, data->map.tab);
