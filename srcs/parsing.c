@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/04 11:58:23 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/05 14:32:37 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	path_len(char *path)
 	int	len;
 
 	len = 0;
-	while (path[len] && !is_whitespace(path[len]))
+	while (path[len] && !is_whitespace(path[len]) && path[len] != '\n')
 		len++;
 	// printf("path : [%s], len : [%d]\n", path, len);
 	return (len);
@@ -119,12 +119,9 @@ int	extract_line(char *line, t_data *data)
 
 int	skip_empty_line(char **line, int fd)
 {
-	int	i;
-
-	i = 0;
 	if (!*line)
 		return (0);
-	while (empty_line(*line))
+	while (*line && empty_line(*line))
 	{
 		if (*line)
 			free(*line);
@@ -224,6 +221,7 @@ int	parse_file(t_data *data)
 	if (data->fd_cub < 0)
 		return (print_error("Failed to open file"), 0);
 	line = get_next_line(data->fd_cub, 0);
+  skip_empty_line(&line, data->fd_cub);
 	if (!line)
 	{
 		print_error("Empty .cub file");
