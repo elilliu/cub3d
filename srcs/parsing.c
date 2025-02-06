@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/05 14:32:37 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:48:43 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,9 @@ void	parse_map(t_data *data, char **line)
 	{
 		add_map_line(data, *line);
 		data->row_count += 1;
+		data->map.rows++;
+		if ((int)ft_strlen(*line) > data->map.columns)
+			data->map.columns = (int)ft_strlen(*line);
 		free(*line);
 		*line = get_next_line(data->fd_cub, 0);
 	}
@@ -221,7 +224,7 @@ int	parse_file(t_data *data)
 	if (data->fd_cub < 0)
 		return (print_error("Failed to open file"), 0);
 	line = get_next_line(data->fd_cub, 0);
-  skip_empty_line(&line, data->fd_cub);
+	skip_empty_line(&line, data->fd_cub);
 	if (!line)
 	{
 		print_error("Empty .cub file");

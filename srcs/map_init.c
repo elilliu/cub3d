@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:35:15 by elilliu           #+#    #+#             */
-/*   Updated: 2025/01/29 18:03:31 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/05 20:47:55 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	map_init(t_data *data)
 	clean_map_reading(line, fd);
 	// close(fd);
 	// free(line);
+	printf("%d\n", data->map.rows);
 	data->map.tab = gc_mem(MALLOC, sizeof(char *) * (data->map.rows + 1), NULL);
 	if (fill_tab(data) == 0)
 		return (gc_mem(FREE, 0, data->map.tab), 0);

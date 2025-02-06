@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/05 13:58:48 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:22:25 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <unistd.h>
 
 # define PI 3.1415926535
+# define RADIAN 0.0174533
 
 # define WIDTH 1600
 # define HEIGHT 800
@@ -94,6 +95,8 @@ typedef struct s_map
 {
 	char				**tab;
 	int					rows;
+	int					columns;
+	int					square_size;
 }						t_map;
 
 typedef struct s_map2
@@ -108,7 +111,7 @@ typedef struct s_player
 	float				y;
 	float				delta_x;
 	float				delta_y;
-	float				angle;
+	double				angle;
 }						t_player;
 
 typedef struct s_rgb
@@ -141,6 +144,20 @@ typedef struct s_img
 	int					line_len;
 }						t_img;
 
+typedef struct s_ray
+{
+	int		dof;
+	int		map_x;
+	int		map_y;
+	double	angle;
+	float	x;
+	float	y;
+	float	tangent;
+	float	ntangent;
+	float	x_offset;
+	float	y_offset;
+}			t_ray;
+
 typedef struct s_data
 {
 	void				*mlx_ptr;
@@ -153,6 +170,7 @@ typedef struct s_data
 	t_map2				*map2;
 	int					row_count;
 	t_tex_path			t_paths;
+	t_ray				ray;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -191,5 +209,6 @@ void					put_pixel_img(t_img img, int x, int y, int color);
 void					rotate_player_left(t_data *data);
 void					rotate_player_right(t_data *data);
 void					set_rgb(t_data *data);
+float					deg_to_rad(int a);
 
 #endif

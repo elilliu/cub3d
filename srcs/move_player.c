@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:54:16 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/04 16:12:54 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/06 17:26:49 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	move_player_up(t_data *data)
 {
-	data->player.x += data->player.delta_x;
-	data->player.y += data->player.delta_y;
+	data->player.x -= data->player.delta_x * 5;
+	data->player.y -= data->player.delta_y * 5;
 	fill_window(data);
 }
 
@@ -25,20 +25,20 @@ void	move_player_left(t_data *data)
 	float	delta_x;
 	float	delta_y;
 
-	angle = data->player.angle - (PI / 2);
+	angle = data->player.angle - 90;
 	if (angle < 0)
-		angle += 2 * PI;
-	delta_x = cos(angle) * 5;
-	delta_y = sin(angle) * 5;
-	data->player.x += delta_x;
-	data->player.y += delta_y;
+		angle += 360;
+	delta_x = cos(deg_to_rad(angle));
+	delta_y = -sin(deg_to_rad(angle));
+	data->player.x += delta_x * 5;
+	data->player.y += delta_y * 5;
 	fill_window(data);
 }
 
 void	move_player_down(t_data *data)
 {
-	data->player.x -= data->player.delta_x;
-	data->player.y -= data->player.delta_y;
+	data->player.x += data->player.delta_x * 5;
+	data->player.y += data->player.delta_y * 5;
 	fill_window(data);
 }
 
@@ -48,12 +48,12 @@ void	move_player_right(t_data *data)
 	float	delta_x;
 	float	delta_y;
 
-	angle = data->player.angle - (PI / 2);
+	angle = data->player.angle - 90;
 	if (angle < 0)
-		angle += 2 * PI;
-	delta_x = cos(angle) * 5;
-	delta_y = sin(angle) * 5;
-	data->player.x -= delta_x;
-	data->player.y -= delta_y;
+		angle += 360;
+	delta_x = cos(deg_to_rad(angle));
+	delta_y = -sin(deg_to_rad(angle));
+	data->player.x -= delta_x * 5;
+	data->player.y -= delta_y * 5;
 	fill_window(data);
 }

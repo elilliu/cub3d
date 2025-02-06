@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/05 14:01:13 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:27:10 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	player_init(t_data *data)
 	int	i;
 	int	row;
 
-	data->player.angle = PI * 1.5;
-	data->player.delta_x = cos(data->player.angle) * 5;
-	data->player.delta_y = sin(data->player.angle) * 5;
+	data->player.angle = 90;
+	// printf("cet coucouuuuu angle: %.16f\n", data->player.angle);
+	// printf(" 3 * PI / 2: %.16f\n", 3 * PI / 2);
+	data->player.delta_x = cos(deg_to_rad(data->player.angle)) * 5;
+	data->player.delta_y = sin(deg_to_rad(data->player.angle)) * 5;
 	row = 0;
 	while (data->map.tab[row])
 	{
@@ -50,6 +52,8 @@ int	data_init(t_data *data, char *str)
 {
 	data->map_path = gc_strdup(str);
 	data->map.rows = 0;
+	data->map.columns = 0;
+	data->map.square_size = 64;
 	data->row_count = 0;
 	data->map2 = NULL;
 	data->t_paths.t_no = NULL;

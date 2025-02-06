@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/05 13:22:26 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:41:49 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	print_textures(t_data *data)
 
 void	print_rgb(t_data *data)
 {
-  printf("Floor RGB :\n");
+	printf("Floor RGB :\n");
 	printf("red : %d\n", data->t_paths.fl.r);
 	printf("green : %d\n", data->t_paths.fl.g);
 	printf("blue : %d\n", data->t_paths.fl.b);
@@ -98,12 +98,12 @@ int	main(int ac, char **av)
 	if (!data_init(data, av[1]))
 		return (1);
 	print_textures(data);
-  set_rgb(data);
-  print_rgb(data);
+	set_rgb(data);
+	print_rgb(data);
 	print_map(data);
 	error_t_path(data);
 	map_validation(data, data->map.tab);
-  fill_window(data);
+	fill_window(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &clean_all,
