@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/07 16:32:09 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/08 14:02:32 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	player_init(t_data *data)
 	int	i;
 	int	row;
 
-	data->player.angle = 90;
+	data->player.angle = 270;
 	// printf("cet coucouuuuu angle: %.16f\n", data->player.angle);
 	// printf(" 3 * PI / 2: %.16f\n", 3 * PI / 2);
-	data->player.delta_x = -cos(deg_to_rad(data->player.angle)) * 5;
+	data->player.delta_x = cos(deg_to_rad(data->player.angle)) * 5;
 	printf("cos: %f\n", data->player.delta_x);
 	data->player.delta_y = sin(deg_to_rad(data->player.angle)) * 5;
 	printf("sin: %f\n", data->player.delta_y);
