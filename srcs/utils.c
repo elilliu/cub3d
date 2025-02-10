@@ -6,13 +6,13 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/06 17:21:59 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/10 20:34:58 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-float	deg_to_rad(int a)
+float	deg_to_rad(float a)
 {
 	return (a * RADIAN);
 }

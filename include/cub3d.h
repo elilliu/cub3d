@@ -6,7 +6,7 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/06 17:22:25 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/10 20:35:14 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 # define WIDTH 1600
 # define HEIGHT 800
+# define FOV 60
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -146,16 +147,10 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-	int		dof;
-	int		map_x;
-	int		map_y;
-	double	angle;
-	float	x;
-	float	y;
-	float	tangent;
-	float	ntangent;
-	float	x_offset;
-	float	y_offset;
+	float	nb;
+	float	angle;
+	double	horizontal_distance;
+	double	vertical_distance;
 }			t_ray;
 
 typedef struct s_data
@@ -170,7 +165,6 @@ typedef struct s_data
 	t_map2				*map2;
 	int					row_count;
 	t_tex_path			t_paths;
-	t_ray				ray;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -209,6 +203,12 @@ void					put_pixel_img(t_img img, int x, int y, int color);
 void					rotate_player_left(t_data *data);
 void					rotate_player_right(t_data *data);
 void					set_rgb(t_data *data);
-float					deg_to_rad(int a);
+float					deg_to_rad(float a);
+void					add_ceiling(t_data *data);
+void					add_floor(t_data *data);
+void					print_line(t_data *data, float x, float y, float size, int color);
+void					put_square(t_data *data, int x, int y, int color, int size);
+void					put_horizontal_wall(t_data *data, t_ray ray);
+void					put_vertical_wall(t_data *data, t_ray ray);
 
 #endif
