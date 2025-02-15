@@ -6,7 +6,7 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/10 20:45:53 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/15 23:48:09 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 		size = (float)HEIGHT;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (size / 2);
-	print_line(data, x, y, size, 0xf8f8ff);
+	if (ray.angle > 0 && ray.angle < 180)
+		print_line(data, x, y, size, 0x8b);
+	else
+		print_line(data, x, y, size, 0x6495ed);
 }
 
 void	put_vertical_wall(t_data *data, t_ray ray)
@@ -37,5 +40,8 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 		size = (float)HEIGHT;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (size / 2);
-	print_line(data, x, y, size, 0x696969);
+	if (ray.angle > 270 || ray.angle < 90)
+		print_line(data, x, y, size, 0x9b30ff);
+	else
+		print_line(data, x, y, size, 0x5d478b);
 }

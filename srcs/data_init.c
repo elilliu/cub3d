@@ -6,7 +6,7 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/08 14:02:32 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/15 22:37:49 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	player_init(t_data *data)
 	int	i;
 	int	row;
 
-	data->player.angle = 270;
+	data->player.angle = 0;
 	// printf("cet coucouuuuu angle: %.16f\n", data->player.angle);
 	// printf(" 3 * PI / 2: %.16f\n", 3 * PI / 2);
 	data->player.delta_x = cos(deg_to_rad(data->player.angle)) * 5;

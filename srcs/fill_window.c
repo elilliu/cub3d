@@ -6,7 +6,7 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/10 20:55:25 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/15 23:49:26 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ double	check_horizontal_lines(t_data *data, float angle)
 	float	x;
 
 	if (angle > 0 && angle < 180)
-		y = (data->player.y / 64.0) * 64.0 + 64.0;
-	else if (angle > 180 && angle <= 359)
-		y = (data->player.y / 64.0) * 64.0 - 0.0001;
+		y = ((int)data->player.y / 64) * 64 + 64;
+	else if (angle > 180 && angle < 360)
+		y = ((int)data->player.y / 64) * 64 - 0.0001;
 	else
 		return (0);
 	if (tan(deg_to_rad(angle)) == 0)
@@ -31,14 +31,13 @@ double	check_horizontal_lines(t_data *data, float angle)
 	{
 		if (angle > 0 && angle < 180)
 			y += 64;
-		else if (angle > 180 && angle <= 359)
+		else if (angle > 180 && angle < 360)
 			y -= 64;
 		else
 			break ;
 		if (tan(deg_to_rad(angle)) != 0)
 			x = data->player.x + (y - data->player.y) / tan(deg_to_rad(angle));
 	}
-	printf("[%d][%d]\n", (int)x / 64, (int)y / 64);
 	return (sqrt((x - data->player.x) * (x - data->player.x) + (y - data->player.y) * (y - data->player.y)));
 }
 
@@ -48,9 +47,9 @@ double	check_vertical_lines(t_data *data, float angle)
 	float	y;
 
 	if (angle > 270 || angle < 90)
-		x = (data->player.x / 64.0) * 64.0 + 64.0;
+		x = ((int)data->player.x / 64) * 64 + 64;
 	else if (angle > 90 && angle < 270)
-		x = (data->player.x / 64.0) * 64.0 - 0.0001;
+		x = ((int)data->player.x / 64) * 64 - 0.0001;
 	else
 		return (0);
 	y = data->player.y + (x - data->player.x) * tan(deg_to_rad(angle));
@@ -77,24 +76,26 @@ void	add_rays(t_data *data)
 	ray.angle = data->player.angle - fov / 2;
 	width = (float)WIDTH;
 	step = fov / width;
+	// printf("step: %f\n", step);
 	if (ray.angle < 0)
 		ray.angle += 360;
 	i = 0;
 	while (i < WIDTH)
 	{
 		ray.nb = i;
+		printf("angle: %f\n", ray.angle);
 		ray.horizontal_distance = check_horizontal_lines(data, ray.angle);
 		ray.vertical_distance = check_vertical_lines(data, ray.angle);
 		if (ray.horizontal_distance < ray.vertical_distance)
 			put_horizontal_wall(data, ray);
 		else
 			put_vertical_wall(data, ray);
-		// printf("angle: %f | relative angle: %f | horizontal distance: %f | vertical distance: %f\n", ray.angle, ray.relative_angle, ray.horizontal_distance, ray.vertical_distance);
 		ray.angle += step;
-		if (ray.angle > 359)
-			ray.angle -= 360;
+		if (ray.angle >= 360)
+			ray.angle -= 360.0;
 		i++;
 	}
+	// printf("i: %d\n", i);
 }
 
 void	add_player(t_data *data)
@@ -143,7 +144,7 @@ void	fill_window(t_data *data)
 	data->background.h = HEIGHT;
 	data->background.addr = mlx_get_data_addr(data->background.img_ptr,
 		&data->background.bpp, &data->background.line_len, &data->background.endian);
-	// add_background(data);
+	// add_background(data);int
 	// printf("angle: %f\n", data->player.angle);
 	// printf("radian: %f\n", deg_to_rad(data->player.angle));
 	// add_player(data);
