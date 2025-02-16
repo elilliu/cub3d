@@ -6,7 +6,7 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/15 23:48:09 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/16 22:29:20 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 	float	x;
 	float	y;
 
+	// if (data->test)
+	// {
+	// 	printf("%f\n", data->player.angle - ray.angle);
+	// 	printf("cos: %f\n", cos(data->player.angle - ray.angle));
+	// 	data->test = 0;
+	// }
+	// ray.horizontal_distance *= cos(data->player.angle - ray.angle);
+	// if (ray.horizontal_distance < 0)
+	// 	return ;
 	size = (float)HEIGHT / ray.horizontal_distance * 64.0;
 	if (size > HEIGHT)
 		size = (float)HEIGHT;
@@ -35,6 +44,9 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 	float	x;
 	float	y;
 
+	// ray.vertical_distance *= cos(data->player.angle - ray.angle);
+	// if (ray.vertical_distance < 0)
+	// 	return ;
 	size = (float)HEIGHT / ray.vertical_distance * 64.0;
 	if (size > HEIGHT)
 		size = (float)HEIGHT;

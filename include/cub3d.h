@@ -6,7 +6,7 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/15 22:46:34 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/16 22:25:23 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_ray
 
 typedef struct s_data
 {
+	int					test;
 	void				*mlx_ptr;
 	void				*win_ptr;
 	char				*map_path;

@@ -6,7 +6,7 @@
 /*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/15 23:49:26 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/16 22:25:12 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,13 @@ void	add_rays(t_data *data)
 	ray.angle = data->player.angle - fov / 2;
 	width = (float)WIDTH;
 	step = fov / width;
-	// printf("step: %f\n", step);
 	if (ray.angle < 0)
 		ray.angle += 360;
 	i = 0;
 	while (i < WIDTH)
 	{
 		ray.nb = i;
-		printf("angle: %f\n", ray.angle);
+		// printf("angle: %f\n", ray.angle);
 		ray.horizontal_distance = check_horizontal_lines(data, ray.angle);
 		ray.vertical_distance = check_vertical_lines(data, ray.angle);
 		if (ray.horizontal_distance < ray.vertical_distance)
@@ -95,7 +94,6 @@ void	add_rays(t_data *data)
 			ray.angle -= 360.0;
 		i++;
 	}
-	// printf("i: %d\n", i);
 }
 
 void	add_player(t_data *data)
@@ -148,6 +146,7 @@ void	fill_window(t_data *data)
 	// printf("angle: %f\n", data->player.angle);
 	// printf("radian: %f\n", deg_to_rad(data->player.angle));
 	// add_player(data);
+	data->test = 1;
 	add_ceiling(data);
 	add_floor(data);
 	add_rays(data);
