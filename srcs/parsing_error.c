@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:34:03 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/05 12:41:10 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/02/18 16:13:07 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	error_t_path(t_data *data)
 	{
 		if (!verif_path(textures[i], ".xpm"))
 		{
+			printf("[%s]\n", textures[i]);
 			print_error("Texture path must be in .xpm");
 			clean_all(data);
 		}

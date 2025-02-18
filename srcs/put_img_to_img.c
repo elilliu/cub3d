@@ -6,15 +6,15 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:43:43 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/04 14:25:36 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:31:31 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-unsigned int	get_pixel_img(t_img img, int x, int y)
+unsigned int	get_pixel_img(t_img img, float x, float y)
 {
-	return (*(unsigned int *)(img.addr + (y * img.line_len) + (x * img.bpp / 8)));
+	return (*(unsigned int *)(img.addr + ((int)y * img.line_len) + ((int)x * img.bpp / 8)));
 }
 
 void	put_pixel_img(t_img img, int x, int y, int color)

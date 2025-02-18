@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/10 20:34:58 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/18 16:16:41 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,23 @@ int	verif_path(char *str, char *extension)
 	str_len = ft_strlen(str);
 	ext_len = ft_strlen(extension);
 	if (str_len < ext_len)
-		return (0);
-	i = str_len - ext_len - 1;
-	while (i >= 1)
 	{
-		if (str[i] == '.')
-			return (0);
-		i--;
+		printf("str_len < ext_len\n");
+		return (0);
 	}
+	i = str_len - ext_len - 1;
+	// while (i >= 2)
+	// {
+	// 	if (str[i] == '.')
+	// 	{
+	// 		printf("double file\n");
+	// 		return (0);
+	// 	}
+	// 	i--;
+	// }
 	if (ft_strcmp(&str[str_len - ext_len], extension) == 0)
 		return (1);
+	printf("else\n");
 	return (0);
 }
 

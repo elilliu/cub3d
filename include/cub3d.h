@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/16 22:25:23 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/18 16:57:11 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define PI 3.1415926535
 # define RADIAN 0.0174533
 
-# define WIDTH 1600
+# define WIDTH 800
 # define HEIGHT 800
 # define FOV 60
 
@@ -155,6 +155,7 @@ typedef struct s_ray
 
 typedef struct s_data
 {
+	int					*tex_buff[4];
 	int					test;
 	void				*mlx_ptr;
 	void				*win_ptr;
@@ -162,6 +163,7 @@ typedef struct s_data
 	t_player			player;
 	int					fd_cub;
 	t_img				background;
+	t_img				textures[6];
 	t_map				map;
 	t_map2				*map2;
 	int					row_count;
@@ -211,5 +213,8 @@ void					print_line(t_data *data, float x, float y, float size, int color);
 void					put_square(t_data *data, int x, int y, int color, int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
+unsigned int			get_pixel_img(t_img img, float x, float y);
+void					init_textures(t_data *data);
+void					print_north(t_data *data, float x, float y, float size);
 
 #endif

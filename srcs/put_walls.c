@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_walls.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/16 22:29:20 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/18 17:04:39 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 	// 	printf("cos: %f\n", cos(data->player.angle - ray.angle));
 	// 	data->test = 0;
 	// }
-	// ray.horizontal_distance *= cos(data->player.angle - ray.angle);
-	// if (ray.horizontal_distance < 0)
-	// 	return ;
+	ray.horizontal_distance *= cos(deg_to_rad(ray.angle) - deg_to_rad(data->player.angle));
+	if (ray.horizontal_distance < 0)
+		return ;
 	size = (float)HEIGHT / ray.horizontal_distance * 64.0;
 	if (size > HEIGHT)
 		size = (float)HEIGHT;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (size / 2);
 	if (ray.angle > 0 && ray.angle < 180)
-		print_line(data, x, y, size, 0x8b);
+		print_north(data, x, y, size);
 	else
 		print_line(data, x, y, size, 0x6495ed);
 }
@@ -44,9 +44,9 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 	float	x;
 	float	y;
 
-	// ray.vertical_distance *= cos(data->player.angle - ray.angle);
-	// if (ray.vertical_distance < 0)
-	// 	return ;
+	ray.vertical_distance *= cos(deg_to_rad(ray.angle) - deg_to_rad(data->player.angle));
+	if (ray.vertical_distance < 0)
+		return ;
 	size = (float)HEIGHT / ray.vertical_distance * 64.0;
 	if (size > HEIGHT)
 		size = (float)HEIGHT;

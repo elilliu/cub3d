@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+         #
+#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/02/10 16:52:17 by elilliu@stu      ###   ########.fr        #
+#    Updated: 2025/02/18 16:10:57 by elilliu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
 				srcs/utils_gc.c srcs/move_player.c srcs/put_img_to_img.c\
 				srcs/rotate_player.c srcs/parsing_error.c srcs/map_validation.c srcs/error.c\
 				srcs/parsing.c srcs/parsing2.c srcs/parsing_utils.c srcs/fill_window_utils.c\
-				srcs/put_walls.c
+				srcs/put_walls.c srcs/print_walls.c
 
 OBJS			= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}%.o}
 DEPS			= ${OBJS:.o=.d}
