@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/18 16:57:11 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 12:02:08 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,10 @@ typedef struct s_img
 
 typedef struct s_ray
 {
+	float	horizontal_x;
+	float	horizontal_y;
+	float	vertical_x;
+	float	vertical_y;
 	float	nb;
 	float	angle;
 	double	horizontal_distance;
