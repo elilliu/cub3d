@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 12:02:08 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:36:21 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@
 # define PI 3.1415926535
 # define RADIAN 0.0174533
 
-# define WIDTH 800
+# define WIDTH 1600
 # define HEIGHT 800
 # define FOV 60
+# define IMG_SIZE 128
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -97,7 +98,7 @@ typedef struct s_map
 	char				**tab;
 	int					rows;
 	int					columns;
-	int					square_size;
+	// int					square_size;
 }						t_map;
 
 typedef struct s_map2
@@ -147,15 +148,15 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-	float	horizontal_x;
-	float	horizontal_y;
-	float	vertical_x;
-	float	vertical_y;
-	float	nb;
-	float	angle;
-	double	horizontal_distance;
-	double	vertical_distance;
-}			t_ray;
+	float				horizontal_x;
+	float				horizontal_y;
+	float				vertical_x;
+	float				vertical_y;
+	float				nb;
+	float				angle;
+	double				horizontal_distance;
+	double				vertical_distance;
+}						t_ray;
 
 typedef struct s_data
 {
@@ -171,6 +172,7 @@ typedef struct s_data
 	t_map				map;
 	t_map2				*map2;
 	int					row_count;
+	int					img_size;
 	t_tex_path			t_paths;
 	t_garbage_co		*garbage;
 }						t_data;
@@ -213,8 +215,10 @@ void					set_rgb(t_data *data);
 float					deg_to_rad(float a);
 void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
-void					print_line(t_data *data, float x, float y, float size, int color);
-void					put_square(t_data *data, int x, int y, int color, int size);
+void					print_line(t_data *data, float x, float y, float size,
+							int color);
+void					put_square(t_data *data, int x, int y, int color,
+							int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_walls.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/18 17:04:39 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:35:27 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 	ray.horizontal_distance *= cos(deg_to_rad(ray.angle) - deg_to_rad(data->player.angle));
 	if (ray.horizontal_distance < 0)
 		return ;
-	size = (float)HEIGHT / ray.horizontal_distance * 64.0;
+	size = (float)HEIGHT / ray.horizontal_distance * (float)data->img_size;
 	if (size > HEIGHT)
 		size = (float)HEIGHT;
 	x = ray.nb;
@@ -47,7 +47,7 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 	ray.vertical_distance *= cos(deg_to_rad(ray.angle) - deg_to_rad(data->player.angle));
 	if (ray.vertical_distance < 0)
 		return ;
-	size = (float)HEIGHT / ray.vertical_distance * 64.0;
+	size = (float)HEIGHT / ray.vertical_distance * (float)data->img_size;
 	if (size > HEIGHT)
 		size = (float)HEIGHT;
 	x = ray.nb;

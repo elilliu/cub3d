@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 12:02:21 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:38:59 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ double	check_horizontal_lines(t_data *data, float angle)
 	float	x;
 
 	if (angle > 0 && angle < 180)
-		y = ((int)data->player.y / 64) * 64 + 64;
+		y = ((int)data->player.y / data->img_size) * data->img_size + data->img_size;
 	else if (angle > 180 && angle < 360)
-		y = ((int)data->player.y / 64) * 64 - 0.0001;
-	else
+		y = ((int)data->player.y / data->img_size) * data->img_size - 0.0001;
+else
 		return (0);
 	if (tan(deg_to_rad(angle)) == 0)
 		x = data->player.x;
 	else
 		x = data->player.x + (y - data->player.y) / tan(deg_to_rad(angle));
-	while ((int)y / 64 > 0 && (int)y / 64 < data->map.rows && (int)x / 64 > 0 && (int)x / 64 < data->map.columns && data->map.tab[(int)y / 64][(int)x / 64] != '1')
+	while ((int)y / data->img_size > 0 && (int)y / data->img_size < data->map.rows && (int)x / data->img_size > 0 && (int)x / data->img_size < data->map.columns && data->map.tab[(int)y / data->img_size][(int)x / data->img_size] != '1')
 	{
 		if (angle > 0 && angle < 180)
-			y += 64;
+			y += data->img_size;
 		else if (angle > 180 && angle < 360)
-			y -= 64;
+			y -= data->img_size;
 		else
 			break ;
 		if (tan(deg_to_rad(angle)) != 0)
@@ -47,18 +47,18 @@ double	check_vertical_lines(t_data *data, float angle)
 	float	y;
 
 	if (angle > 270 || angle < 90)
-		x = ((int)data->player.x / 64) * 64 + 64;
+		x = ((int)data->player.x / data->img_size) * data->img_size + data->img_size;
 	else if (angle > 90 && angle < 270)
-		x = ((int)data->player.x / 64) * 64 - 0.0001;
+		x = ((int)data->player.x / data->img_size) * data->img_size - 0.0001;
 	else
 		return (0);
 	y = data->player.y + (x - data->player.x) * tan(deg_to_rad(angle));
-	while ((int)y / 64 > 0 && (int)y / 64 < data->map.rows && (int)x / 64 > 0 && (int)x / 64 < data->map.columns && data->map.tab[(int)y / 64][(int)x / 64] != '1')
+	while ((int)y / data->img_size > 0 && (int)y / data->img_size < data->map.rows && (int)x / data->img_size > 0 && (int)x / data->img_size < data->map.columns && data->map.tab[(int)y / data->img_size][(int)x / data->img_size] != '1')
 	{
 		if (angle > 270 || angle < 90)
-			x += 64;
+			x += data->img_size;
 		else if (angle > 90 && angle < 270)
-			x -= 64;
+			x -= data->img_size;
 		y = data->player.y + (x - data->player.x) * tan(deg_to_rad(angle));
 	}
 	return (sqrt((x - data->player.x) * (x - data->player.x) + (y - data->player.y) * (y - data->player.y)));
@@ -125,9 +125,9 @@ void	add_background(t_data *data)
 		while (column < data->map.columns)
 		{
 			if (data->map.tab[line][column] == '1')
-				put_square(data, column * 64, line * 64, 0x2f4f4f, 64);
+				put_square(data, column * data->img_size, line * data->img_size, 0x2f4f4f, data->img_size);
 			else if (data->map.tab[line][column] == '0' || data->map.tab[line][column] == 'N')
-				put_square(data, column * 64, line * 64, 0xf8f8ff, 64);
+				put_square(data, column * data->img_size, line * data->img_size, 0xf8f8ff, data->img_size);
 			column++;
 		}
 		line++;
