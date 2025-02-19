@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 14:32:49 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:45:20 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 double	check_horizontal_lines(t_data *data, t_ray *ray)
 {
 	if (ray->angle > 0 && ray->angle < 180)
-		ray->horizontal_y = ((int)data->player.y / 64) * 64 + 64;
+		ray->horizontal_y = ((int)data->player.y / data->img_size) * data->img_size + data->img_size;
 	else if (ray->angle > 180 && ray->angle < 360)
-		ray->horizontal_y = ((int)data->player.y / 64) * 64 - 0.0001;
-	else
+		ray->horizontal_y = ((int)data->player.y / data->img_size) * data->img_size - 0.0001;
+else
 		return (0);
 	if (tan(deg_to_rad(ray->angle)) == 0)
 		ray->horizontal_x = data->player.x;
 	else
 		ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
-	while ((int)ray->horizontal_y / 64 > 0 && (int)ray->horizontal_y / 64 < data->map.rows && (int)ray->horizontal_x / 64 > 0 && (int)ray->horizontal_x / 64 < data->map.columns && data->map.tab[(int)ray->horizontal_y / 64][(int)ray->horizontal_x / 64] != '1')
+	while ((int)ray->horizontal_y / data->img_size > 0 && (int)ray->horizontal_y / data->img_size < data->map.rows && (int)ray->horizontal_x / data->img_size > 0 && (int)ray->horizontal_x / data->img_size < data->map.columns && data->map.tab[(int)ray->horizontal_y / data->img_size][(int)ray->horizontal_x / data->img_size] != '1')
 	{
 		if (ray->angle > 0 && ray->angle < 180)
-			ray->horizontal_y += 64;
+			ray->horizontal_y += data->img_size;
 		else if (ray->angle > 180 && ray->angle < 360)
-			ray->horizontal_y -= 64;
+			ray->horizontal_y -= data->img_size;
 		else
 			break ;
 		if (tan(deg_to_rad(ray->angle)) != 0)
@@ -41,18 +41,18 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 double	check_vertical_lines(t_data *data, t_ray *ray)
 {
 	if (ray->angle > 270 || ray->angle < 90)
-		ray->vertical_x = ((int)data->player.x / 64) * 64 + 64;
+		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size + data->img_size;
 	else if (ray->angle > 90 && ray->angle < 270)
-		ray->vertical_x = ((int)data->player.x / 64) * 64 - 0.0001;
+		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size - 0.0001;
 	else
 		return (0);
 	ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
-	while ((int)ray->vertical_y / 64 > 0 && (int)ray->vertical_y / 64 < data->map.rows && (int)ray->vertical_x / 64 > 0 && (int)ray->vertical_x / 64 < data->map.columns && data->map.tab[(int)ray->vertical_y / 64][(int)ray->vertical_x / 64] != '1')
+	while ((int)ray->vertical_y / data->img_size > 0 && (int)ray->vertical_y / data->img_size < data->map.rows && (int)ray->vertical_x / data->img_size > 0 && (int)ray->vertical_x / data->img_size < data->map.columns && data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size] != '1')
 	{
 		if (ray->angle > 270 || ray->angle < 90)
-			ray->vertical_x += 64;
+			ray->vertical_x += data->img_size;
 		else if (ray->angle > 90 && ray->angle < 270)
-			ray->vertical_x -= 64;
+			ray->vertical_x -= data->img_size;
 		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
 	}
 	return (sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) + (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y)));
@@ -119,9 +119,9 @@ void	add_background(t_data *data)
 		while (column < data->map.columns)
 		{
 			if (data->map.tab[line][column] == '1')
-				put_square(data, column * 64, line * 64, 0x2f4f4f, 64);
+				put_square(data, column * data->img_size, line * data->img_size, 0x2f4f4f, data->img_size);
 			else if (data->map.tab[line][column] == '0' || data->map.tab[line][column] == 'N')
-				put_square(data, column * 64, line * 64, 0xf8f8ff, 64);
+				put_square(data, column * data->img_size, line * data->img_size, 0xf8f8ff, data->img_size);
 			column++;
 		}
 		line++;

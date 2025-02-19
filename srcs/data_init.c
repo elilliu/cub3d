@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/18 16:28:22 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:30:01 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	data_init(t_data *data, char *str)
 	data->map_path = gc_strdup(str);
 	data->map.rows = 0;
 	data->map.columns = 0;
-	data->map.square_size = 64;
+    data->img_size = IMG_SIZE;
 	data->row_count = 0;
 	data->map2 = NULL;
 	data->t_paths.t_no = NULL;
