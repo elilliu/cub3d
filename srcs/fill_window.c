@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 14:45:20 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 17:52:21 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 		ray->horizontal_y = ((int)data->player.y / data->img_size) * data->img_size + data->img_size;
 	else if (ray->angle > 180 && ray->angle < 360)
 		ray->horizontal_y = ((int)data->player.y / data->img_size) * data->img_size - 0.0001;
-else
+	else
 		return (0);
 	if (tan(deg_to_rad(ray->angle)) == 0)
 		ray->horizontal_x = data->player.x;
@@ -52,7 +52,7 @@ double	check_vertical_lines(t_data *data, t_ray *ray)
 		if (ray->angle > 270 || ray->angle < 90)
 			ray->vertical_x += data->img_size;
 		else if (ray->angle > 90 && ray->angle < 270)
-			ray->vertical_x -= data->img_size;
+			ray->vertical_x -= 128.0;
 		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
 	}
 	return (sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) + (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y)));

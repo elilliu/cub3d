@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 14:38:19 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:57:44 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,26 @@ void	init_textures(t_data *data)
 // 	}
 // }
 
-void	print_north(t_data *data, t_ray ray, float x, float y, float size)
+void	print_north(t_data *data, t_ray ray, float x, float y)
 {
 	int		color;
 	int		i;
 	float	z;
+	float	step;
+	float	end;
 
 	i = 0;
-	// printf("ICI x: %d\n", data->textures[T_NO].w);
-	while (i < size)
+	step = ray.size / data->img_size;
+	z = ((int)ray.horizontal_x / data->img_size) * data->img_size + data->img_size - ray.horizontal_x;
+	while (i < data->img_size)
 	{
-		z =
-		color = get_pixel_img(data->textures[T_NO], z * data->textures[T_NO].w, y / size * data->textures[T_NO].h);
-		put_pixel_img(data->background, x, y, color);
-		y++;
+		color = get_pixel_img(data->textures[T_NO], z, i);
+		end = y + step;
+		while (y < end)
+		{
+			put_pixel_img(data->background, x, y, color);
+			y += 0.1;
+		}
 		i++;
 	}
 }
