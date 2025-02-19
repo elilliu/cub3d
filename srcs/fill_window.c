@@ -6,19 +6,16 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 12:02:21 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 12:05:11 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-double	check_horizontal_lines(t_data *data, float angle)
+double	check_horizontal_lines(t_data *data, t_ray *ray)
 {
-	float	y;
-	float	x;
-
 	if (angle > 0 && angle < 180)
-		y = ((int)data->player.y / 64) * 64 + 64;
+		data->ray.vertical_y = ((int)data->player.y / 64) * 64 + 64;
 	else if (angle > 180 && angle < 360)
 		y = ((int)data->player.y / 64) * 64 - 0.0001;
 	else
