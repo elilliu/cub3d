@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/18 18:11:31 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:38:19 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_textures(t_data *data)
 // 	}
 // }
 
-void	print_north(t_data *data, float x, float y, float size)
+void	print_north(t_data *data, t_ray ray, float x, float y, float size)
 {
 	int		color;
 	int		i;
@@ -70,18 +70,7 @@ void	print_north(t_data *data, float x, float y, float size)
 	// printf("ICI x: %d\n", data->textures[T_NO].w);
 	while (i < size)
 	{
-		// if (i < 10)
-		// {
-		// 	printf("%f\n", x);
-			// printf("x: %f\n", (x - (int)x) * data->textures[T_NO].w);
-		// }
-		// printf("y: %f\n", y / size * data->textures[T_NO].h);
-		z = x / WIDTH;
-		// if (i < 2)
-		// {
-		// 	printf("z: %f\n", z);
-		// 	printf("decimal: %f\n", z - (int)z);
-		// }
+		z =
 		color = get_pixel_img(data->textures[T_NO], z * data->textures[T_NO].w, y / size * data->textures[T_NO].h);
 		put_pixel_img(data->background, x, y, color);
 		y++;
