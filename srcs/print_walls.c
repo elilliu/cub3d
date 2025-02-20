@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 14:22:54 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:47:04 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,114 +51,222 @@ void	init_textures(t_data *data)
 
 }
 
-// void	init_buffer(t_data *data)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < 4)
-// 	{
-// 		data->tex_buff[i] = gc_mem(MALLOC, sizeof(int) * 64 * 64, NULL);
-
-// 		i++;
-// 	}
-// }
-
-
 void print_north(t_data *data, t_ray ray, float x, float y)
 {
 	int		color;
 	int		i;
-	float	texture_x;
-	float	texture_y;
 	float	step;
-	// float	end;
+	t_draw  draw;
+  t_point tex;
 
-	texture_x = (int)(ray.horizontal_x) % data->textures[T_NO].w;
-  if (ray.angle > 0 && ray.angle < 180)
-		texture_x = data->textures[T_NO].w - texture_x - 1;
+  draw.start = y;
+	draw.end = y + ray.size;
+	if (draw.start < 0)
+		draw.start = 0;
+	if (draw.end >= HEIGHT)
+		draw.end = HEIGHT;
+	tex.x = (int)(ray.horizontal_x) % data->img_size;
+	if (ray.angle > 0 && ray.angle < 180)
+		tex.x = data->img_size - tex.x - 1;
 	step = (float)data->img_size / ray.size;
-	texture_y = 0;
-	i = 0;
-	while (i < ray.size && y < HEIGHT)
+	if (ray.size > HEIGHT)
+	    tex.y = ((ray.size - HEIGHT) / 2.0) * step;
+	else
+	    tex.y = 0;
+	i = draw.start;
+	while (i < draw.end)
 	{
-		color = get_pixel_img(data->textures[T_NO], texture_x, (int)texture_y);
-		put_pixel_img(data->background, x, y, color);
-		texture_y += step;
-		y++;
+		color = get_pixel_img(data->textures[T_NO], tex.x, (int)tex.y % data->textures[T_NO].h);
+		put_pixel_img(data->background, x, i, color);
+		tex.y += step;
 		i++;
 	}
 }
+
+
+// void print_north(t_data *data, t_ray ray, float x, float y)
+// {
+// 	int		color;
+// 	int		i;
+// 	float	texture_x;
+// 	float	texture_y;
+// 	float	step;
+// 	// float	end;
+
+// 	texture_x = (int)(ray.horizontal_x) % data->textures[T_NO].w;
+//   if (ray.angle > 0 && ray.angle < 180)
+// 		texture_x = data->textures[T_NO].w - texture_x - 1;
+// 	step = (float)data->img_size / ray.size;
+// 	texture_y = 0;
+// 	i = 0;
+// 	while (i < ray.size && y < HEIGHT)
+// 	{
+// 		color = get_pixel_img(data->textures[T_NO], texture_x, (int)texture_y);
+// 		put_pixel_img(data->background, x, y, color);
+// 		texture_y += step;
+// 		y++;
+// 		i++;
+// 	}
+// }
 
 void print_south(t_data *data, t_ray ray, float x, float y)
 {
 	int		color;
 	int		i;
-	float	texture_x;
-	float	texture_y;
 	float	step;
-	// float	end;
+	t_draw  draw;
+	t_point tex;
 
-	texture_x = (int)(ray.horizontal_x) % data->textures[T_SO].w;
-  // if (ray.angle > 0 && ray.angle < 180)
-	// 	texture_x = data->textures[T_SO].w - texture_x - 1;
+	tex.x = (int)(ray.horizontal_x) % data->img_size;
 	step = (float)data->img_size / ray.size;
-	texture_y = 0;
-	i = 0;
-	while (i < ray.size && y < HEIGHT)
+	tex.y = 0;
+	draw.start = y;
+	draw.end = y + ray.size;
+	if (ray.size > HEIGHT)
+		tex.y = ((ray.size - HEIGHT) / 2.0) * step;
+	if (draw.start < 0)
+		draw.start = 0;
+	if (draw.end >= HEIGHT)
+		draw.end = HEIGHT;
+	i = draw.start;
+	while (i < draw.end)
 	{
-		color = get_pixel_img(data->textures[T_SO], texture_x, (int)texture_y);
-		put_pixel_img(data->background, x, y, color);
-		texture_y += step;
-		y++;
+		color = get_pixel_img(data->textures[T_SO], tex.x, (int)tex.y % data->img_size);
+		put_pixel_img(data->background, x, i, color);
+		tex.y += step;
 		i++;
 	}
 }
+
+// void print_south(t_data *data, t_ray ray, float x, float y)
+// {
+// 	int		color;
+// 	int		i;
+// 	float	texture_x;
+// 	float	texture_y;
+// 	float	step;
+// 	// float	end;
+
+// 	texture_x = (int)(ray.horizontal_x) % data->img_size;
+// 	step = (float)data->img_size / ray.size;
+// 	texture_y = 0;
+// 	i = 0;
+// 	while (i < ray.size && y < HEIGHT)
+// 	{
+// 		color = get_pixel_img(data->textures[T_SO], texture_x, (int)texture_y);
+// 		put_pixel_img(data->background, x, y, color);
+// 		texture_y += step;
+// 		y++;
+// 		i++;
+// 	}
+// }
 
 void print_west(t_data *data, t_ray ray, float x, float y)
 {
 	int		color;
 	int		i;
-	float	texture_x;
-	float	texture_y;
 	float	step;
-	// float	end;
+	t_draw  draw;
+	t_point tex;
 
-	texture_x = (int)(ray.vertical_y) % data->textures[T_WE].w;
-  if (ray.angle > 90 && ray.angle < 270)
-		texture_x = data->textures[T_WE].w - texture_x - 1;
+	tex.x = (int)(ray.vertical_y) % data->img_size;
+	if (ray.angle > 90 && ray.angle < 270)
+		tex.x = data->img_size - tex.x - 1;
 	step = (float)data->img_size / ray.size;
-	texture_y = 0;
-	i = 0;
-	while (i < ray.size && y < HEIGHT)
+	tex.y = 0;
+	draw.start = y;
+	draw.end = y + ray.size;
+	if (ray.size > HEIGHT)
+		tex.y = ((ray.size - HEIGHT) / 2.0) * step;
+	if (draw.start < 0)
+		draw.start = 0;
+	if (draw.end >= HEIGHT)
+		draw.end = HEIGHT;
+	i = draw.start;
+	while (i < draw.end)
 	{
-		color = get_pixel_img(data->textures[T_WE], texture_x, (int)texture_y);
-		put_pixel_img(data->background, x, y, color);
-		texture_y += step;
-		y++;
+		color = get_pixel_img(data->textures[T_WE], tex.x, (int)tex.y % data->img_size);
+		put_pixel_img(data->background, x, i, color);
+		tex.y += step;
 		i++;
 	}
 }
+
+
+// void print_west(t_data *data, t_ray ray, float x, float y)
+// {
+// 	int		color;
+// 	int		i;
+// 	float	texture_x;
+// 	float	texture_y;
+// 	float	step;
+// 	// float	end;
+
+// 	texture_x = (int)(ray.vertical_y) % data->img_size;
+//   if (ray.angle > 90 && ray.angle < 270)
+// 		texture_x = data->img_size - texture_x - 1;
+// 	step = (float)data->img_size / ray.size;
+// 	texture_y = 0;
+// 	i = 0;
+// 	while (i < ray.size && y < HEIGHT)
+// 	{
+// 		color = get_pixel_img(data->textures[T_WE], texture_x, (int)texture_y);
+// 		put_pixel_img(data->background, x, y, color);
+// 		texture_y += step;
+// 		y++;
+// 		i++;
+// 	}
+// }
 
 void print_east(t_data *data, t_ray ray, float x, float y)
 {
 	int		color;
 	int		i;
-	float	texture_x;
-	float	texture_y;
 	float	step;
-	// float	end;
+	t_draw  draw;
+  t_point   tex;
 
-	texture_x = (int)(ray.vertical_y) % data->textures[T_EA].w;
+	tex.x = (int)(ray.vertical_y) % data->img_size;
 	step = (float)data->img_size / ray.size;
-	texture_y = 0;
-	i = 0;
-	while (i < ray.size && y < HEIGHT)
+	tex.y = 0;
+	draw.start = y;
+	draw.end = y + ray.size;
+	if (ray.size > HEIGHT)
+		tex.y = ((ray.size - HEIGHT) / 2.0) * step;
+	if (draw.start < 0)
+		draw.start = 0;
+	if (draw.end >= HEIGHT)
+		draw.end = HEIGHT;
+	i = draw.start;
+	while (i < draw.end)
 	{
-		color = get_pixel_img(data->textures[T_EA], texture_x, (int)texture_y);
-		put_pixel_img(data->background, x, y, color);
-		texture_y += step;
-		y++;
+		color = get_pixel_img(data->textures[T_EA], tex.x, (int)tex.y % data->img_size);
+		put_pixel_img(data->background, x, i, color);
+		tex.y += step;
 		i++;
 	}
 }
+
+
+// void print_east(t_data *data, t_ray ray, float x, float y)
+// {
+// 	int		color;
+// 	int		i;
+// 	float	texture_x;
+// 	float	texture_y;
+// 	float	step;
+// 	// float	end;
+
+// 	texture_x = (int)(ray.vertical_y) % data->img_size;
+// 	step = (float)data->img_size / ray.size;
+// 	texture_y = 0;
+// 	i = 0;
+// 	while (i < ray.size && y < HEIGHT)
+// 	{
+// 		color = get_pixel_img(data->textures[T_EA], texture_x, (int)texture_y);
+// 		put_pixel_img(data->background, x, y, color);
+// 		texture_y += step;
+// 		y++;
+// 		i++;
+// 	}
+// }

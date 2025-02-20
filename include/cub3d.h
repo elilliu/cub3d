@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 13:27:40 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:45:53 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,18 @@ typedef struct s_ray
 	double				vertical_distance;
 	double				size;
 }						t_ray;
+
+typedef struct s_point
+{
+  float       x;
+	float       y;
+}						t_point;
+
+typedef struct s_draw
+{
+  float       start;
+	float       end;
+}						t_draw;
 
 typedef struct s_data
 {

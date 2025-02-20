@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/20 14:35:15 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:09:10 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 	if (ray.horizontal_distance < 0)
 		return ;
 	ray.size = (float)HEIGHT / ray.horizontal_distance * (float)data->img_size * 1.5;
-	if (ray.size > HEIGHT)
-		ray.size = (float)HEIGHT;
+	// if (ray.size > HEIGHT)
+	// 	ray.size = (float)HEIGHT;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
 	if (ray.angle > 0 && ray.angle < 180)
@@ -48,8 +48,8 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 	if (ray.vertical_distance < 0)
 		return ;
 	ray.size = (float)HEIGHT / ray.vertical_distance * (float)data->img_size * 1.5;
-	if (ray.size > HEIGHT)
-		ray.size = (float)HEIGHT;
+	// if (ray.size > HEIGHT)
+	// 	ray.size = (float)HEIGHT;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
 	if (ray.angle > 270 || ray.angle < 90)
