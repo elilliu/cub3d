@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:46:50 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/10 17:32:22 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/20 16:00:13 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ void	add_ceiling(t_data *data)
 {
 	int	x;
 	int	y;
+  int color;
 
 	y = 0;
+  color = rgb_to_int(data->t_paths.ce.r, data->t_paths.ce.g, data->t_paths.ce.b);
 	while (y < HEIGHT / 2)
 	{
 		x = 0;
 		while (x <= WIDTH)
 		{
-			put_pixel_img(data->background, x, y, 0x87ceeb);
+			put_pixel_img(data->background, x, y, color);
 			x++;
 		}
 		y++;
@@ -47,14 +49,16 @@ void	add_floor(t_data *data)
 {
 	int	x;
 	int	y;
+  int color;
 
 	y = HEIGHT / 2;
+  color = rgb_to_int(data->t_paths.fl.r, data->t_paths.fl.g, data->t_paths.fl.b);
 	while (y <= HEIGHT)
 	{
 		x = 0;
 		while (x <= WIDTH)
 		{
-			put_pixel_img(data->background, x, y, 0x2f4f4f);
+			put_pixel_img(data->background, x, y, color);
 			x++;
 		}
 		y++;

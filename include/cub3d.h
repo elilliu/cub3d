@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 15:45:53 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:56:53 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,5 +240,6 @@ void					print_north(t_data *data, t_ray ray, float x, float y);
 void					print_south(t_data *data, t_ray ray, float x, float y);
 void					print_east(t_data *data, t_ray ray, float x, float y);
 void					print_west(t_data *data, t_ray ray, float x, float y);
+int						rgb_to_int(int r, int g, int b);
 
 #endif

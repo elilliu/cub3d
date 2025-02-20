@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 15:47:04 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:49:47 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	free_texture(t_data *data, int nb)
 
 void	init_textures(t_data *data)
 {
-	data->textures[T_NO].w = 0;
-	data->textures[T_NO].h = 0;
 	data->textures[T_NO].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
 		data->t_paths.t_no, &data->textures[T_NO].w, &data->textures[T_NO].h);
 	if (!data->textures[T_NO].img_ptr)
@@ -48,7 +46,6 @@ void	init_textures(t_data *data)
 	if (!data->textures[T_WE].img_ptr)
 		return (free_texture(data, T_WE));
   data->textures[T_WE].addr = mlx_get_data_addr(data->textures[T_WE].img_ptr, &data->textures[T_WE].bpp, &data->textures[T_WE].line_len, &data->textures[T_WE].endian);
-
 }
 
 void print_north(t_data *data, t_ray ray, float x, float y)

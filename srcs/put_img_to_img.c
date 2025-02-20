@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_img_to_img.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:43:43 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 16:40:12 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/20 15:56:26 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,9 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 		}
 		j++;
 	}
+}
+
+int rgb_to_int(int r, int g, int b)
+{
+    return (r << 16 | g << 8 | b);
 }
