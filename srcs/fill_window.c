@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 17:52:21 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/20 13:53:18 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,54 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 
 double	check_vertical_lines(t_data *data, t_ray *ray)
 {
+	
 	if (ray->angle > 270 || ray->angle < 90)
 		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size + data->img_size;
 	else if (ray->angle > 90 && ray->angle < 270)
 		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size - 0.0001;
 	else
 		return (0);
-	ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
-	while ((int)ray->vertical_y / data->img_size > 0 && (int)ray->vertical_y / data->img_size < data->map.rows && (int)ray->vertical_x / data->img_size > 0 && (int)ray->vertical_x / data->img_size < data->map.columns && data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size] != '1')
+	if (tan(deg_to_rad(ray->angle)) == 0)
+		ray->vertical_y = data->player.y;
+	else
+		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
+	while ((int)ray->vertical_y / data->img_size > 0 &&
+	       (int)ray->vertical_y / data->img_size < data->map.rows &&
+	       (int)ray->vertical_x / data->img_size > 0 &&
+	       (int)ray->vertical_x / data->img_size < data->map.columns &&
+	       data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size] != '1')
 	{
 		if (ray->angle > 270 || ray->angle < 90)
 			ray->vertical_x += data->img_size;
 		else if (ray->angle > 90 && ray->angle < 270)
-			ray->vertical_x -= 128.0;
-		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
+			ray->vertical_x -= data->img_size;
+		if (tan(deg_to_rad(ray->angle)) != 0)
+			ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
 	}
-	return (sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) + (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y)));
+	return sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) +
+	            (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y));
 }
+
+
+// double	check_vertical_lines(t_data *data, t_ray *ray)
+// {
+// 	if (ray->angle > 270 || ray->angle < 90)
+// 		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size + data->img_size;
+// 	else if (ray->angle > 90 && ray->angle < 270)
+// 		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size - 0.0001;
+// 	else
+// 		return (0);
+// 	ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
+// 	while ((int)ray->vertical_y / data->img_size > 0 && (int)ray->vertical_y / data->img_size < data->map.rows && (int)ray->vertical_x / data->img_size > 0 && (int)ray->vertical_x / data->img_size < data->map.columns && data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size] != '1')
+// 	{
+// 		if (ray->angle > 270 || ray->angle < 90)
+// 			ray->vertical_x += data->img_size;
+// 		else if (ray->angle > 90 && ray->angle < 270)
+// 			ray->vertical_x -= 128.0;
+// 		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
+// 	}
+// 	return (sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) + (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y)));
+// }
 
 void	add_rays(t_data *data)
 {
@@ -79,7 +110,10 @@ void	add_rays(t_data *data)
 		ray.horizontal_distance = check_horizontal_lines(data, &ray);
 		ray.vertical_distance = check_vertical_lines(data, &ray);
 		if (ray.horizontal_distance < ray.vertical_distance)
+    {
+
 			put_horizontal_wall(data, ray);
+    }
 		else
 			put_vertical_wall(data, ray);
 		ray.angle += step;

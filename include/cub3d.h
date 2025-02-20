@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/19 17:50:49 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/20 13:27:40 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,5 +225,8 @@ void					put_vertical_wall(t_data *data, t_ray ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);
 void					init_textures(t_data *data);
 void					print_north(t_data *data, t_ray ray, float x, float y);
+void					print_south(t_data *data, t_ray ray, float x, float y);
+void					print_east(t_data *data, t_ray ray, float x, float y);
+void					print_west(t_data *data, t_ray ray, float x, float y);
 
 #endif
