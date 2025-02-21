@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 13:53:18 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:13:23 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 
 double	check_vertical_lines(t_data *data, t_ray *ray)
 {
-	
+
 	if (ray->angle > 270 || ray->angle < 90)
 		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size + data->img_size;
 	else if (ray->angle > 90 && ray->angle < 270)
@@ -178,6 +178,7 @@ void	fill_window(t_data *data)
 	add_ceiling(data);
 	add_floor(data);
 	add_rays(data);
+	minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->background.img_ptr);
 }
