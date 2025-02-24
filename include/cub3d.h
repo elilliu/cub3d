@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/21 18:27:37 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:15:39 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define HEIGHT 800
 # define FOV 60
 # define IMG_SIZE 128
+# define MINIMAP_SIZE 256
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -181,6 +182,7 @@ typedef struct s_data
 	t_player			player;
 	int					fd_cub;
 	t_img				background;
+	t_img				minimap;
 	t_img				textures[6];
 	t_img				arrow;
 	t_map				map;
@@ -232,8 +234,7 @@ void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
 void					print_line(t_data *data, float x, float y, float size,
 							int color);
-void					put_square(t_data *data, int x, int y, int color,
-							int size);
+void					put_square(t_img img, int x, int y, int color, int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);

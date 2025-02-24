@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_walls.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/20 15:09:10 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:25:29 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 	if (ray.angle > 0 && ray.angle < 180)
 		print_north(data, ray, x, y);
 	else
-    print_south(data, ray, x, y);
-		// print_line(data, x, y, ray.size, 0x6495ed);
+    	print_south(data, ray, x, y);
 }
 
 void	put_vertical_wall(t_data *data, t_ray ray)
@@ -53,12 +52,7 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
 	if (ray.angle > 270 || ray.angle < 90)
-  {
-    print_east(data, ray, x, y);
-  }
+		print_east(data, ray, x, y);
 	else
-  {
 		print_west(data, ray, x, y);
-    // print_line(data, x, y, ray.size, 0x6495ed);
-  }
 }

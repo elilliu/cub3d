@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/21 12:13:23 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:19:48 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ void	add_rays(t_data *data)
 		ray.horizontal_distance = check_horizontal_lines(data, &ray);
 		ray.vertical_distance = check_vertical_lines(data, &ray);
 		if (ray.horizontal_distance < ray.vertical_distance)
-    {
-
 			put_horizontal_wall(data, ray);
-    }
 		else
 			put_vertical_wall(data, ray);
 		ray.angle += step;
@@ -141,26 +138,26 @@ void	add_player(t_data *data)
 	}
 }
 
-void	add_background(t_data *data)
-{
-	int	line;
-	int	column;
+// void	add_background(t_data *data)
+// {
+// 	int	line;
+// 	int	column;
 
-	line = 0;
-	while (line < data->map.rows)
-	{
-		column = 0;
-		while (column < data->map.columns)
-		{
-			if (data->map.tab[line][column] == '1')
-				put_square(data, column * data->img_size, line * data->img_size, 0x2f4f4f, data->img_size);
-			else if (data->map.tab[line][column] == '0' || data->map.tab[line][column] == 'N')
-				put_square(data, column * data->img_size, line * data->img_size, 0xf8f8ff, data->img_size);
-			column++;
-		}
-		line++;
-	}
-}
+// 	line = 0;
+// 	while (line < data->map.rows)
+// 	{
+// 		column = 0;
+// 		while (column < data->map.columns)
+// 		{
+// 			if (data->map.tab[line][column] == '1')
+// 				put_square(data, column * data->img_size, line * data->img_size, 0x2f4f4f, data->img_size);
+// 			else if (data->map.tab[line][column] == '0' || data->map.tab[line][column] == 'N')
+// 				put_square(data, column * data->img_size, line * data->img_size, 0xf8f8ff, data->img_size);
+// 			column++;
+// 		}
+// 		line++;
+// 	}
+// }
 
 void	fill_window(t_data *data)
 {
@@ -169,7 +166,7 @@ void	fill_window(t_data *data)
 	data->background.h = HEIGHT;
 	data->background.addr = mlx_get_data_addr(data->background.img_ptr,
 		&data->background.bpp, &data->background.line_len, &data->background.endian);
-	// add_background(data);int
+	// add_background(data);
 	// printf("angle: %f\n", data->player.angle);
 	// printf("radian: %f\n", deg_to_rad(data->player.angle));
 	// add_player(data);

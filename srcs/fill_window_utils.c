@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:46:50 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/20 16:00:13 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/24 20:03:26 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,5 @@ void	add_floor(t_data *data)
 			x++;
 		}
 		y++;
-	}
-}
-
-void	put_square(t_data *data, int x, int y, int color, int size)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			put_pixel_img(data->background, x + i, y + j, color);
-			j++;
-		}
-		i++;
 	}
 }
