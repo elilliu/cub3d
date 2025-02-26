@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:37:15 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/26 15:21:51 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/26 19:36:30 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,5 @@ void	rotate_player_right(t_data *data)
 	// printf("sin: %f\n", data->player.delta_y);
 	fill_window(data);
 }
+
+  

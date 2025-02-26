@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/26 18:11:46 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/26 19:48:10 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ typedef struct s_data
 	int					row_count;
 	int					img_size;
 	t_tex_path			t_paths;
+    int                 mouse_x;
 	t_garbage_co		*garbage;
 }						t_data;
 

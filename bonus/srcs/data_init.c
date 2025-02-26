@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/26 15:20:21 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/26 19:37:40 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	data_init(t_data *data, char *str)
 	data->t_paths.t_we = NULL;
 	data->t_paths.t_ce = NULL;
 	data->t_paths.t_fl = NULL;
+    data->mouse_x = 0;
 	// if (!map_init(data))
 	// 	return (0);
 	if (!parse_file(data))

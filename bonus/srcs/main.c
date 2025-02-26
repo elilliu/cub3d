@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/26 15:21:13 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/26 19:12:07 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	main(int ac, char **av)
 	fill_window(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
+    mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, &handle_mouse, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &clean_all,
 		data);
 	mlx_loop(data->mlx_ptr);

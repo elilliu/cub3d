@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 15:56:53 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:32:52 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ typedef struct s_data
 	int					row_count;
 	int					img_size;
 	t_tex_path			t_paths;
+    int                 mouse_x
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -241,5 +242,9 @@ void					print_south(t_data *data, t_ray ray, float x, float y);
 void					print_east(t_data *data, t_ray ray, float x, float y);
 void					print_west(t_data *data, t_ray ray, float x, float y);
 int						rgb_to_int(int r, int g, int b);
+
+/*-----------------------BONUS-------------------------*/
+
+int     handle_mouse(int x, int y, void *param);
 
 #endif
