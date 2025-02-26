@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_img_to_img.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:43:43 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 15:56:26 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:49:49 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 		i = 0;
 		while (i < src.h)
 		{
-			put_pixel_img(dst, x + j, y + i, get_pixel_img(src, i, j));
+			put_pixel_img(dst, x + j, y + i, get_pixel_img(src, j, i));
 			i++;
 		}
 		j++;

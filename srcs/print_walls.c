@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/20 15:49:47 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:27:41 by elilliu@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void print_north(t_data *data, t_ray ray, float x, float y)
 	int		i;
 	float	step;
 	t_draw  draw;
-  t_point tex;
+	t_point tex;
 
-  draw.start = y;
+	draw.start = y;
 	draw.end = y + ray.size;
 	if (draw.start < 0)
 		draw.start = 0;
