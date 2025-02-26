@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+         #
+#    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/02/24 20:03:55 by elilliu@stu      ###   ########.fr        #
+#    Updated: 2025/02/26 18:09:54 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,26 +17,29 @@ BLUE		= \033[1;34m
 CYAN		= \033[1;36m
 
 NAME 			= cub3d
-HEADER	 		= include/cub3d.h
 INC     		= /usr/include
 LIBMLX  		= ./mlx/
 NAME_MLX		= libmlx.a
 CC				= cc
-CFLAGS			= -Wall -Werror -Wextra -g3 -I$(INC) -I$(INCS_PATH) -MMD
+CFLAGS			= -Wall -Werror -Wextra -g3 -I$(INC) -MMD
 LFLAGS			= -L$(LIBMLX) -lmlx
 RM				= rm -rf
 
 SRC_DIR			= ./srcs
 OBJ_DIR			= ./objs/
 
-SRCS			= srcs/main.c srcs/data_init.c srcs/utils.c srcs/verif_map.c\
-				srcs/garbage_collector.c srcs/map_init.c srcs/fill_window.c\
-				srcs/utils_gc.c srcs/move_player.c srcs/put_img_to_img.c\
-				srcs/rotate_player.c srcs/parsing_error.c srcs/map_validation.c srcs/error.c\
-				srcs/parsing.c srcs/parsing2.c srcs/parsing_utils.c srcs/fill_window_utils.c\
-				srcs/put_walls.c srcs/print_walls.c srcs/minimap.c srcs/minimap_utils.c
+SRCS			= main.c data_init.c utils.c verif_map.c\
+				garbage_collector.c map_init.c fill_window.c\
+				utils_gc.c move_player.c put_img_to_img.c\
+				rotate_player.c parsing_error.c map_validation.c error.c\
+				parsing.c parsing2.c parsing_utils.c fill_window_utils.c\
+				put_walls.c print_walls.c minimap.c minimap_utils.c
 
-OBJS			= ${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}%.o}
+OBJS_NAMES 			= 	${SRCS:.c=.o}
+# OBJS_NAMES_BONUS	= 	${SRCS_BONUS:.c=.o}
+
+OBJS			= ${addprefix ${OBJ_DIR}, ${OBJS_NAMES}}
+
 DEPS			= ${OBJS:.o=.d}
 
 LIBFTDIR		= ./libft/
@@ -45,12 +48,10 @@ INCLUDE 		= -L./libft -lft
 CC				= cc
 LFLAGS 			+= -lbsd -lXext -lX11 -lm
 
-${OBJ_DIR}%.o: ${SRC_DIR}/%.c
-	@mkdir -p ${OBJ_DIR}
-	@${CC} -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
+	@${CC} ${CFLAGS} -c $< -o $@
 
-.c.o:
-	${CC} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS} ${LIBMLX}${NAME_MLX}
 	@${MAKE} --no-print-directory -C ${LIBFTDIR}
@@ -63,6 +64,8 @@ all: ${NAME}
 ${LIBMLX}${NAME_MLX}:
 	@${MAKE} --no-print-directory -C ${LIBMLX}
 	@echo "${GREEN}Mlx		: DONE!${RESET}"
+
+-include ${DEPS}
 
 clean:
 	@${RM} ${OBJ_DIR}
@@ -77,7 +80,6 @@ fclean: clean
 
 re: fclean all
 
-# -include ${DEPS}
 
 leaks: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME}
