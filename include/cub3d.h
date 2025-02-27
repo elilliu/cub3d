@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/26 18:11:46 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/27 11:41:28 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define FOV 60
 # define IMG_SIZE 128
 # define MINIMAP_SIZE 256
+# define WALL_DIST 20
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
