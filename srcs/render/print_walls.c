@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:48:20 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ void	free_texture(t_data *data, int nb)
 		mlx_destroy_image(data->mlx_ptr, data->textures[nb].img_ptr);
 		i++;
 	}
+}
+
+t_bool  path_exist(char *path)
+{
+    int fd;
+
+    fd = open(path, O_RDONLY);
+    if (fd < 0)
+        return (false);
+    close(fd);
+    return (true);
 }
 
 void	init_textures(t_data *data)

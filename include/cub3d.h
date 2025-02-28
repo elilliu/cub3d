@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/28 15:16:16 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:42:02 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,14 +163,14 @@ typedef struct s_ray
 
 typedef struct s_point
 {
-  float       x;
-	float       y;
+	float				x;
+	float				y;
 }						t_point;
 
 typedef struct s_draw
 {
-  float       start;
-	float       end;
+	float				start;
+	float				end;
 }						t_draw;
 
 typedef struct s_data
@@ -191,7 +191,7 @@ typedef struct s_data
 	int					row_count;
 	int					img_size;
 	t_tex_path			t_paths;
-    int                 mouse_x;
+	int					mouse_x;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -236,7 +236,8 @@ void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
 void					print_line(t_data *data, float x, float y, float size,
 							int color);
-void					put_square(t_img img, int x, int y, int color, int size);
+void					put_square(t_img img, int x, int y, int color,
+							int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);
@@ -247,5 +248,6 @@ void					print_east(t_data *data, t_ray ray, float x, float y);
 void					print_west(t_data *data, t_ray ray, float x, float y);
 int						rgb_to_int(int r, int g, int b);
 void					minimap(t_data *data);
+t_bool					path_exist(char *path);
 
 #endif

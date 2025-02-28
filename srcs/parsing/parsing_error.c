@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:34:03 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:53:48 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ void	error_t_path(t_data *data)
 	while (i < 4)
 	{
 		if (!verif_path(textures[i], ".xpm"))
-		{
-			printf("[%s]\n", textures[i]);
-			print_error("Texture path must be in .xpm");
-			clean_all(data);
-		}
+			print_clean(data, "Texture path must be in .xpm");
+        else if (!path_exist(textures[i]))
+            print_clean(data, "Wrong texture path");
 		i++;
 	}
 }

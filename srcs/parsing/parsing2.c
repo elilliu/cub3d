@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:57:24 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 17:32:46 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ t_bool  is_valid_rgb(char *str)
     while (str[i])
     {
         if (!is_valid_rgb_char(str[i]))
+        {
+            print_error("Invalid RGB format");
             return (false);
+        }
         i++;
     }
     return (true);

@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:47:44 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	verif_path(char *str, char *extension)
 	i = str_len - ext_len - 1;
 	while (i >= 1)
 	{
-        if (str[i] && i == 1 && str[i] == '.' && str[0] != '.')
-        {
+		if (str[i] && i == 1 && str[i] == '.' && str[0] != '.')
+		{
 			printf("double file\n");
 			return (0);
 		}
@@ -50,7 +50,6 @@ int	verif_path(char *str, char *extension)
 	}
 	if (ft_strcmp(&str[str_len - ext_len], extension) == 0)
 		return (1);
-	printf("else\n");
 	return (0);
 }
 
