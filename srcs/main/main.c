@@ -6,11 +6,11 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/26 20:00:06 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	clean_all(t_data *data)
 {

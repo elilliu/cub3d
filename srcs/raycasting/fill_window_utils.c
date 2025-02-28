@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:46:50 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/24 20:03:26 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	print_line(t_data *data, float x, float y, float size, int color)
 {

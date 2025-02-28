@@ -6,11 +6,11 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 00:33:46 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/04 11:58:56 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 // char	*gc_strjoin(char const *s1, char const *s2)
 // {

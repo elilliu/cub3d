@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/05 12:24:27 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static t_bool	empty_around(char **map, int i, int j)
 {

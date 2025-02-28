@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 18:58:53 by neleon            #+#    #+#             */
-/*   Updated: 2025/01/28 16:39:15 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	*gc_free(t_garbage_co *garbage, void *ptr)
 {

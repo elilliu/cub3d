@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:37:15 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/08 13:59:32 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	rotate_player_left(t_data *data)
 {

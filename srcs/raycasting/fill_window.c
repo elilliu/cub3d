@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu@student.42.fr <elilliu>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/24 20:19:48 by elilliu@stu      ###   ########.fr       */
+/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 double	check_horizontal_lines(t_data *data, t_ray *ray)
 {

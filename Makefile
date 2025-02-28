@@ -6,34 +6,57 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/02/26 18:09:54 by neleon           ###   ########.fr        #
+#    Updated: 2025/02/28 16:18:58 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RESET		= \e[0m\033[0m
-GREEN		= \033[0;32m\e[1m
-YELLOW		= \033[1;33m
-BLUE		= \033[1;34m
-CYAN		= \033[1;36m
+RESET				= \e[0m\033[0m
+GREEN				= \033[0;32m\e[1m
+YELLOW				= \033[1;33m
+BLUE				= \033[1;34m
+CYAN				= \033[1;36m
 
-NAME 			= cub3d
-INC     		= /usr/include
-LIBMLX  		= ./mlx/
-NAME_MLX		= libmlx.a
-CC				= cc
-CFLAGS			= -Wall -Werror -Wextra -g3 -I$(INC) -MMD
-LFLAGS			= -L$(LIBMLX) -lmlx
-RM				= rm -rf
+NAME 				= cub3d
+INC     			= /usr/include
+LIBMLX  			= ./mlx/
+NAME_MLX			= libmlx.a
+CC						= cc
+CFLAGS				= -Wall -Werror -Wextra -g3 -I$(INC) -MMD
+LFLAGS				= -L$(LIBMLX) -lmlx
+RM						= rm -rf
 
-SRC_DIR			= ./srcs
-OBJ_DIR			= ./objs/
+# SRCS				= minimap.c minimap_utils.c
 
-SRCS			= main.c data_init.c utils.c verif_map.c\
-				garbage_collector.c map_init.c fill_window.c\
-				utils_gc.c move_player.c put_img_to_img.c\
-				rotate_player.c parsing_error.c map_validation.c error.c\
-				parsing.c parsing2.c parsing_utils.c fill_window_utils.c\
-				put_walls.c print_walls.c minimap.c minimap_utils.c
+PARSING_DIR			= parsing/
+PARSING				= map_init.c map_validation.c parsing.c parsing2.c parsing_utils.c\
+					parsing_error.c
+SRCS				+= $(addprefix ${PARSING_DIR}, ${PARSING})
+
+MAIN_DIR			= main/
+MAIN				= main.c data_init.c
+SRCS				+= $(addprefix ${MAIN_DIR}, ${MAIN})
+
+MOVES_DIR			= moves/
+MOVES				= move_player.c rotate_player.c
+SRCS				+= $(addprefix ${MOVES_DIR}, ${MOVES})
+
+RAYCASTING_DIR		= raycasting/
+RAYCASTING			= fill_window.c fill_window_utils.c put_walls.c minimap.c minimap_utils.c
+SRCS				+= $(addprefix ${RAYCASTING_DIR}, ${RAYCASTING})
+
+RENDER_DIR			= render/
+RENDER				= print_walls.c put_img_to_img.c
+SRCS				+= $(addprefix ${RENDER_DIR}, ${RENDER})
+
+
+UTILS_DIR			= utils/
+UTILS				= utils.c garbage_collector.c utils_gc.c error.c
+SRCS				+= $(addprefix ${UTILS_DIR}, ${UTILS})
+
+
+SRC_DIR				= ./srcs
+OBJ_DIR				= ./objs/
+
 
 OBJS_NAMES 			= 	${SRCS:.c=.o}
 # OBJS_NAMES_BONUS	= 	${SRCS_BONUS:.c=.o}
