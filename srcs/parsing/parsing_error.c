@@ -6,11 +6,22 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:34:03 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/28 18:53:48 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:58:07 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+t_bool  path_exist(char *path)
+{
+    int fd;
+
+    fd = open(path, O_RDONLY);
+    if (fd < 0)
+        return (false);
+    close(fd);
+    return (true);
+}
 
 void	error_t_path(t_data *data)
 {
@@ -26,10 +37,8 @@ void	error_t_path(t_data *data)
 	{
 		if (!verif_path(textures[i], ".xpm"))
 			print_clean(data, "Texture path must be in .xpm");
-        else if (!path_exist(textures[i]))
-            print_clean(data, "Wrong texture path");
+		else if (!path_exist(textures[i]))
+			print_clean(data, "Wrong texture path");
 		i++;
 	}
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/28 17:35:03 by neleon           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:57:11 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	print_rgb(t_data *data)
 	printf("red : %d\n", data->t_paths.fl.r);
 	printf("green : %d\n", data->t_paths.fl.g);
 	printf("blue : %d\n", data->t_paths.fl.b);
-
 	printf("Ceiling RGB :\n");
 	printf("red : %d\n", data->t_paths.ce.r);
 	printf("green : %d\n", data->t_paths.ce.g);
