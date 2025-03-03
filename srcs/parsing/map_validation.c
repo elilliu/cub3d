@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/02/28 17:53:15 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:59:33 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	map_validation(t_data *data, char **map)
 			if (!is_valid_char_map(map[i][j]))
 				print_clean(data, "Invalid char in map");
 			if (is_player_char(map[i][j]))
+            {
+                data->player_dir = map[i][j];
 				player++;
+            }
 			if (empty_around(map, i, j))
 				print_clean(data, "Unclosed map");
 			j = j + 1;

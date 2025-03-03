@@ -6,12 +6,12 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/26 19:32:52 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:37:00 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../libft/gnl/get_next_line_bonus.h"
 # include "../libft/libft/libft.h"
@@ -24,13 +24,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define PI 3.1415926535
+// # define PI 3.1415926535
 # define RADIAN 0.0174533
 
 # define WIDTH 1600
 # define HEIGHT 800
 # define FOV 60
-# define IMG_SIZE 128
+# define IMG_SIZE 400
+# define MINIMAP_SIZE 256
+# define WALL_DIST 20
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -66,7 +68,9 @@ typedef enum e_chars_game
 	PL_WE = 'W',
 	PL_EA = 'E',
 	WALL = '1',
-	FLOOR = '0'
+	FLOOR = '0',
+	OPEN_D = 'O',
+	CLOSE_D = 'C'
 }						t_chars_game;
 
 typedef enum e_textures
@@ -161,14 +165,14 @@ typedef struct s_ray
 
 typedef struct s_point
 {
-  float       x;
-	float       y;
+	float				x;
+	float				y;
 }						t_point;
 
 typedef struct s_draw
 {
-  float       start;
-	float       end;
+	float				start;
+	float				end;
 }						t_draw;
 
 typedef struct s_data
@@ -181,13 +185,15 @@ typedef struct s_data
 	t_player			player;
 	int					fd_cub;
 	t_img				background;
+	t_img				minimap;
 	t_img				textures[6];
+	t_img				arrow;
 	t_map				map;
 	t_map2				*map2;
 	int					row_count;
 	int					img_size;
 	t_tex_path			t_paths;
-    int                 mouse_x
+	int					mouse_x;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -222,6 +228,7 @@ void					print_clean(t_data *data, char *err_mess);
 void					print_clean_reading(t_data *data, char *line,
 							char *mess);
 void					map_validation(t_data *data, char **map);
+void					put_img_to_img(t_img dst, t_img src, int x, int y);
 void					put_pixel_img(t_img img, int x, int y, int color);
 void					rotate_player_left(t_data *data);
 void					rotate_player_right(t_data *data);
@@ -231,7 +238,7 @@ void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
 void					print_line(t_data *data, float x, float y, float size,
 							int color);
-void					put_square(t_data *data, int x, int y, int color,
+void					put_square(t_img img, int x, int y, int color,
 							int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
@@ -242,9 +249,7 @@ void					print_south(t_data *data, t_ray ray, float x, float y);
 void					print_east(t_data *data, t_ray ray, float x, float y);
 void					print_west(t_data *data, t_ray ray, float x, float y);
 int						rgb_to_int(int r, int g, int b);
-
-/*-----------------------BONUS-------------------------*/
-
-int     handle_mouse(int x, int y, void *param);
+void					minimap(t_data *data);
+t_bool					path_exist(char *path);
 
 #endif

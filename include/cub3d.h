@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/28 18:42:02 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:57:15 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define PI 3.1415926535
+// # define PI 3.1415926535
 # define RADIAN 0.0174533
 
 # define WIDTH 1600
 # define HEIGHT 800
 # define FOV 60
-# define IMG_SIZE 128
+# define IMG_SIZE 400
 # define MINIMAP_SIZE 256
 # define WALL_DIST 20
 
@@ -192,6 +192,7 @@ typedef struct s_data
 	int					img_size;
 	t_tex_path			t_paths;
 	int					mouse_x;
+    char                player_dir;
 	t_garbage_co		*garbage;
 }						t_data;
 

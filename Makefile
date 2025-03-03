@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/02/28 16:18:58 by neleon           ###   ########.fr        #
+#    Updated: 2025/03/03 18:23:27 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ BLUE				= \033[1;34m
 CYAN				= \033[1;36m
 
 NAME 				= cub3d
+NAME_BONUS 			= cub3d_bonus
 INC     			= /usr/include
 LIBMLX  			= ./mlx/
 NAME_MLX			= libmlx.a
-CC						= cc
+CC					= cc
 CFLAGS				= -Wall -Werror -Wextra -g3 -I$(INC) -MMD
 LFLAGS				= -L$(LIBMLX) -lmlx
 RM						= rm -rf
@@ -53,33 +54,48 @@ UTILS_DIR			= utils/
 UTILS				= utils.c garbage_collector.c utils_gc.c error.c
 SRCS				+= $(addprefix ${UTILS_DIR}, ${UTILS})
 
+BONUS_DIR			= ./bonus
+SRCS_B				= main_bonus.c map_init_bonus.c map_validation_bonus.c parsing_bonus.c\
+					parsing2_bonus.c parsing_utils_bonus.c
 
 SRC_DIR				= ./srcs
 OBJ_DIR				= ./objs/
+OBJ_DIR_B			= ./objs_b/
 
 
-OBJS_NAMES 			= 	${SRCS:.c=.o}
-# OBJS_NAMES_BONUS	= 	${SRCS_BONUS:.c=.o}
+OBJS_FILES 			= ${SRCS:.c=.o}
+OBJS_FILES_B		= ${SRCS_B:.c=.o}
 
-OBJS			= ${addprefix ${OBJ_DIR}, ${OBJS_NAMES}}
+OBJS				= ${addprefix ${OBJ_DIR}, ${OBJS_FILES}}
+OBJS_B				= ${addprefix ${OBJ_DIR_B}, ${OBJS_FILES}}
 
-DEPS			= ${OBJS:.o=.d}
+DEPS				= ${OBJS:.o=.d}
+DEPS				= ${OBJS_B:.o=.d}
 
-LIBFTDIR		= ./libft/
-INCLUDE 		= -L./libft -lft
+LIBFTDIR			= ./libft/
+INCLUDE 			= -L./libft -lft
 
-CC				= cc
-LFLAGS 			+= -lbsd -lXext -lX11 -lm
+CC					= cc
+LFLAGS 				+= -lbsd -lXext -lX11 -lm
 
 $(OBJ_DIR)%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@${CC} ${CFLAGS} -c $< -o $@
 
+$(OBJ_DIR_B)%.o: $(BONUS_DIR)/%.c
+	@mkdir -p $(@D)
+	@${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS} ${LIBMLX}${NAME_MLX}
 	@${MAKE} --no-print-directory -C ${LIBFTDIR}
 	@echo "${GREEN}Libft		: DONE!${RESET}"
 	@${CC} ${CFLAGS} ${OBJS} ${LFLAGS} ${LIBFT} -o ${NAME} ${INCLUDE}
+	@echo "${GREEN}Cub3d		: DONE!${RESET}"
+
+${NAME_BONUS}: ${OBJS_B} ${LIBMLX}${NAME_MLX}
+	@${MAKE} --no-print-directory -C ${LIBFTDIR}
+	@echo "${GREEN}Libft		: DONE!${RESET}"
+	@${CC} ${CFLAGS} ${OBJS_B} ${LFLAGS} ${LIBFT} -o ${NAME_BONUS} ${INCLUDE}
 	@echo "${GREEN}Cub3d		: DONE!${RESET}"
 
 all: ${NAME}
@@ -88,17 +104,24 @@ ${LIBMLX}${NAME_MLX}:
 	@${MAKE} --no-print-directory -C ${LIBMLX}
 	@echo "${GREEN}Mlx		: DONE!${RESET}"
 
+bonus: ${NAME_BONUS}
+
+# ${LIBMLX}${NAME_MLX}:
+# 	@${MAKE} --no-print-directory -C ${LIBMLX}
+# 	@echo "${GREEN}Mlx		: DONE!${RESET}"
+
 -include ${DEPS}
 
 clean:
 	@${RM} ${OBJ_DIR}
+	@${RM} ${OBJ_DIR_B}
 	@${MAKE} --no-print-directory -C ${LIBFTDIR} fclean
 	@${MAKE} --no-print-directory -C ${LIBMLX} clean
 	@echo "${GREEN}Clean		: DONE!${RESET}"
 
 fclean: clean
 	@${RM} ${NAME}
-	@${RM} $(OUTPUT_LEAKS)
+	@${RM} ${NAME_BONUS}
 	@echo "${GREEN}Full clean	: DONE!${RESET}"
 
 re: fclean all

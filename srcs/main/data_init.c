@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/28 18:02:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:06:30 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,25 @@ t_data	*get_data(void)
 	return (&data);
 }
 
+void    assign_player_angle(t_data *data)
+{
+    if (data->player_dir == PL_NO)
+        data->player.angle = 90;
+    else if (data->player_dir == PL_WE)
+        data->player.angle = 180;
+    else if (data->player_dir == PL_SO)
+        data->player.angle = 270;
+    else if (data->player_dir == PL_EA)
+        data->player.angle = 360;
+}
+
 int	player_init(t_data *data)
 {
 	int	i;
 	int	row;
 
-	data->player.angle = 270;
+	// data->player.angle = 270;
+    assign_player_angle(data);
 	// printf("cet coucouuuuu angle: %.16f\n", data->player.angle);
 	// printf(" 3 * PI / 2: %.16f\n", 3 * PI / 2);
 	data->player.delta_x = cos(deg_to_rad(data->player.angle)) * 5;
