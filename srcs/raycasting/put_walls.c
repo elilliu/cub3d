@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:36:12 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
 	if (ray.angle > 270 || ray.angle < 90)
-		print_east(data, ray, x, y);
+        print_west(data, ray, x, y);
 	else
-		print_west(data, ray, x, y);
+        print_east(data, ray, x, y);
 }

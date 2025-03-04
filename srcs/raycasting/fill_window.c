@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:15:18 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:31:23 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ void	fill_window(t_data *data)
 	add_ceiling(data);
 	add_floor(data);
 	add_rays(data);
-	minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->background.img_ptr);
 }

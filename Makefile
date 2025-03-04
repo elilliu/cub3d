@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/03/04 15:22:24 by neleon           ###   ########.fr        #
+#    Updated: 2025/03/04 16:32:09 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ MOVES				= move_player.c rotate_player.c
 SRCS				+= $(addprefix ${MOVES_DIR}, ${MOVES})
 
 RAYCASTING_DIR		= raycasting/
-RAYCASTING			= fill_window.c fill_window_utils.c put_walls.c minimap.c minimap_utils.c
+RAYCASTING			= fill_window.c fill_window_utils.c put_walls.c
 SRCS				+= $(addprefix ${RAYCASTING_DIR}, ${RAYCASTING})
 
 RENDER_DIR			= render/

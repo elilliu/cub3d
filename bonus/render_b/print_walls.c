@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:21:37 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:33:18 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void print_south(t_data *data, t_ray ray, float x, float y)
 	}
 }
 
-void print_east(t_data *data, t_ray ray, float x, float y)
+void print_west(t_data *data, t_ray ray, float x, float y)
 {
 	int		color;
 	int		i;
@@ -140,7 +140,7 @@ void print_east(t_data *data, t_ray ray, float x, float y)
 	}
 }
 
-void print_west(t_data *data, t_ray ray, float x, float y)
+void print_east(t_data *data, t_ray ray, float x, float y)
 {
 	int		color;
 	int		i;

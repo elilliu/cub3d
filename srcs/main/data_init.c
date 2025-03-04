@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/04 16:25:08 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:28:30 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    assign_player_angle(t_data *data)
     else if (data->player_dir == PL_WE)
         data->player.angle = 180;
     else if (data->player_dir == PL_SO)
-        data->player.angle = 290;
+        data->player.angle = 90;
     else if (data->player_dir == PL_EA)
         data->player.angle = 360;
 }
