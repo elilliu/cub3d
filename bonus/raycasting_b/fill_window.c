@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:38:13 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:05:41 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ double	check_vertical_lines(t_data *data, t_ray *ray)
 	return sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) +
 	            (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y));
 }
-
 
 // double	check_vertical_lines(t_data *data, t_ray *ray)
 // {

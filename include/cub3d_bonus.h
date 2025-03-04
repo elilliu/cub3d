@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:33:31 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:14:33 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef enum e_textures
 	T_SO,
 	T_WE,
 	T_EA,
+	T_DO,
 	T_CE,
 	T_FL
 }						t_textures;
@@ -135,6 +136,7 @@ typedef struct s_tex_path
 	char				*t_ea;
 	char				*t_fl;
 	char				*t_ce;
+	char				*t_do;
 	t_rgb				fl;
 	t_rgb				ce;
 }						t_tex_path;
@@ -161,6 +163,7 @@ typedef struct s_ray
 	double				horizontal_distance;
 	double				vertical_distance;
 	double				size;
+	char				type;
 }						t_ray;
 
 typedef struct s_point
@@ -186,7 +189,7 @@ typedef struct s_data
 	int					fd_cub;
 	t_img				background;
 	t_img				minimap;
-	t_img				textures[6];
+	t_img				textures[7];
 	t_img				arrow;
 	t_map				map;
 	t_map2				*map2;

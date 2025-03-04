@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/04 16:32:58 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 18:49:15 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	data_init(t_data *data, char *str)
 	data->t_paths.t_we = NULL;
 	data->t_paths.t_ce = NULL;
 	data->t_paths.t_fl = NULL;
+	data->t_paths.t_do = "./textures/cub_door_400_20.xpm";
 	if (!parse_file(data))
 		return (0);
 	set_rgb(data);
