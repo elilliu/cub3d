@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/03 17:37:00 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:33:31 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef enum e_chars_game
 	PL_EA = 'E',
 	WALL = '1',
 	FLOOR = '0',
-	OPEN_D = 'O',
-	CLOSE_D = 'C'
+	CLOSE_D = 'C',
+	OPEN_D = 'O'
 }						t_chars_game;
 
 typedef enum e_textures
@@ -194,6 +194,7 @@ typedef struct s_data
 	int					img_size;
 	t_tex_path			t_paths;
 	int					mouse_x;
+	char				player_dir;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -251,5 +252,7 @@ void					print_west(t_data *data, t_ray ray, float x, float y);
 int						rgb_to_int(int r, int g, int b);
 void					minimap(t_data *data);
 t_bool					path_exist(char *path);
+t_bool					is_door(char c);
+t_bool					is_wall_or_door(char c);
 
 #endif

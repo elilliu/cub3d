@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:48:09 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/03 18:21:46 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:36:15 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_bool	is_player_char(char c)
 
 t_bool	is_valid_char_map(char c)
 {
-	if (c == FLOOR || c == WALL || is_player_char(c) || c == ' ')
+	if (c == FLOOR || c == WALL || is_player_char(c) || c == ' ' || is_door(c))
 		return (true);
 	return (false);
 }

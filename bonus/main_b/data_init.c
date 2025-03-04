@@ -6,11 +6,11 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/04 16:25:08 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 14:22:46 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 t_data	*get_data(void)
 {
@@ -22,11 +22,11 @@ t_data	*get_data(void)
 void    assign_player_angle(t_data *data)
 {
     if (data->player_dir == PL_NO)
-        data->player.angle = 270;
+        data->player.angle = 90;
     else if (data->player_dir == PL_WE)
         data->player.angle = 180;
     else if (data->player_dir == PL_SO)
-        data->player.angle = 290;
+        data->player.angle = 270;
     else if (data->player_dir == PL_EA)
         data->player.angle = 360;
 }

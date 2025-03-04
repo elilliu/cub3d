@@ -6,7 +6,7 @@
 #    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/03/03 18:23:27 by neleon           ###   ########.fr        #
+#    Updated: 2025/03/04 15:22:24 by neleon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,23 +54,48 @@ UTILS_DIR			= utils/
 UTILS				= utils.c garbage_collector.c utils_gc.c error.c
 SRCS				+= $(addprefix ${UTILS_DIR}, ${UTILS})
 
-BONUS_DIR			= ./bonus
-SRCS_B				= main_bonus.c map_init_bonus.c map_validation_bonus.c parsing_bonus.c\
-					parsing2_bonus.c parsing_utils_bonus.c
+PARSING_B_DIR		= parsing_b/
+PARSING_B			= map_init_bonus.c map_validation_bonus.c parsing_bonus.c parsing2_bonus.c parsing_utils_bonus.c\
+					parsing_error_bonus.c
+SRCS_B				+= $(addprefix ${PARSING_B_DIR}, ${PARSING_B})
+
+MAIN_B_DIR			= main_b/
+MAIN_B				= main_bonus.c data_init.c
+SRCS_B				+= $(addprefix ${MAIN_B_DIR}, ${MAIN_B})
+# SRCS_B              += $(addprefix ${MOVES_DIR}, ${MOVES})
+# SRCS_B				+= $(addprefix ${RAYCASTING_DIR}, ${RAYCASTING})
+# SRCS_B				+= $(addprefix ${RENDER_DIR}, ${RENDER})
+# SRCS_B				+= $(addprefix ${UTILS_DIR}, ${UTILS})
+
+MOVES_B_DIR			= moves_b/
+MOVES_B				= move_player.c rotate_player.c
+SRCS_B				+= $(addprefix ${MOVES_B_DIR}, ${MOVES_B})
+
+RAYCASTING_B_DIR	= raycasting_b/
+RAYCASTING_B		= fill_window.c fill_window_utils.c put_walls.c minimap.c minimap_utils.c
+SRCS_B				+= $(addprefix ${RAYCASTING_B_DIR}, ${RAYCASTING_B})
+
+RENDER_B_DIR		= render_b/
+RENDER_B			= print_walls.c put_img_to_img.c
+SRCS_B				+= $(addprefix ${RENDER_B_DIR}, ${RENDER_B})
+
+UTILS_B_DIR			= utils_b/
+UTILS_B				= utils.c garbage_collector.c utils_gc.c error.c utils_bonus.c
+SRCS_B				+= $(addprefix ${UTILS_B_DIR}, ${UTILS_B})
 
 SRC_DIR				= ./srcs
+BONUS_DIR			= ./bonus
 OBJ_DIR				= ./objs/
 OBJ_DIR_B			= ./objs_b/
-
 
 OBJS_FILES 			= ${SRCS:.c=.o}
 OBJS_FILES_B		= ${SRCS_B:.c=.o}
 
 OBJS				= ${addprefix ${OBJ_DIR}, ${OBJS_FILES}}
-OBJS_B				= ${addprefix ${OBJ_DIR_B}, ${OBJS_FILES}}
+OBJS_B				= ${addprefix ${OBJ_DIR_B}, ${OBJS_FILES_B}}
 
 DEPS				= ${OBJS:.o=.d}
-DEPS				= ${OBJS_B:.o=.d}
+DEPS_B				= ${OBJS_B:.o=.d}
 
 LIBFTDIR			= ./libft/
 INCLUDE 			= -L./libft -lft
@@ -92,12 +117,6 @@ ${NAME}: ${OBJS} ${LIBMLX}${NAME_MLX}
 	@${CC} ${CFLAGS} ${OBJS} ${LFLAGS} ${LIBFT} -o ${NAME} ${INCLUDE}
 	@echo "${GREEN}Cub3d		: DONE!${RESET}"
 
-${NAME_BONUS}: ${OBJS_B} ${LIBMLX}${NAME_MLX}
-	@${MAKE} --no-print-directory -C ${LIBFTDIR}
-	@echo "${GREEN}Libft		: DONE!${RESET}"
-	@${CC} ${CFLAGS} ${OBJS_B} ${LFLAGS} ${LIBFT} -o ${NAME_BONUS} ${INCLUDE}
-	@echo "${GREEN}Cub3d		: DONE!${RESET}"
-
 all: ${NAME}
 
 ${LIBMLX}${NAME_MLX}:
@@ -106,11 +125,18 @@ ${LIBMLX}${NAME_MLX}:
 
 bonus: ${NAME_BONUS}
 
+${NAME_BONUS}: ${OBJS_B} ${LIBMLX}${NAME_MLX}
+	@${MAKE} --no-print-directory -C ${LIBFTDIR}
+	@echo "${GREEN}Libft		: DONE!${RESET}"
+	@${CC} ${CFLAGS} ${OBJS_B} ${LFLAGS} ${LIBFT} -o ${NAME_BONUS} ${INCLUDE}
+	@echo "${GREEN}Bonus		: DONE!${RESET}"
+    
 # ${LIBMLX}${NAME_MLX}:
 # 	@${MAKE} --no-print-directory -C ${LIBMLX}
 # 	@echo "${GREEN}Mlx		: DONE!${RESET}"
 
 -include ${DEPS}
+-include ${DEPS_B}
 
 clean:
 	@${RM} ${OBJ_DIR}
@@ -125,7 +151,6 @@ fclean: clean
 	@echo "${GREEN}Full clean	: DONE!${RESET}"
 
 re: fclean all
-
 
 leaks: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME}

@@ -6,18 +6,11 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/03 17:51:07 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:23:42 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
-
-static t_bool	is_door(char c)
-{
-	if (c == OPEN_D || c = CLOSE_D)
-		return (true);
-	return (false);
-}
 
 static t_bool	empty_around(char **map, int i, int j)
 {

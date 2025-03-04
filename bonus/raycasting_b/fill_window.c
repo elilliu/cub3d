@@ -6,11 +6,11 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:15:18 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:38:13 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 double	check_horizontal_lines(t_data *data, t_ray *ray)
 {
@@ -24,7 +24,11 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 		ray->horizontal_x = data->player.x;
 	else
 		ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
-	while ((int)ray->horizontal_y / data->img_size > 0 && (int)ray->horizontal_y / data->img_size < data->map.rows && (int)ray->horizontal_x / data->img_size > 0 && (int)ray->horizontal_x / data->img_size < data->map.columns && data->map.tab[(int)ray->horizontal_y / data->img_size][(int)ray->horizontal_x / data->img_size] != WALL)
+	while ((int)ray->horizontal_y / data->img_size > 0
+            && (int)ray->horizontal_y / data->img_size < data->map.rows
+            && (int)ray->horizontal_x / data->img_size > 0
+            && (int)ray->horizontal_x / data->img_size < data->map.columns
+            && !is_wall_or_door(data->map.tab[(int)ray->horizontal_y / data->img_size][(int)ray->horizontal_x / data->img_size]))
 	{
 		if (ray->angle > 0 && ray->angle < 180)
 			ray->horizontal_y += data->img_size;
@@ -55,7 +59,7 @@ double	check_vertical_lines(t_data *data, t_ray *ray)
 	       (int)ray->vertical_y / data->img_size < data->map.rows &&
 	       (int)ray->vertical_x / data->img_size > 0 &&
 	       (int)ray->vertical_x / data->img_size < data->map.columns &&
-	       data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size] != WALL)
+	       !is_wall_or_door(data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size]))
 	{
 		if (ray->angle > 270 || ray->angle < 90)
 			ray->vertical_x += data->img_size;
