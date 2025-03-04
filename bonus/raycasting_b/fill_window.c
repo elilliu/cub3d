@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 19:05:41 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:33:31 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	add_rays(t_data *data)
 
 	fov = (float)FOV;
 	ray.angle = data->player.angle - fov / 2;
+	ray.type = -1;
 	width = (float)WIDTH;
 	step = fov / width;
 	if (ray.angle < 0)

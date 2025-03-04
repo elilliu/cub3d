@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 19:19:38 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:30:51 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ void	print_north(t_data *data, t_ray ray, float x, float y)
 	i = draw.start;
 	while (i < draw.end)
 	{
-		// if (ray.type == CLOSE_D)
-		// 	color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-		// 	% data->textures[T_DO].h);
-		// else
+		if (ray.type == CLOSE_D)
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
+			% data->textures[T_DO].h);
+		else
 			color = get_pixel_img(data->textures[T_NO], tex.x, (int)tex.y
 				% data->textures[T_NO].h);
 		put_pixel_img(data->background, x, i, color);
@@ -117,10 +117,10 @@ void	print_south(t_data *data, t_ray ray, float x, float y)
 	i = draw.start;
 	while (i < draw.end)
 	{
-		// if (ray.type == CLOSE_D)
-		// 	color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-		// 	% data->textures[T_DO].h);
-		// else
+		if (ray.type == CLOSE_D)
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
+			% data->textures[T_DO].h);
+		else
 			color = get_pixel_img(data->textures[T_SO], tex.x, (int)tex.y
 					% data->img_size);
 		put_pixel_img(data->background, x, i, color);
@@ -153,10 +153,10 @@ void	print_west(t_data *data, t_ray ray, float x, float y)
 	i = draw.start;
 	while (i < draw.end)
 	{
-		// if (ray.type == CLOSE_D)
-		// 	color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-		// 	% data->textures[T_DO].h);
-		// else
+		if (ray.type == CLOSE_D)
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
+			% data->textures[T_DO].h);
+		else
 			color = get_pixel_img(data->textures[T_WE], tex.x, (int)tex.y
 					% data->img_size);
 		put_pixel_img(data->background, x, i, color);
@@ -187,10 +187,10 @@ void	print_east(t_data *data, t_ray ray, float x, float y)
 	i = draw.start;
 	while (i < draw.end)
 	{
-		// if (ray.type == CLOSE_D)
-		// 	color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-		// 	% data->textures[T_DO].h);
-		// else
+		if (ray.type == CLOSE_D)
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
+			% data->textures[T_DO].h);
+		else
 			color = get_pixel_img(data->textures[T_EA], tex.x, (int)tex.y
 					% data->img_size);
 		put_pixel_img(data->background, x, i, color);
