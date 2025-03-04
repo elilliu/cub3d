@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:21:20 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 17:28:40 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	add_lines(t_data *data)
 	while (y < MINIMAP_SIZE && line < data->map.rows && line <= (int)data->player.y / IMG_SIZE + 4)
 	{
 		x = 32 - ((data->player.x - (int)data->player.x / IMG_SIZE * IMG_SIZE) / IMG_SIZE * 32);
-		column = (int)data->player.x / IMG_SIZE - 3;	
+		column = (int)data->player.x / IMG_SIZE - 3;
 		while (x < MINIMAP_SIZE && column < data->map.columns && column <= (int)data->player.x / IMG_SIZE + 4)
 		{
 			if (line >= 0 && column >= 0 && data->map.tab[line][column] == WALL)
@@ -55,7 +55,8 @@ void	minimap(t_data *data)
 	data->arrow.addr = mlx_get_data_addr(data->arrow.img_ptr, &data->arrow.bpp,
 		&data->arrow.line_len, &data->arrow.endian);
 	add_lines(data);
-	put_img_to_img(data->minimap, data->arrow, MINIMAP_SIZE / 2 - 8, MINIMAP_SIZE / 2 - 8);
+	put_square(data->minimap, MINIMAP_SIZE / 2 - 4, MINIMAP_SIZE / 2 - 4, 0xcd5c5c, 8);
+	// put_img_to_img(data->minimap, data->arrow, MINIMAP_SIZE / 2 - 8, MINIMAP_SIZE / 2 - 8);
 	x = WIDTH - 32 - MINIMAP_SIZE;
 	y = HEIGHT - 32 - MINIMAP_SIZE;
 	put_img_to_img(data->background, data->minimap, x, y);
