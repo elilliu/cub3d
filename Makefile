@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
+#    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/03/04 16:32:09 by neleon           ###   ########.fr        #
+#    Updated: 2025/03/05 14:31:31 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,10 @@ UTILS_B_DIR			= utils_b/
 UTILS_B				= utils.c garbage_collector.c utils_gc.c error.c utils_bonus.c
 SRCS_B				+= $(addprefix ${UTILS_B_DIR}, ${UTILS_B})
 
+BONUS_B_DIR		= bonus_b/
+BONUS_B					= door.c
+SRCS_B				+= $(addprefix ${BONUS_B_DIR}, ${BONUS_B})
+
 SRC_DIR				= ./srcs
 BONUS_DIR			= ./bonus
 OBJ_DIR				= ./objs/
@@ -130,7 +134,7 @@ ${NAME_BONUS}: ${OBJS_B} ${LIBMLX}${NAME_MLX}
 	@echo "${GREEN}Libft		: DONE!${RESET}"
 	@${CC} ${CFLAGS} ${OBJS_B} ${LFLAGS} ${LIBFT} -o ${NAME_BONUS} ${INCLUDE}
 	@echo "${GREEN}Bonus		: DONE!${RESET}"
-    
+
 # ${LIBMLX}${NAME_MLX}:
 # 	@${MAKE} --no-print-directory -C ${LIBMLX}
 # 	@echo "${GREEN}Mlx		: DONE!${RESET}"

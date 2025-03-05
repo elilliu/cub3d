@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/03 16:55:56 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:33:32 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	handle_keypress(int keysym, t_data *data)
 		rotate_player_right(data);
 	if (keysym == XK_Left)
 		rotate_player_left(data);
+  if (keysym == XK_space)
+	  open_or_close_door(data);
 	return (1);
 }
 

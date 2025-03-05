@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 19:14:33 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:58:43 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define IMG_SIZE 400
 # define MINIMAP_SIZE 256
 # define WALL_DIST 20
+# define DOOR_DIST 2
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -170,6 +171,10 @@ typedef struct s_point
 {
 	float				x;
 	float				y;
+  int         min_x;
+  int         min_y;
+  int         max_x;
+  int         max_y;
 }						t_point;
 
 typedef struct s_draw
@@ -198,6 +203,7 @@ typedef struct s_data
 	t_tex_path			t_paths;
 	int					mouse_x;
 	char				player_dir;
+  float **z_buffer;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -257,5 +263,7 @@ void					minimap(t_data *data);
 t_bool					path_exist(char *path);
 t_bool					is_door(char c);
 t_bool					is_wall_or_door(char c);
+void	open_or_close_door(t_data *data);
+t_bool	door_around(t_data *data, int *door_x, int *door_y);
 
 #endif

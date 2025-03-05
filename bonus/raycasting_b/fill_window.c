@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 19:33:31 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:05:03 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
+
+int	map_value_at(t_data *data, double x, double y)
+{
+    int map_x;
+    int map_y;
+
+    map_x = (int)x / data->img_size;
+    map_y = (int)y / data->img_size;
+    if (map_x < 0 || map_x >= data->map.columns
+        || map_y < 0 || map_y >= data->map.rows)
+        return (' ');
+    return (data->map.tab[map_y][map_x]);
+}
 
 double	check_horizontal_lines(t_data *data, t_ray *ray)
 {
@@ -39,6 +52,10 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 		if (tan(deg_to_rad(ray->angle)) != 0)
 			ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
 	}
+  if (map_value_at(data, ray->horizontal_x, ray->horizontal_y) == CLOSE_D)
+    ray->type = CLOSE_D;
+  else
+    ray->type = WALL;
 	return (sqrt((ray->horizontal_x - data->player.x) * (ray->horizontal_x - data->player.x) + (ray->horizontal_y - data->player.y) * (ray->horizontal_y - data->player.y)));
 }
 
@@ -68,6 +85,10 @@ double	check_vertical_lines(t_data *data, t_ray *ray)
 		if (tan(deg_to_rad(ray->angle)) != 0)
 			ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
 	}
+  if(map_value_at(data, ray->vertical_x, ray->vertical_y) == CLOSE_D)
+      ray->type = CLOSE_D;
+  else
+      ray->type = WALL;
 	return sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) +
 	            (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y));
 }
@@ -102,7 +123,6 @@ void	add_rays(t_data *data)
 
 	fov = (float)FOV;
 	ray.angle = data->player.angle - fov / 2;
-	ray.type = -1;
 	width = (float)WIDTH;
 	step = fov / width;
 	if (ray.angle < 0)
@@ -142,27 +162,6 @@ void	add_player(t_data *data)
 	}
 }
 
-// void	add_background(t_data *data)
-// {
-// 	int	line;
-// 	int	column;
-
-// 	line = 0;
-// 	while (line < data->map.rows)
-// 	{
-// 		column = 0;
-// 		while (column < data->map.columns)
-// 		{
-// 			if (data->map.tab[line][column] == '1')
-// 				put_square(data, column * data->img_size, line * data->img_size, 0x2f4f4f, data->img_size);
-// 			else if (data->map.tab[line][column] == '0' || data->map.tab[line][column] == 'N')
-// 				put_square(data, column * data->img_size, line * data->img_size, 0xf8f8ff, data->img_size);
-// 			column++;
-// 		}
-// 		line++;
-// 	}
-// }
-
 void	fill_window(t_data *data)
 {
 	data->background.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
@@ -183,3 +182,25 @@ void	fill_window(t_data *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->background.img_ptr);
 }
+
+
+// void	add_background(t_data *data)
+// {
+// 	int	line;
+// 	int	column;
+
+// 	line = 0;
+// 	while (line < data->map.rows)
+// 	{
+// 		column = 0;
+// 		while (column < data->map.columns)
+// 		{
+// 			if (data->map.tab[line][column] == '1')
+// 				put_square(data, column * data->img_size, line * data->img_size, 0x2f4f4f, data->img_size);
+// 			else if (data->map.tab[line][column] == '0' || data->map.tab[line][column] == 'N')
+// 				put_square(data, column * data->img_size, line * data->img_size, 0xf8f8ff, data->img_size);
+// 			column++;
+// 		}
+// 		line++;
+// 	}
+// }
