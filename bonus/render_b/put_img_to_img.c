@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_img_to_img.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:43:43 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:21:41 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/04 18:43:38 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	put_pixel_img(t_img img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (color == (int)0xFF000000)
+	if (color == (int)0x00000000)
 		return ;
 	dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
 	*(unsigned int *)dst = color;
