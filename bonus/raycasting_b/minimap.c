@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/05 17:10:18 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:42:12 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	rotate_and_put_img_to_img(t_img dst, t_img src, double angle, int x, int y)
 {
 	int	i;
 	int	j;
-	float	new_i;
-	float	new_j;
+	int	src_x;
+	int	src_y;
+	double	rad;
 
+	rad = deg_to_rad(angle + 90);
 	j = 0;
 	// printf("player_angle: %f\n", angle);
 	// printf("trying to draw here: %d %d\n", x, y);
@@ -27,10 +29,10 @@ void	rotate_and_put_img_to_img(t_img dst, t_img src, double angle, int x, int y)
 		i = 0;
 		while (i < src.h)
 		{
-			new_i = (cos(deg_to_rad(angle)) * (j - src.w / 2) - sin(deg_to_rad(angle)) * (i - src.h / 2));
-			new_j = (sin(deg_to_rad(angle)) * (j - src.w / 2) - cos(deg_to_rad(angle)) * (i - src.h / 2));
+			src_x = (int)(cos(rad) * (j - src.w / 2) - sin(rad) * (i - src.h / 2));
+			src_y = (int)(sin(rad) * (j - src.w / 2) + cos(rad) * (i - src.h / 2));
 			// printf("new_j: %f | new_i: %f\n", new_j, new_i);
-			put_pixel_img(dst, x + new_j, y + new_i, get_pixel_img(src, j, i));
+			put_pixel_img(dst, x + src_x, y + src_y, get_pixel_img(src, j, i));
 			i++;
 		}
 		j++;
@@ -39,7 +41,7 @@ void	rotate_and_put_img_to_img(t_img dst, t_img src, double angle, int x, int y)
 
 void	add_arrow(t_data *data)
 {
-	data->arrow.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/arrow.xpm",
+	data->arrow.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/pixil-frame-0.xpm",
 		&data->arrow.w, &data->arrow.h);
 	if (!data->arrow.img_ptr)
 		return ;
@@ -47,7 +49,7 @@ void	add_arrow(t_data *data)
 		&data->arrow.line_len, &data->arrow.endian);
 	// put_img_to_img(data->minimap, data->arrow, MINIMAP_SIZE / 2 - 8, MINIMAP_SIZE / 2 - 8);
 	rotate_and_put_img_to_img(data->minimap, data->arrow,
-		data->player.angle, MINIMAP_SIZE / 2 - 8, MINIMAP_SIZE / 2 - 8);
+		data->player.angle, MINIMAP_SIZE / 2 - 16, MINIMAP_SIZE / 2 - 16);
 }
 
 void	add_lines(t_data *data)
