@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 15:33:31 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/06 18:00:21 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,15 @@ typedef struct s_ray
 	double				vertical_distance;
 	double				size;
 }						t_ray;
+
+typedef struct s_rotate
+{
+	t_img	src;
+	t_img	dst;
+	double	angle;
+	int		x;
+	int		y;
+}				t_rotate;
 
 typedef struct s_point
 {

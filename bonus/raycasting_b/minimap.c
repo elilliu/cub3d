@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/05 18:42:12 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/06 18:54:05 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@ void	rotate_and_put_img_to_img(t_img dst, t_img src, double angle, int x, int y)
 
 	rad = deg_to_rad(angle + 90);
 	j = 0;
-	// printf("player_angle: %f\n", angle);
-	// printf("trying to draw here: %d %d\n", x, y);
 	while (j < src.w)
 	{
 		i = 0;
 		while (i < src.h)
 		{
-			src_x = (int)(cos(rad) * (j - src.w / 2) - sin(rad) * (i - src.h / 2));
+			src_x = (int)(cos(rad) * (j - src.w / 2) - sin(rad) * (i - src.w / 2));
 			src_y = (int)(sin(rad) * (j - src.w / 2) + cos(rad) * (i - src.h / 2));
-			// printf("new_j: %f | new_i: %f\n", new_j, new_i);
 			put_pixel_img(dst, x + src_x, y + src_y, get_pixel_img(src, j, i));
 			i++;
 		}
@@ -41,15 +38,15 @@ void	rotate_and_put_img_to_img(t_img dst, t_img src, double angle, int x, int y)
 
 void	add_arrow(t_data *data)
 {
-	data->arrow.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/pixil-frame-0.xpm",
+	data->arrow.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/arrow.xpm",
 		&data->arrow.w, &data->arrow.h);
 	if (!data->arrow.img_ptr)
 		return ;
 	data->arrow.addr = mlx_get_data_addr(data->arrow.img_ptr, &data->arrow.bpp,
 		&data->arrow.line_len, &data->arrow.endian);
-	// put_img_to_img(data->minimap, data->arrow, MINIMAP_SIZE / 2 - 8, MINIMAP_SIZE / 2 - 8);
 	rotate_and_put_img_to_img(data->minimap, data->arrow,
-		data->player.angle, MINIMAP_SIZE / 2 - 16, MINIMAP_SIZE / 2 - 16);
+		data->player.angle, MINIMAP_SIZE / 2, MINIMAP_SIZE / 2);
+	mlx_destroy_image(data->mlx_ptr, data->arrow.img_ptr);
 }
 
 void	add_lines(t_data *data)
@@ -90,8 +87,8 @@ void	minimap(t_data *data)
 	put_square(data->minimap, 0, 0, 0x2f4f4f, MINIMAP_SIZE);
 	add_lines(data);
 	add_arrow(data);
-	// put_square(data->minimap, MINIMAP_SIZE / 2 - 4, MINIMAP_SIZE / 2 - 4, 0xcd5c5c, 8);
 	x = WIDTH - 32 - MINIMAP_SIZE;
 	y = HEIGHT - 32 - MINIMAP_SIZE;
 	put_img_to_img(data->background, data->minimap, x, y);
+	mlx_destroy_image(data->mlx_ptr, data->minimap.img_ptr);
 }
