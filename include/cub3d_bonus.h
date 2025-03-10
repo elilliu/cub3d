@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/05 15:58:43 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/10 10:41:53 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,5 +265,7 @@ t_bool					is_door(char c);
 t_bool					is_wall_or_door(char c);
 void	open_or_close_door(t_data *data);
 t_bool	door_around(t_data *data, int *door_x, int *door_y);
+void					free_texture(t_data *data, int nb);
+
 
 #endif

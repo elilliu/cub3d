@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/05 15:22:10 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/10 10:44:36 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	free_texture(t_data *data, int nb)
 	i = 0;
 	while (i <= nb)
 	{
-		if (data->textures[nb].img_ptr)
-			mlx_destroy_image(data->mlx_ptr, data->textures[nb].img_ptr);
+        if (data->textures[nb].img_ptr) // changer data->textures[nb] par data->textures[i] ?
+		    mlx_destroy_image(data->mlx_ptr, data->textures[nb].img_ptr);
 		i++;
 	}
 }
@@ -46,8 +46,6 @@ void	init_textures(t_data *data)
 	if (!data->textures[T_WE].img_ptr)
 		return (free_texture(data, T_WE));
 	data->textures[T_WE].addr = mlx_get_data_addr(data->textures[T_WE].img_ptr, &data->textures[T_WE].bpp, &data->textures[T_WE].line_len, &data->textures[T_WE].endian);
-
-	// data->textures[T_DO].img_ptr = NULL;
 	data->textures[T_DO].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->t_paths.t_do, &data->textures[T_DO].w, &data->textures[T_DO].h);
 	if (!data->textures[T_DO].img_ptr)
 	{

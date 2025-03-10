@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/04 16:29:58 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/10 10:44:08 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	free_texture(t_data *data, int nb)
 	i = 0;
 	while (i <= nb)
 	{
-		mlx_destroy_image(data->mlx_ptr, data->textures[nb].img_ptr);
+    	if (data->textures[nb].img_ptr)
+			mlx_destroy_image(data->mlx_ptr, data->textures[nb].img_ptr);
 		i++;
 	}
 }

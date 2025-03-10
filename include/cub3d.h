@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/03 16:57:15 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/10 10:41:33 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,5 +250,6 @@ void					print_west(t_data *data, t_ray ray, float x, float y);
 int						rgb_to_int(int r, int g, int b);
 void					minimap(t_data *data);
 t_bool					path_exist(char *path);
+void					free_texture(t_data *data, int nb);
 
 #endif
