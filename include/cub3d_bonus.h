@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 16:02:26 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/11 16:49:18 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,6 @@ t_bool					is_wall_or_door(char c);
 void	open_or_close_door(t_data *data);
 t_bool	door_around(t_data *data, int *door_x, int *door_y);
 void					free_texture(t_data *data, int nb);
-void	handle_mouse(t_data *data);
+int						handle_mouse(t_data *data);
 
 #endif

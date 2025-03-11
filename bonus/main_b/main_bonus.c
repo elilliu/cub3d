@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 15:51:28 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/11 16:51:13 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		clean_all(data);
-	handle_mouse(data);
 	if (keysym == XK_w)
 		move_player_up(data);
 	if (keysym == XK_a)
@@ -107,6 +106,7 @@ int	main(int ac, char **av)
 	print_map(data);
 	fill_window(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
+	mlx_loop_hook(data->mlx_ptr, &handle_mouse, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &clean_all,
 		data);
