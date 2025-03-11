@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:46:45 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/04 15:21:44 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:40:51 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	print_clean(t_data *data, char *err_mess)
 
 void	print_clean_reading(t_data *data, char *line, char *mess)
 {
-    if (mess)
-	    print_error(mess);
+	if (mess)
+		print_error(mess);
 	clean_map_reading(line, data->fd_cub);
 	clean_all(data);
 }

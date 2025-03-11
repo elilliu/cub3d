@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/11 17:20:13 by neleon           ###   ########.fr       */
+/*   Created: 2025/03/11 18:31:01 by neleon            #+#    #+#             */
+/*   Updated: 2025/03/11 18:32:41 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_data	*get_data(void)
 	return (&data);
 }
 
-void    assign_player_angle(t_data *data)
+void	assign_player_angle(t_data *data)
 {
-    if (data->player_dir == PL_NO)
-        data->player.angle = 270;
-    else if (data->player_dir == PL_WE)
-        data->player.angle = 180;
-    else if (data->player_dir == PL_SO)
-        data->player.angle = 90;
-    else if (data->player_dir == PL_EA)
-        data->player.angle = 360;
+	if (data->player_dir == PL_NO)
+		data->player.angle = 270;
+	else if (data->player_dir == PL_WE)
+		data->player.angle = 180;
+	else if (data->player_dir == PL_SO)
+		data->player.angle = 90;
+	else if (data->player_dir == PL_EA)
+		data->player.angle = 360;
 }
 
 int	player_init(t_data *data)
@@ -36,14 +36,9 @@ int	player_init(t_data *data)
 	int	i;
 	int	row;
 
-	// data->player.angle = 270;
-    assign_player_angle(data);
-	// printf("cet coucouuuuu angle: %.16f\n", data->player.angle);
-	// printf(" 3 * PI / 2: %.16f\n", 3 * PI / 2);
+	assign_player_angle(data);
 	data->player.delta_x = cos(deg_to_rad(data->player.angle)) * PLAYER_SPEED;
-	// printf("cos: %f\n", data->player.delta_x);
 	data->player.delta_y = sin(deg_to_rad(data->player.angle)) * PLAYER_SPEED;
-	// printf("sin:e %f\n", data->player.delta_y);
 	row = 0;
 	while (data->map.tab[row])
 	{
@@ -78,7 +73,6 @@ int	data_init(t_data *data, char *str)
 	data->t_paths.t_ce = NULL;
 	data->t_paths.t_fl = NULL;
 	data->t_paths.t_do = "./textures/cub_door_400_20.xpm";
-	// data->door_found =false;
 	if (!parse_file(data))
 		return (0);
 	set_rgb(data);

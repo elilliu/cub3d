@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/03 18:21:41 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:36:15 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	path_len(char *path)
 	len = 0;
 	while (path[len] && !is_whitespace(path[len]) && path[len] != '\n')
 		len++;
-	// printf("path : [%s], len : [%d]\n", path, len);
 	return (len);
 }
 

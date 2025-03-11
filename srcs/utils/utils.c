@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/02/28 18:47:44 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:54:39 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	verif_path(char *str, char *extension)
 		return (0);
 	}
 	i = str_len - ext_len - 1;
-	while (i >= 1)
+	while (i >= 1 && str[i] != '/')
 	{
 		if (str[i] && i == 1 && str[i] == '.' && str[0] != '.')
 		{

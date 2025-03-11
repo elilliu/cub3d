@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:35:15 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/03 18:21:30 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:34:36 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	fill_tab(t_data *data)
 	int		fd;
 	char	*line;
 
-	fd = open(data->map_path, O_RDONLY); // Add if fd < 0
+	fd = open(data->map_path, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	line = NULL;
 	i = 0;
 	while (i < data->map.rows)
@@ -30,7 +32,6 @@ int	fill_tab(t_data *data)
 	}
 	data->map.tab[i] = NULL;
 	clean_map_reading(line, fd);
-	// close(fd);
 	return (1);
 }
 
@@ -52,9 +53,6 @@ int	map_init(t_data *data)
 		data->map.rows++;
 	}
 	clean_map_reading(line, fd);
-	// close(fd);
-	// free(line);
-	printf("%d\n", data->map.rows);
 	data->map.tab = gc_mem(MALLOC, sizeof(char *) * (data->map.rows + 1), NULL);
 	if (fill_tab(data) == 0)
 		return (gc_mem(FREE, 0, data->map.tab), 0);

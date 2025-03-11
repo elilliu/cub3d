@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:46:50 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/04 15:21:11 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:40:04 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void	add_ceiling(t_data *data)
 {
 	int	x;
 	int	y;
-  int color;
+	int	color;
 
 	y = 0;
-  color = rgb_to_int(data->t_paths.ce.r, data->t_paths.ce.g, data->t_paths.ce.b);
+	color = rgb_to_int(data->t_paths.ce.r, data->t_paths.ce.g,
+			data->t_paths.ce.b);
 	while (y < HEIGHT / 2)
 	{
 		x = 0;
@@ -49,10 +50,11 @@ void	add_floor(t_data *data)
 {
 	int	x;
 	int	y;
-  int color;
+	int	color;
 
 	y = HEIGHT / 2;
-  color = rgb_to_int(data->t_paths.fl.r, data->t_paths.fl.g, data->t_paths.fl.b);
+	color = rgb_to_int(data->t_paths.fl.r, data->t_paths.fl.g,
+			data->t_paths.fl.b);
 	while (y <= HEIGHT)
 	{
 		x = 0;

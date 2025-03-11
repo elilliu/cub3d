@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:20:50 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/04 15:25:25 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:41:26 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_bool	is_door(char c)
 	return (false);
 }
 
-t_bool  is_wall_or_door(char c)
+t_bool	is_wall_or_door(char c)
 {
-    if (c == CLOSE_D || c == WALL)
-        return (true);
-    return (false);
+	if (c == CLOSE_D || c == WALL)
+		return (true);
+	return (false);
 }
