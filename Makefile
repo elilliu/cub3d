@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
+#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/03/05 14:31:31 by bineleon         ###   ########.fr        #
+#    Updated: 2025/03/11 15:56:09 by elilliu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ RENDER_DIR			= render/
 RENDER				= print_walls.c put_img_to_img.c
 SRCS				+= $(addprefix ${RENDER_DIR}, ${RENDER})
 
-
 UTILS_DIR			= utils/
 UTILS				= utils.c garbage_collector.c utils_gc.c error.c
 SRCS				+= $(addprefix ${UTILS_DIR}, ${UTILS})
@@ -68,7 +67,7 @@ SRCS_B				+= $(addprefix ${MAIN_B_DIR}, ${MAIN_B})
 # SRCS_B				+= $(addprefix ${UTILS_DIR}, ${UTILS})
 
 MOVES_B_DIR			= moves_b/
-MOVES_B				= move_player.c rotate_player.c
+MOVES_B				= move_player.c rotate_player.c handle_mouse.c
 SRCS_B				+= $(addprefix ${MOVES_B_DIR}, ${MOVES_B})
 
 RAYCASTING_B_DIR	= raycasting_b/
