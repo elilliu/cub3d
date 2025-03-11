@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 13:32:36 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:51:13 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	main(int ac, char **av)
 	print_map(data);
 	fill_window(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
+	mlx_loop_hook(data->mlx_ptr, &handle_mouse, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &clean_all,
 		data);
