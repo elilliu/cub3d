@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 16:18:55 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 17:58:20 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ void	free_texture(t_data *data, int nb)
 {
 	int	i;
 
-	i = 0;;
-	while (i < nb && data->textures[i].img_ptr)
+	i = 0;
+	while (i < nb)
 	{
-		mlx_destroy_image(data->mlx_ptr, data->textures[i].img_ptr);
+		if (data->textures[i].img_ptr)
+		{
+			printf("ICI\n");
+			mlx_destroy_image(data->mlx_ptr, data->textures[i].img_ptr);
+		}
 		i++;
 	}
 }
@@ -45,17 +49,13 @@ void	init_textures(t_data *data)
 	if (!data->textures[T_WE].img_ptr)
 		return (free_texture(data, T_WE));
 	data->textures[T_WE].addr = mlx_get_data_addr(data->textures[T_WE].img_ptr, &data->textures[T_WE].bpp, &data->textures[T_WE].line_len, &data->textures[T_WE].endian);
-	if (data->t_paths.t_do)
+	data->textures[T_DO].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->t_paths.t_do, &data->textures[T_DO].w, &data->textures[T_DO].h);
+	if (!data->textures[T_DO].img_ptr)
 	{
-		data->textures[T_DO].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->t_paths.t_do, &data->textures[T_DO].w, &data->textures[T_DO].h);
-		if (!data->textures[T_DO].img_ptr)
-		{
-			printf("\n\n\ntextures path : %s\n", data->t_paths.t_do);
-			return (free_texture(data, T_DO), print_clean(data, "Failed texture allocation"));
-		}
-		data->textures[T_DO].addr = mlx_get_data_addr(data->textures[T_DO].img_ptr, &data->textures[T_DO].bpp, &data->textures[T_DO].line_len, &data->textures[T_DO].endian);	
+		printf("\n\n\ntextures path : %s\n", data->t_paths.t_do);
+		return (free_texture(data, T_DO), print_clean(data, "Failed texture allocation"));
 	}
-
+	data->textures[T_DO].addr = mlx_get_data_addr(data->textures[T_DO].img_ptr, &data->textures[T_DO].bpp, &data->textures[T_DO].line_len, &data->textures[T_DO].endian);
 }
 
 // void	print_door(t_data *data, t_ray ray, float x, float y)
@@ -116,11 +116,9 @@ void	print_north(t_data *data, t_ray ray, float x, float y)
 	while (i < draw.end)
 	{
 		if (ray.type == CLOSE_D)
-			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-			% data->textures[T_DO].h);
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y % data->textures[T_DO].h);
 		else
-			color = get_pixel_img(data->textures[T_NO], tex.x, (int)tex.y
-				% data->textures[T_NO].h);
+			color = get_pixel_img(data->textures[T_NO], tex.x, (int)tex.y % data->textures[T_NO].h);
 		put_pixel_img(data->background, x, i, color);
 		tex.y += step;
 		i++;
@@ -150,8 +148,7 @@ void	print_south(t_data *data, t_ray ray, float x, float y)
 	while (i < draw.end)
 	{
 		if (ray.type == CLOSE_D)
-			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-			% data->textures[T_DO].h);
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y % data->textures[T_DO].h);
 		else
 			color = get_pixel_img(data->textures[T_SO], tex.x, (int)tex.y
 					% data->img_size);
@@ -186,8 +183,7 @@ void	print_west(t_data *data, t_ray ray, float x, float y)
 	while (i < draw.end)
 	{
 		if (ray.type == CLOSE_D)
-			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-			% data->textures[T_DO].h);
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y % data->textures[T_DO].h);
 		else
 			color = get_pixel_img(data->textures[T_WE], tex.x, (int)tex.y
 					% data->img_size);
@@ -220,8 +216,7 @@ void	print_east(t_data *data, t_ray ray, float x, float y)
 	while (i < draw.end)
 	{
 		if (ray.type == CLOSE_D)
-			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y
-			% data->textures[T_DO].h);
+			color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y % data->textures[T_DO].h);
 		else
 			color = get_pixel_img(data->textures[T_EA], tex.x, (int)tex.y
 					% data->img_size);

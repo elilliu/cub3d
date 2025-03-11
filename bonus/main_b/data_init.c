@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/11 16:17:51 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 17:20:13 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,13 @@ int	data_init(t_data *data, char *str)
 	data->t_paths.t_we = NULL;
 	data->t_paths.t_ce = NULL;
 	data->t_paths.t_fl = NULL;
-	data->door_found =false;
+	data->t_paths.t_do = "./textures/cub_door_400_20.xpm";
+	// data->door_found =false;
 	if (!parse_file(data))
-	return (0);
+		return (0);
 	set_rgb(data);
 	error_t_path(data);
 	map_validation(data, data->map.tab);
-	if (data->door_found)
-		data->t_paths.t_do = "./textures/cub_door_400_20.xpm";
-	else
-	data->t_paths.t_do = NULL;
 	if (!player_init(data))
 		return (0);
 	data->mlx_ptr = mlx_init();

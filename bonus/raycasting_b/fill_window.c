@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/05 16:05:03 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:57:27 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	fill_window(t_data *data)
 	// printf("radian: %f\n", deg_to_rad(data->player.angle));
 	// add_player(data);
 	data->test = 1;
-	init_textures(data);
+	// init_textures(data);
 	add_ceiling(data);
 	add_floor(data);
 	add_rays(data);
