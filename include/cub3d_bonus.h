@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/10 10:41:53 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:38:01 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define MINIMAP_SIZE 256
 # define WALL_DIST 20
 # define DOOR_DIST 2
+# define PLAYER_SPEED 20
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -166,6 +167,15 @@ typedef struct s_ray
 	double				size;
 	char				type;
 }						t_ray;
+
+typedef struct s_rotate
+{
+	t_img	src;
+	t_img	dst;
+	double	angle;
+	int		x;
+	int		y;
+}				t_rotate;
 
 typedef struct s_point
 {
