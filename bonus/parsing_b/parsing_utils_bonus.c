@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:48:09 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/04 15:36:15 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:11:30 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ static t_bool	is_other_texture(char *line)
 	i = skip_whitespaces(line, 0);
 	if (line[i] && line[i] == 'F' && line[i + 1] && is_whitespace(line[i + 1]))
 		return (true);
-	else if (line[i] && line[i] == 'C' && line[i + 1] && is_whitespace(line[i
-			+ 1]))
+	else if (line[i] && line[i] == 'C' && line[i + 1] && is_whitespace(line[i + 1]))
 		return (true);
 	return (false);
 }

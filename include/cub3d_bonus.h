@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 13:38:01 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:15:31 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ typedef struct s_data
 	t_tex_path			t_paths;
 	int					mouse_x;
 	char				player_dir;
-  float **z_buffer;
+	t_bool				door_found;
 	t_garbage_co		*garbage;
 }						t_data;
 

@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 15:08:24 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:18:55 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,46 +45,49 @@ void	init_textures(t_data *data)
 	if (!data->textures[T_WE].img_ptr)
 		return (free_texture(data, T_WE));
 	data->textures[T_WE].addr = mlx_get_data_addr(data->textures[T_WE].img_ptr, &data->textures[T_WE].bpp, &data->textures[T_WE].line_len, &data->textures[T_WE].endian);
-	data->textures[T_DO].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->t_paths.t_do, &data->textures[T_DO].w, &data->textures[T_DO].h);
-	if (!data->textures[T_DO].img_ptr)
+	if (data->t_paths.t_do)
 	{
-		printf("\n\n\ntextures path : %s\n", data->t_paths.t_do);
-		return (free_texture(data, T_DO), print_clean(data, "Failed texture allocation"));
+		data->textures[T_DO].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->t_paths.t_do, &data->textures[T_DO].w, &data->textures[T_DO].h);
+		if (!data->textures[T_DO].img_ptr)
+		{
+			printf("\n\n\ntextures path : %s\n", data->t_paths.t_do);
+			return (free_texture(data, T_DO), print_clean(data, "Failed texture allocation"));
+		}
+		data->textures[T_DO].addr = mlx_get_data_addr(data->textures[T_DO].img_ptr, &data->textures[T_DO].bpp, &data->textures[T_DO].line_len, &data->textures[T_DO].endian);	
 	}
-	data->textures[T_DO].addr = mlx_get_data_addr(data->textures[T_DO].img_ptr, &data->textures[T_DO].bpp, &data->textures[T_DO].line_len, &data->textures[T_DO].endian);
 
 }
 
-void	print_door(t_data *data, t_ray ray, float x, float y)
-{
-	int		color;
-	int		i;
-	float	step;
-	t_draw	draw;
-	t_point	tex;
+// void	print_door(t_data *data, t_ray ray, float x, float y)
+// {
+// 	int		color;
+// 	int		i;
+// 	float	step;
+// 	t_draw	draw;
+// 	t_point	tex;
 
-	tex.x = ((int)ray.horizontal_x % data->img_size);
-	step = (float)data->img_size / ray.size;
+// 	tex.x = ((int)ray.horizontal_x % data->img_size);
+// 	step = (float)data->img_size / ray.size;
 
-	tex.y = 0;
-	draw.start = y;
-	draw.end = y + ray.size;
-	if (ray.size > HEIGHT)
-		tex.y = ((ray.size - HEIGHT) / 2.0) * step;
-	if (draw.start < 0)
-		draw.start = 0;
-	if (draw.end >= HEIGHT)
-		draw.end = HEIGHT;
+// 	tex.y = 0;
+// 	draw.start = y;
+// 	draw.end = y + ray.size;
+// 	if (ray.size > HEIGHT)
+// 		tex.y = ((ray.size - HEIGHT) / 2.0) * step;
+// 	if (draw.start < 0)
+// 		draw.start = 0;
+// 	if (draw.end >= HEIGHT)
+// 		draw.end = HEIGHT;
 
-	i = draw.start;
-	while (i < draw.end)
-	{
-		color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y % data->textures[T_DO].h);
-		put_pixel_img(data->background, x, i, color);
-		tex.y += step;
-		i++;
-	}
-}
+// 	i = draw.start;
+// 	while (i < draw.end)
+// 	{
+// 		color = get_pixel_img(data->textures[T_DO], tex.x, (int)tex.y % data->textures[T_DO].h);
+// 		put_pixel_img(data->background, x, i, color);
+// 		tex.y += step;
+// 		i++;
+// 	}
+// }
 
 
 void	print_north(t_data *data, t_ray ray, float x, float y)

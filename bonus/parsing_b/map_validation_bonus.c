@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/04 15:23:42 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:17:02 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	map_validation(t_data *data, char **map)
 				data->player_dir = map[i][j];
 				player++;
 			}
+			if (is_door(map[i][j]))
+				data->door_found = true;
 			check_open_map(data, map, i, j);
 			j = j + 1;
 		}
