@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 13:38:01 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:02:26 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,12 @@ typedef struct s_draw
 	float				end;
 }						t_draw;
 
+typedef struct s_mouse
+{
+	int	x;
+	int	y;
+}				t_mouse;
+
 typedef struct s_data
 {
 	int					*tex_buff[4];
@@ -211,9 +217,9 @@ typedef struct s_data
 	int					row_count;
 	int					img_size;
 	t_tex_path			t_paths;
-	int					mouse_x;
+	t_mouse				mouse;
 	char				player_dir;
-  float **z_buffer;
+	float				**z_buffer;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -276,6 +282,6 @@ t_bool					is_wall_or_door(char c);
 void	open_or_close_door(t_data *data);
 t_bool	door_around(t_data *data, int *door_x, int *door_y);
 void					free_texture(t_data *data, int nb);
-
+void	handle_mouse(t_data *data);
 
 #endif
