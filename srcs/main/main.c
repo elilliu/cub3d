@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/10 10:47:30 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:29:01 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	clean_all(t_data *data)
 	if (data->mlx_ptr)
 	{
 		if (data->win_ptr)
+		{
+			free_texture(data, 4);
 			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		}
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
-    free_texture(data, 4);
 	}
 	gc_mem(FULL_CLEAN, 0, NULL);
 	exit(0);

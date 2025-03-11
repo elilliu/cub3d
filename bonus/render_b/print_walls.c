@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/10 10:44:36 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:34:40 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void	free_texture(t_data *data, int nb)
 	int	i;
 
 	i = 0;
-	while (i <= nb)
+	while (i < nb && data->textures[i].img_ptr)
 	{
-        if (data->textures[nb].img_ptr) // changer data->textures[nb] par data->textures[i] ?
-		    mlx_destroy_image(data->mlx_ptr, data->textures[nb].img_ptr);
+		mlx_destroy_image(data->mlx_ptr, data->textures[i].img_ptr);
 		i++;
 	}
+	mlx_destroy_image(data->mlx_ptr, data->minimap.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->arrow.img_ptr);
+
 }
 
 void	init_textures(t_data *data)
