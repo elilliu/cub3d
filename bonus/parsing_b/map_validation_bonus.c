@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/11 16:17:02 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:21:29 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	check_open_map(t_data *data, char **map, int i, int j)
 			print_clean(data, "Unclosed map");
         else if (is_door(map[i][j]))
             print_clean(data, "Door should not be on outside wall");
-            
+
 	}
 }
 
@@ -71,8 +71,6 @@ void	map_validation(t_data *data, char **map)
 				data->player_dir = map[i][j];
 				player++;
 			}
-			if (is_door(map[i][j]))
-				data->door_found = true;
 			check_open_map(data, map, i, j);
 			j = j + 1;
 		}
