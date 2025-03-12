@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/11 12:23:32 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/12 09:46:59 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ int	data_init(t_data *data, char *str)
 		return (0);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
+  {
+    print_clean(data, "Initializing graphics");
 		return (0);
+  }
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3d");
 	if (!data->win_ptr)
 		return (free(data->mlx_ptr), 0);
