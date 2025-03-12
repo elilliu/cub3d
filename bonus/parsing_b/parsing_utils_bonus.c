@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:48:09 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/11 18:39:17 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/12 09:57:36 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,6 @@ static t_bool	is_other_texture(char *line)
 t_bool	is_texture(char *line)
 {
 	if (is_wall_texture(line) || is_other_texture(line) || empty_line(line))
-		return (true);
-	return (false);
-}
-
-t_bool	empty_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (!line)
-		return (true);
-	i = skip_whitespaces(line, 0);
-	if (line[i] == '\0' || line[i] == '\n')
 		return (true);
 	return (false);
 }

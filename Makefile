@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
+#    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/03/11 15:56:09 by elilliu          ###   ########.fr        #
+#    Updated: 2025/03/12 09:55:54 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ RM						= rm -rf
 
 PARSING_DIR			= parsing/
 PARSING				= map_init.c map_validation.c parsing.c parsing2.c parsing_utils.c\
-					parsing_error.c
+					parsing_error.c parsing_utils2.c
 SRCS				+= $(addprefix ${PARSING_DIR}, ${PARSING})
 
 MAIN_DIR			= main/
@@ -55,7 +55,7 @@ SRCS				+= $(addprefix ${UTILS_DIR}, ${UTILS})
 
 PARSING_B_DIR		= parsing_b/
 PARSING_B			= map_init_bonus.c map_validation_bonus.c parsing_bonus.c parsing2_bonus.c parsing_utils_bonus.c\
-					parsing_error_bonus.c
+					parsing_error_bonus.c parsing_utils2_bonus.c
 SRCS_B				+= $(addprefix ${PARSING_B_DIR}, ${PARSING_B})
 
 MAIN_B_DIR			= main_b/

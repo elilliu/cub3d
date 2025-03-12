@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:35:15 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 18:34:36 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/12 09:52:11 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	fill_tab(t_data *data)
 
 	fd = open(data->map_path, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		print_clean(data, "Opening map path")
 	line = NULL;
 	i = 0;
 	while (i < data->map.rows)
