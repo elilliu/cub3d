@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_walls.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/05 13:26:26 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:52:33 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,12 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 	float	x;
 	float	y;
 
-	// if (data->test)
-	// {
-	// 	printf("%f\n", data->player.angle - ray.angle);
-	// 	printf("cos: %f\n", cos(data->player.angle - ray.angle));
-	// 	data->test = 0;
-	// }
 	ray.horizontal_distance *= cos(deg_to_rad(ray.angle)
 			- deg_to_rad(data->player.angle));
 	if (ray.horizontal_distance < 0)
 		return ;
 	ray.size = (float)HEIGHT / ray.horizontal_distance * (float)data->img_size
 		* 1.5;
-	// if (ray.size > HEIGHT)
-	// 	ray.size = (float)HEIGHT;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
 	if (ray.angle > 0 && ray.angle < 180)
@@ -44,15 +36,12 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 	float	x;
 	float	y;
 
-	// float	size;
 	ray.vertical_distance *= cos(deg_to_rad(ray.angle)
 			- deg_to_rad(data->player.angle));
 	if (ray.vertical_distance < 0)
 		return ;
 	ray.size = (float)HEIGHT / ray.vertical_distance * (float)data->img_size
 		* 1.5;
-	// if (ray.size > HEIGHT)
-	// 	ray.size = (float)HEIGHT;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
 	if (ray.angle > 270 || ray.angle < 90)

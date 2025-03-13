@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 17:52:33 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:41:42 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,21 +170,21 @@ typedef struct s_ray
 
 typedef struct s_rotate
 {
-	t_img	src;
-	t_img	dst;
-	double	angle;
-	int		x;
-	int		y;
-}				t_rotate;
+	t_img				src;
+	t_img				dst;
+	double				angle;
+	int					x;
+	int					y;
+}						t_rotate;
 
 typedef struct s_point
 {
 	float				x;
 	float				y;
-  int         min_x;
-  int         min_y;
-  int         max_x;
-  int         max_y;
+	int					min_x;
+	int					min_y;
+	int					max_x;
+	int					max_y;
 }						t_point;
 
 typedef struct s_draw
@@ -195,9 +195,9 @@ typedef struct s_draw
 
 typedef struct s_mouse
 {
-	int	x;
-	int	y;
-}				t_mouse;
+	int					x;
+	int					y;
+}						t_mouse;
 
 typedef struct s_data
 {
@@ -279,9 +279,26 @@ void					minimap(t_data *data);
 t_bool					path_exist(char *path);
 t_bool					is_door(char c);
 t_bool					is_wall_or_door(char c);
-void	open_or_close_door(t_data *data);
-t_bool	door_around(t_data *data, int *door_x, int *door_y);
+void					open_or_close_door(t_data *data);
+t_bool					door_around(t_data *data, int *door_x, int *door_y);
 void					free_texture(t_data *data, int nb);
 int						handle_mouse(t_data *data);
+int						handle_keypress(int keysym, t_data *data);
+void					print_map(t_data *data);
+void					print_textures(t_data *data);
+void					print_rgb(t_data *data);
+int						set_texture_path(char **texture, char *line, int start);
+int						extract_t_path(char *line, t_data *data);
+void					check_textures(t_data *data, char *line,
+							int *texture_count);
+int						extract_rgb(char *line, t_data *data);
+int						parse_textures(t_data *data, char **line);
+int						check_texture(char *line);
+int						skip_empty_line(char **line, int fd);
+t_bool					is_valid_rgb_value(int value);
+t_bool					is_valid_rgb(char *str);
+int						path_len(char *path);
+int						skip_tex_type(char *line, int i, int size);
+int						extract_line(char *line, t_data *data);
 
 #endif

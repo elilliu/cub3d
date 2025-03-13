@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 13:38:22 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:25:36 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define FOV 60
 # define IMG_SIZE 400
 # define MINIMAP_SIZE 256
-# define WALL_DIST 20
+# define WALL_DIST 50
 # define PLAYER_SPEED 20
 
 # define RESET "\033[0m"
@@ -166,6 +166,8 @@ typedef struct s_point
 {
 	float				x;
 	float				y;
+	int					i;
+	int					j;
 }						t_point;
 
 typedef struct s_draw
@@ -193,7 +195,7 @@ typedef struct s_data
 	int					img_size;
 	t_tex_path			t_paths;
 	int					mouse_x;
-    char                player_dir;
+	char				player_dir;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -252,5 +254,22 @@ int						rgb_to_int(int r, int g, int b);
 void					minimap(t_data *data);
 t_bool					path_exist(char *path);
 void					free_texture(t_data *data, int nb);
+int						handle_keypress(int keysym, t_data *data);
+void					print_map(t_data *data);
+void					print_textures(t_data *data);
+void					print_rgb(t_data *data);
+int						set_texture_path(char **texture, char *line, int start);
+int						extract_t_path(char *line, t_data *data);
+void					check_textures(t_data *data, char *line,
+							int *texture_count);
+int						extract_rgb(char *line, t_data *data);
+int						parse_textures(t_data *data, char **line);
+int						check_texture(char *line);
+int						skip_empty_line(char **line, int fd);
+t_bool					is_valid_rgb_value(int value);
+t_bool					is_valid_rgb(char *str);
+int						path_len(char *path);
+int						skip_tex_type(char *line, int i, int size);
+int						extract_line(char *line, t_data *data);
 
 #endif

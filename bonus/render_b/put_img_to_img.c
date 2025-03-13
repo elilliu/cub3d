@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_img_to_img.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:43:43 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/06 17:13:53 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:56:54 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 unsigned int	get_pixel_img(t_img img, float x, float y)
 {
-	return (*(unsigned int *)(img.addr + ((int)y * img.line_len) + ((int)x * img.bpp / 8)));
+	return (*(unsigned int *)(img.addr + ((int)y * img.line_len)
+		+ ((int)x * img.bpp / 8)));
 }
 
 void	put_pixel_img(t_img img, int x, int y, int color)
@@ -45,7 +46,7 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 	}
 }
 
-int rgb_to_int(int r, int g, int b)
+int	rgb_to_int(int r, int g, int b)
 {
-    return (r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }

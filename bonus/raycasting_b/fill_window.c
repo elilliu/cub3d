@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 17:57:27 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 15:54:43 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,38 @@
 
 int	map_value_at(t_data *data, double x, double y)
 {
-    int map_x;
-    int map_y;
+	int	map_x;
+	int	map_y;
 
-    map_x = (int)x / data->img_size;
-    map_y = (int)y / data->img_size;
-    if (map_x < 0 || map_x >= data->map.columns
-        || map_y < 0 || map_y >= data->map.rows)
-        return (' ');
-    return (data->map.tab[map_y][map_x]);
+	map_x = (int)x / data->img_size;
+	map_y = (int)y / data->img_size;
+	if (map_x < 0 || map_x >= data->map.columns || map_y < 0
+		|| map_y >= data->map.rows)
+		return (' ');
+	return (data->map.tab[map_y][map_x]);
 }
 
 double	check_horizontal_lines(t_data *data, t_ray *ray)
 {
 	if (ray->angle > 0 && ray->angle < 180)
-		ray->horizontal_y = ((int)data->player.y / data->img_size) * data->img_size + data->img_size;
+		ray->horizontal_y = ((int)data->player.y / data->img_size)
+			* data->img_size + data->img_size;
 	else if (ray->angle > 180 && ray->angle < 360)
-		ray->horizontal_y = ((int)data->player.y / data->img_size) * data->img_size - 0.0001;
+		ray->horizontal_y = ((int)data->player.y / data->img_size)
+			* data->img_size - 0.0001;
 	else
 		return (0);
 	if (tan(deg_to_rad(ray->angle)) == 0)
 		ray->horizontal_x = data->player.x;
 	else
-		ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
-	while ((int)ray->horizontal_y / data->img_size > 0
-            && (int)ray->horizontal_y / data->img_size < data->map.rows
-            && (int)ray->horizontal_x / data->img_size > 0
-            && (int)ray->horizontal_x / data->img_size < data->map.columns
-            && !is_wall_or_door(data->map.tab[(int)ray->horizontal_y / data->img_size][(int)ray->horizontal_x / data->img_size]))
+		ray->horizontal_x = data->player.x + (ray->horizontal_y
+				- data->player.y) / tan(deg_to_rad(ray->angle));
+	while ((int)ray->horizontal_y / data->img_size > 0 && (int)ray->horizontal_y
+		/ data->img_size < data->map.rows && (int)ray->horizontal_x
+		/ data->img_size > 0 && (int)ray->horizontal_x
+		/ data->img_size < data->map.columns
+		&& !is_wall_or_door(data->map.tab[(int)ray->horizontal_y
+			/ data->img_size][(int)ray->horizontal_x / data->img_size]))
 	{
 		if (ray->angle > 0 && ray->angle < 180)
 			ray->horizontal_y += data->img_size;
@@ -50,68 +54,54 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 		else
 			break ;
 		if (tan(deg_to_rad(ray->angle)) != 0)
-			ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
+			ray->horizontal_x = data->player.x + (ray->horizontal_y
+					- data->player.y) / tan(deg_to_rad(ray->angle));
 	}
-  if (map_value_at(data, ray->horizontal_x, ray->horizontal_y) == CLOSE_D)
-    ray->type = CLOSE_D;
-  else
-    ray->type = WALL;
-	return (sqrt((ray->horizontal_x - data->player.x) * (ray->horizontal_x - data->player.x) + (ray->horizontal_y - data->player.y) * (ray->horizontal_y - data->player.y)));
+	if (map_value_at(data, ray->horizontal_x, ray->horizontal_y) == CLOSE_D)
+		ray->type = CLOSE_D;
+	else
+		ray->type = WALL;
+	return (sqrt(pow(ray->horizontal_x - data->player.x, 2)
+			+ pow(ray->horizontal_y - data->player.y, 2)));
 }
 
 double	check_vertical_lines(t_data *data, t_ray *ray)
 {
-
 	if (ray->angle > 270 || ray->angle < 90)
-		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size + data->img_size;
+		ray->vertical_x = ((int)data->player.x / data->img_size)
+			* data->img_size + data->img_size;
 	else if (ray->angle > 90 && ray->angle < 270)
-		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size - 0.0001;
+		ray->vertical_x = ((int)data->player.x / data->img_size)
+			* data->img_size - 0.0001;
 	else
 		return (0);
 	if (tan(deg_to_rad(ray->angle)) == 0)
 		ray->vertical_y = data->player.y;
 	else
-		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
-	while ((int)ray->vertical_y / data->img_size > 0 &&
-	       (int)ray->vertical_y / data->img_size < data->map.rows &&
-	       (int)ray->vertical_x / data->img_size > 0 &&
-	       (int)ray->vertical_x / data->img_size < data->map.columns &&
-	       !is_wall_or_door(data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size]))
+		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x)
+			* tan(deg_to_rad(ray->angle));
+	while ((int)ray->vertical_y / data->img_size > 0 && (int)ray->vertical_y
+		/ data->img_size < data->map.rows && (int)ray->vertical_x
+		/ data->img_size > 0 && (int)ray->vertical_x
+		/ data->img_size < data->map.columns
+		&& !is_wall_or_door(data->map.tab[(int)ray->vertical_y
+			/ data->img_size][(int)ray->vertical_x / data->img_size]))
 	{
 		if (ray->angle > 270 || ray->angle < 90)
 			ray->vertical_x += data->img_size;
 		else if (ray->angle > 90 && ray->angle < 270)
 			ray->vertical_x -= data->img_size;
 		if (tan(deg_to_rad(ray->angle)) != 0)
-			ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
+			ray->vertical_y = data->player.y + (ray->vertical_x
+					- data->player.x) * tan(deg_to_rad(ray->angle));
 	}
-  if(map_value_at(data, ray->vertical_x, ray->vertical_y) == CLOSE_D)
-      ray->type = CLOSE_D;
-  else
-      ray->type = WALL;
-	return sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) +
-	            (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y));
+	if (map_value_at(data, ray->vertical_x, ray->vertical_y) == CLOSE_D)
+		ray->type = CLOSE_D;
+	else
+		ray->type = WALL;
+	return (sqrt(pow(ray->vertical_x - data->player.x, 2) + pow(ray->vertical_y
+				- data->player.y, 2)));
 }
-
-// double	check_vertical_lines(t_data *data, t_ray *ray)
-// {
-// 	if (ray->angle > 270 || ray->angle < 90)
-// 		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size + data->img_size;
-// 	else if (ray->angle > 90 && ray->angle < 270)
-// 		ray->vertical_x = ((int)data->player.x / data->img_size) * data->img_size - 0.0001;
-// 	else
-// 		return (0);
-// 	ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
-// 	while ((int)ray->vertical_y / data->img_size > 0 && (int)ray->vertical_y / data->img_size < data->map.rows && (int)ray->vertical_x / data->img_size > 0 && (int)ray->vertical_x / data->img_size < data->map.columns && data->map.tab[(int)ray->vertical_y / data->img_size][(int)ray->vertical_x / data->img_size] != '1')
-// 	{
-// 		if (ray->angle > 270 || ray->angle < 90)
-// 			ray->vertical_x += data->img_size;
-// 		else if (ray->angle > 90 && ray->angle < 270)
-// 			ray->vertical_x -= 128.0;
-// 		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x) * tan(deg_to_rad(ray->angle));
-// 	}
-// 	return (sqrt((ray->vertical_x - data->player.x) * (ray->vertical_x - data->player.x) + (ray->vertical_y - data->player.y) * (ray->vertical_y - data->player.y)));
-// }
 
 void	add_rays(t_data *data)
 {
@@ -168,39 +158,14 @@ void	fill_window(t_data *data)
 	data->background.w = WIDTH;
 	data->background.h = HEIGHT;
 	data->background.addr = mlx_get_data_addr(data->background.img_ptr,
-		&data->background.bpp, &data->background.line_len, &data->background.endian);
-	// add_background(data);
-	// printf("angle: %f\n", data->player.angle);
-	// printf("radian: %f\n", deg_to_rad(data->player.angle));
-	// add_player(data);
+			&data->background.bpp, &data->background.line_len,
+			&data->background.endian);
 	data->test = 1;
-	// init_textures(data);
 	add_ceiling(data);
 	add_floor(data);
 	add_rays(data);
 	minimap(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->background.img_ptr, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->background.img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->background.img_ptr);
 }
-
-
-// void	add_background(t_data *data)
-// {
-// 	int	line;
-// 	int	column;
-
-// 	line = 0;
-// 	while (line < data->map.rows)
-// 	{
-// 		column = 0;
-// 		while (column < data->map.columns)
-// 		{
-// 			if (data->map.tab[line][column] == '1')
-// 				put_square(data, column * data->img_size, line * data->img_size, 0x2f4f4f, data->img_size);
-// 			else if (data->map.tab[line][column] == '0' || data->map.tab[line][column] == 'N')
-// 				put_square(data, column * data->img_size, line * data->img_size, 0xf8f8ff, data->img_size);
-// 			column++;
-// 		}
-// 		line++;
-// 	}
-// }

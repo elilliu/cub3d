@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 18:54:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:32:03 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,14 @@ int	verif_path(char *str, char *extension)
 	str_len = ft_strlen(str);
 	ext_len = ft_strlen(extension);
 	if (str_len < ext_len)
-	{
-		printf("str_len < ext_len\n");
 		return (0);
-	}
 	i = str_len - ext_len - 1;
 	while (i >= 1 && str[i] != '/')
 	{
 		if (str[i] && i == 1 && str[i] == '.' && str[0] != '.')
-		{
-			printf("double file\n");
 			return (0);
-		}
 		if (str[i] == '.')
-		{
-			printf("double file\n");
 			return (0);
-		}
 		i--;
 	}
 	if (ft_strcmp(&str[str_len - ext_len], extension) == 0)
@@ -69,13 +60,4 @@ int	skip_whitespaces(char *line, int i)
 	while (line[i] && is_whitespace(line[i]))
 		i++;
 	return (i);
-}
-
-void	clean_map_reading(char *line, int map_fd)
-{
-	if (line)
-		free(line);
-	line = NULL;
-	get_next_line(map_fd, 1);
-	close(map_fd);
 }

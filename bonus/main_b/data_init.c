@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:31:01 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/12 09:45:59 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:26:26 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	player_init(t_data *data)
 	return (0);
 }
 
-int	data_init(t_data *data, char *str)
+static void	init_data_values(t_data *data, char *str)
 {
 	data->map_path = gc_strdup(str);
 	data->map.rows = 0;
@@ -73,6 +73,11 @@ int	data_init(t_data *data, char *str)
 	data->t_paths.t_ce = NULL;
 	data->t_paths.t_fl = NULL;
 	data->t_paths.t_do = "./textures/cub_door_400_20.xpm";
+}
+
+int	data_init(t_data *data, char *str)
+{
+	init_data_values(data, str);
 	if (!parse_file(data))
 		return (0);
 	set_rgb(data);
@@ -82,10 +87,11 @@ int	data_init(t_data *data, char *str)
 		return (0);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
-  {
-    print_clean(data, "Initializing graphics");
+	{
+		print_clean(data, "Could not initialize mlx");
 		return (0);
-  }
+	}
+	init_textures(data);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3d");
 	if (!data->win_ptr)
 		return (free(data->mlx_ptr), 0);

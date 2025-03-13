@@ -6,24 +6,11 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:46:50 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/11 18:40:04 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 15:55:43 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
-
-void	print_line(t_data *data, float x, float y, float size, int color)
-{
-	int	i;
-
-	i = 0;
-	while (i <= size)
-	{
-		put_pixel_img(data->background, x, y, color);
-		y++;
-		i++;
-	}
-}
 
 void	add_ceiling(t_data *data)
 {

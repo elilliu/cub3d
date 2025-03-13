@@ -6,29 +6,11 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 00:33:46 by neleon            #+#    #+#             */
-/*   Updated: 2025/02/28 16:19:39 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:30:58 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-// char	*gc_strjoin(char const *s1, char const *s2)
-// {
-// 	char	*join;
-// 	size_t	len_s1;
-// 	size_t	len_s2;
-
-// 	if (!s2)
-// 		return (NULL);
-// 	len_s1 = ft_strlen(s1);
-// 	len_s2 = ft_strlen(s2);
-// 	join = gc_mem(MALLOC, (len_s1 + len_s2 + 1) * sizeof(char), NULL);
-// 	if (!join)
-// 		return (NULL);
-// 	ft_strlcpy(join, s1, (len_s1 + 1));
-// 	ft_strlcat(join, s2, len_s1 + len_s2 + 1);
-// 	return (join);
-// }
 
 char	*gc_strdup(const char *s1)
 {
