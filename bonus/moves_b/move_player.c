@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:54:16 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/11 13:37:16 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 17:53:40 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_wall_collision(t_data *data, float next_x, float next_y)
 
 	x = (int)next_x / data->img_size;
 	y = (int)next_y / data->img_size;
-	return (is_wall_or_door(data->map.tab[y][x]));
+	return (is_wall_door_or_empty(data->map.tab[y][x]));
 }
 
 void	move_player_up(t_data *data)

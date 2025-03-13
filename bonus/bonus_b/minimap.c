@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 16:04:30 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 18:19:21 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	add_lines(t_data *data)
 		{
 			if (line >= 0 && column >= 0 && data->map.tab[line][column] == WALL)
 				put_square(data->minimap, x, y, 0xfffaf0, 32);
+			else if (line >= 0 && column >= 0 && is_door(data->map.tab[line][column]))
+				put_square(data->minimap, x, y, 0xff5733, 32);
 			column++;
 			x += 32;
 		}

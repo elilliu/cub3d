@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 15:54:43 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 18:23:03 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 	else
 		ray->horizontal_x = data->player.x + (ray->horizontal_y
 				- data->player.y) / tan(deg_to_rad(ray->angle));
-	while ((int)ray->horizontal_y / data->img_size > 0 && (int)ray->horizontal_y
-		/ data->img_size < data->map.rows && (int)ray->horizontal_x
-		/ data->img_size > 0 && (int)ray->horizontal_x
-		/ data->img_size < data->map.columns
-		&& !is_wall_or_door(data->map.tab[(int)ray->horizontal_y
-			/ data->img_size][(int)ray->horizontal_x / data->img_size]))
+	while ((int)ray->horizontal_y / data->img_size > 0
+		&& (int)ray->horizontal_y / data->img_size < data->map.rows
+		&& (int)ray->horizontal_x / data->img_size > 0
+		&& (int)ray->horizontal_x / data->img_size < data->map.columns
+		&& !is_wall_or_door(data->map.tab[(int)ray->horizontal_y / data->img_size][(int)ray->horizontal_x / data->img_size]))
 	{
 		if (ray->angle > 0 && ray->angle < 180)
 			ray->horizontal_y += data->img_size;
@@ -54,8 +53,7 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 		else
 			break ;
 		if (tan(deg_to_rad(ray->angle)) != 0)
-			ray->horizontal_x = data->player.x + (ray->horizontal_y
-					- data->player.y) / tan(deg_to_rad(ray->angle));
+			ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
 	}
 	if (map_value_at(data, ray->horizontal_x, ray->horizontal_y) == CLOSE_D)
 		ray->type = CLOSE_D;

@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 16:52:20 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 17:54:04 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,5 +300,6 @@ t_bool					is_valid_rgb(char *str);
 int						path_len(char *path);
 int						skip_tex_type(char *line, int i, int size);
 int						extract_line(char *line, t_data *data);
+t_bool					is_wall_door_or_empty(char c);
 
 #endif
