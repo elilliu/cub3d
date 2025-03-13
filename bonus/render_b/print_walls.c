@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 15:46:48 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 17:32:07 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_north(t_data *data, t_ray ray, float x, float y)
 	if (draw.start < 0)
 		draw.start = 0;
 	if (draw.end >= HEIGHT)
-		draw.end = HEIGHT;
+	draw.end = HEIGHT;
 	tex.x = (int)(ray.horizontal_x) % data->img_size;
 	if (ray.angle > 0 && ray.angle < 180)
 		tex.x = data->img_size - tex.x - 1;

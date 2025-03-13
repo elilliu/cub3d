@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:54:16 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/11 12:23:41 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/13 16:51:30 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+t_bool	is_wall_or_door(char c)
+{
+	if (c == WALL || c == ' ' || !c)
+		return (true);
+	return (false);
+}
 
 int	is_wall_collision(t_data *data, float next_x, float next_y)
 {
@@ -19,7 +26,7 @@ int	is_wall_collision(t_data *data, float next_x, float next_y)
 
 	x = (int)next_x / data->img_size;
 	y = (int)next_y / data->img_size;
-	return (data->map.tab[y][x] == WALL);
+	return (is_wall_or_door(data->map.tab[y][x]));
 }
 
 void	move_player_up(t_data *data)

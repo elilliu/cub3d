@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 15:41:42 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 16:52:20 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define FOV 60
 # define IMG_SIZE 400
 # define MINIMAP_SIZE 256
-# define WALL_DIST 20
+# define WALL_DIST 50
 # define DOOR_DIST 2
 # define PLAYER_SPEED 20
 
