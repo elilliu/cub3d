@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: neleon <neleon@student.42.fr>              +#+  +:+       +#+         #
+#    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/03/13 15:43:10 by neleon           ###   ########.fr        #
+#    Updated: 2025/03/14 21:20:33 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ MOVES				= move_player.c rotate_player.c hooks.c
 SRCS				+= $(addprefix ${MOVES_DIR}, ${MOVES})
 
 RAYCASTING_DIR		= raycasting/
-RAYCASTING			= fill_window.c fill_window_utils.c put_walls.c
+RAYCASTING			= fill_window.c fill_window_utils.c put_walls.c check_lines.c
 SRCS				+= $(addprefix ${RAYCASTING_DIR}, ${RAYCASTING})
 
 RENDER_DIR			= render/
@@ -67,7 +67,7 @@ MOVES_B				= move_player.c rotate_player.c handle_mouse.c hooks.c
 SRCS_B				+= $(addprefix ${MOVES_B_DIR}, ${MOVES_B})
 
 RAYCASTING_B_DIR	= raycasting_b/
-RAYCASTING_B		= fill_window.c fill_window_utils.c put_walls.c
+RAYCASTING_B		= fill_window.c fill_window_utils.c put_walls.c check_lines.c check_lines_utils.c
 SRCS_B				+= $(addprefix ${RAYCASTING_B_DIR}, ${RAYCASTING_B})
 
 RENDER_B_DIR		= render_b/

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 20:57:10 by nelbi             #+#    #+#             */
-/*   Updated: 2025/03/14 21:04:37 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/14 21:22:16 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 static t_bool	is_in_map(t_data *data, double x, double y)
 {
