@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 21:44:14 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/14 21:51:18 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	rot_put_img_to_img(t_img dst, t_img src, double angle, t_point p)
 
 void	add_arrow(t_data *data)
 {
-  t_point p;
+	t_point	p;
 
-  p.min_x = MINIMAP_SIZE / 2;
-  p.min_y = MINIMAP_SIZE / 2;
+	p.min_x = MINIMAP_SIZE / 2;
+	p.min_y = MINIMAP_SIZE / 2;
 	data->arrow.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
 			"textures/arrow.xpm", &data->arrow.w, &data->arrow.h);
 	if (!data->arrow.img_ptr)
@@ -100,12 +100,12 @@ void	add_lines(t_data *data)
 
 void	minimap(t_data *data)
 {
-  t_point p;
+	t_point	p;
 	float	x;
 	float	y;
 
-  p.x = 0;
-  p.y = 0;
+	p.x = 0;
+	p.y = 0;
 	data->minimap.img_ptr = mlx_new_image(data->mlx_ptr, MINIMAP_SIZE,
 			MINIMAP_SIZE);
 	data->minimap.w = MINIMAP_SIZE;
