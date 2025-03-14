@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 18:19:21 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 19:39:17 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,58 @@ void	add_lines(t_data *data)
 	{
 		x = 32 - ((data->player.x - (int)data->player.x / IMG_SIZE * IMG_SIZE) / IMG_SIZE * 32);
 		column = (int)data->player.x / IMG_SIZE - 3;
-		while (x < MINIMAP_SIZE && column < data->map.columns && column <= (int)data->player.x / IMG_SIZE + 4)
+		while (x < MINIMAP_SIZE && column <= (int)data->player.x / IMG_SIZE + 4)
 		{
-			if (line >= 0 && column >= 0 && data->map.tab[line][column] == WALL)
+			if (column < 0 || column >= data->map.columns || column >= (int)ft_strlen(data->map.tab[line]))
+			{
+				column++;
+				x += 32;
+				continue;
+			}
+			if (data->map.tab[line][column] == WALL)
 				put_square(data->minimap, x, y, 0xfffaf0, 32);
-			else if (line >= 0 && column >= 0 && is_door(data->map.tab[line][column]))
-				put_square(data->minimap, x, y, 0xff5733, 32);
+			else if (data->map.tab[line][column] == CLOSE_D)
+				put_square(data->minimap, x, y, 0xaec3b0, 32);
+      else if (data->map.tab[line][column] == OPEN_D)
+				put_square(data->minimap, x, y, 0x598392, 32);
 			column++;
 			x += 32;
 		}
+
 		line++;
 		y += 32;
 	}
 }
+
+
+// void	add_lines(t_data *data)
+// {
+// 	float	x;
+// 	float	y;
+// 	int		line;
+// 	int		column;
+
+// 	y = 32 - ((data->player.y - (int)data->player.y / IMG_SIZE * IMG_SIZE) / IMG_SIZE * 32);
+// 	line = (int)data->player.y / IMG_SIZE - 3;
+// 	while (y < MINIMAP_SIZE && line < data->map.rows && line <= (int)data->player.y / IMG_SIZE + 4)
+// 	{
+// 		x = 32 - ((data->player.x - (int)data->player.x / IMG_SIZE * IMG_SIZE) / IMG_SIZE * 32);
+// 		column = (int)data->player.x / IMG_SIZE - 3;
+// 		while (x < MINIMAP_SIZE && column < data->map.columns && column <= (int)data->player.x / IMG_SIZE + 4)
+// 		{
+//       if (!data->map.tab[line][column] || data->map.tab[line][column] == ' ')
+// 				put_square(data->minimap, x, y, 0x000000, 32);
+// 			else if (line >= 0 && column >= 0 && data->map.tab[line][column] == WALL)
+// 				put_square(data->minimap, x, y, 0xfffaf0, 32);
+// 			else if (line >= 0 && column >= 0 && is_door(data->map.tab[line][column]))
+// 				put_square(data->minimap, x, y, 0xff5733, 32);
+// 			column++;
+// 			x += 32;
+// 		}
+// 		line++;
+// 		y += 32;
+// 	}
+// }
 
 void	minimap(t_data *data)
 {

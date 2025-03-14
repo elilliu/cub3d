@@ -6,7 +6,7 @@
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 17:33:16 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/14 19:45:18 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// # define PI 3.1415926535
 # define RADIAN 0.0174533
 
 # define WIDTH 1600
@@ -33,7 +32,7 @@
 # define IMG_SIZE 400
 # define MINIMAP_SIZE 256
 # define WALL_DIST 50
-# define DOOR_DIST 2
+# define DOOR_DIST 1
 # define PLAYER_SPEED 20
 
 # define RESET "\033[0m"
@@ -105,7 +104,6 @@ typedef struct s_map
 	char				**tab;
 	int					rows;
 	int					columns;
-	// int					square_size;
 }						t_map;
 
 typedef struct s_map2
@@ -191,6 +189,8 @@ typedef struct s_draw
 {
 	float				start;
 	float				end;
+  float       step;
+  float       x;
 }						t_draw;
 
 typedef struct s_mouse

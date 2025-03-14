@@ -3,19 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   print_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 17:17:43 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 19:06:12 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+void  print_wall(float step, t_draw draw, t_point tex, int tex_type)
+{
+  int i;
+  int color;
+  t_data  *data;
+
+  data = get_data();
+  i = draw.start;
+  while (i < draw.end)
+	{
+		color = get_pixel_img(data->textures[tex_type], tex.x, (int)tex.y
+				% data->textures[tex_type].h);
+		put_pixel_img(data->background, draw.x, i, color);
+		tex.y += step;
+		i++;
+	}
+}
 void	print_north(t_data *data, t_ray ray, float x, float y)
 {
-	int		color;
-	int		i;
 	float	step;
 	t_draw	draw;
 	t_point	tex;
@@ -34,21 +49,12 @@ void	print_north(t_data *data, t_ray ray, float x, float y)
 		tex.y = ((ray.size - HEIGHT) / 2.0) * step;
 	else
 		tex.y = 0;
-	i = draw.start;
-	while (i < draw.end)
-	{
-		color = get_pixel_img(data->textures[T_NO], tex.x, (int)tex.y
-				% data->textures[T_NO].h);
-		put_pixel_img(data->background, x, i, color);
-		tex.y += step;
-		i++;
-	}
+  draw.x = x;
+  print_wall(step, draw, tex, T_NO);
 }
 
 void	print_south(t_data *data, t_ray ray, float x, float y)
 {
-	int		color;
-	int		i;
 	float	step;
 	t_draw	draw;
 	t_point	tex;
@@ -64,21 +70,12 @@ void	print_south(t_data *data, t_ray ray, float x, float y)
 		draw.start = 0;
 	if (draw.end >= HEIGHT)
 		draw.end = HEIGHT;
-	i = draw.start;
-	while (i < draw.end)
-	{
-		color = get_pixel_img(data->textures[T_SO], tex.x, (int)tex.y
-				% data->img_size);
-		put_pixel_img(data->background, x, i, color);
-		tex.y += step;
-		i++;
-	}
+  draw.x = x;
+  print_wall(step, draw, tex, T_SO);
 }
 
 void	print_west(t_data *data, t_ray ray, float x, float y)
 {
-	int		color;
-	int		i;
 	float	step;
 	t_draw	draw;
 	t_point	tex;
@@ -96,21 +93,12 @@ void	print_west(t_data *data, t_ray ray, float x, float y)
 		draw.start = 0;
 	if (draw.end >= HEIGHT)
 		draw.end = HEIGHT;
-	i = draw.start;
-	while (i < draw.end)
-	{
-		color = get_pixel_img(data->textures[T_WE], tex.x, (int)tex.y
-				% data->img_size);
-		put_pixel_img(data->background, x, i, color);
-		tex.y += step;
-		i++;
-	}
+  draw.x = x;
+  print_wall(step, draw, tex, T_WE);
 }
 
 void	print_east(t_data *data, t_ray ray, float x, float y)
 {
-	int		color;
-	int		i;
 	float	step;
 	t_draw	draw;
 	t_point	tex;
@@ -128,13 +116,6 @@ void	print_east(t_data *data, t_ray ray, float x, float y)
 		draw.start = 0;
 	if (draw.end >= HEIGHT)
 		draw.end = HEIGHT;
-	i = draw.start;
-	while (i < draw.end)
-	{
-		color = get_pixel_img(data->textures[T_EA], tex.x, (int)tex.y
-				% data->img_size);
-		put_pixel_img(data->background, x, i, color);
-		tex.y += step;
-		i++;
-	}
+  draw.x = x;
+  print_wall(step, draw, tex, T_EA);
 }

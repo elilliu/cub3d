@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 18:23:03 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 19:46:36 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,40 @@ int	map_value_at(t_data *data, double x, double y)
 	return (data->map.tab[map_y][map_x]);
 }
 
+t_bool  is_in_map(t_data *data, double x, double y)
+{
+  if ((int)y / data->img_size > 0
+		&& (int)y / data->img_size < data->map.rows
+		&& (int)x / data->img_size > 0
+		&& (int)x / data->img_size < data->map.columns
+		&& !is_wall_or_door(data->map.tab[(int)y / data->img_size][(int)x / data->img_size]))
+      return (true);
+  return (false);
+}
+
+void  find_door(t_data *data, t_ray *ray, double x, double y)
+{
+  if (map_value_at(data, x, y) == CLOSE_D)
+		ray->type = CLOSE_D;
+	else
+		ray->type = WALL;
+}
+
+void   sub_h(t_data *data, t_ray *ray)
+{
+  while (is_in_map(data, ray->horizontal_x, ray->horizontal_y))
+	{
+		if (ray->angle > 0 && ray->angle < 180)
+			ray->horizontal_y += data->img_size;
+		else if (ray->angle > 180 && ray->angle < 360)
+			ray->horizontal_y -= data->img_size;
+		else
+			return ;
+		if (tan(deg_to_rad(ray->angle)) != 0)
+			ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
+	}
+}
+
 double	check_horizontal_lines(t_data *data, t_ray *ray)
 {
 	if (ray->angle > 0 && ray->angle < 180)
@@ -40,27 +74,24 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 	else
 		ray->horizontal_x = data->player.x + (ray->horizontal_y
 				- data->player.y) / tan(deg_to_rad(ray->angle));
-	while ((int)ray->horizontal_y / data->img_size > 0
-		&& (int)ray->horizontal_y / data->img_size < data->map.rows
-		&& (int)ray->horizontal_x / data->img_size > 0
-		&& (int)ray->horizontal_x / data->img_size < data->map.columns
-		&& !is_wall_or_door(data->map.tab[(int)ray->horizontal_y / data->img_size][(int)ray->horizontal_x / data->img_size]))
-	{
-		if (ray->angle > 0 && ray->angle < 180)
-			ray->horizontal_y += data->img_size;
-		else if (ray->angle > 180 && ray->angle < 360)
-			ray->horizontal_y -= data->img_size;
-		else
-			break ;
-		if (tan(deg_to_rad(ray->angle)) != 0)
-			ray->horizontal_x = data->player.x + (ray->horizontal_y - data->player.y) / tan(deg_to_rad(ray->angle));
-	}
-	if (map_value_at(data, ray->horizontal_x, ray->horizontal_y) == CLOSE_D)
-		ray->type = CLOSE_D;
-	else
-		ray->type = WALL;
+  sub_h(data, ray);
+  find_door(data, ray, ray->horizontal_x, ray->horizontal_y);
 	return (sqrt(pow(ray->horizontal_x - data->player.x, 2)
 			+ pow(ray->horizontal_y - data->player.y, 2)));
+}
+
+void  sub_v(t_data *data, t_ray *ray)
+{
+  while (is_in_map(data, ray->vertical_x, ray->vertical_y))
+	{
+		if (ray->angle > 270 || ray->angle < 90)
+			ray->vertical_x += data->img_size;
+		else if (ray->angle > 90 && ray->angle < 270)
+			ray->vertical_x -= data->img_size;
+		if (tan(deg_to_rad(ray->angle)) != 0)
+			ray->vertical_y = data->player.y + (ray->vertical_x
+					- data->player.x) * tan(deg_to_rad(ray->angle));
+	}
 }
 
 double	check_vertical_lines(t_data *data, t_ray *ray)
@@ -78,27 +109,32 @@ double	check_vertical_lines(t_data *data, t_ray *ray)
 	else
 		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x)
 			* tan(deg_to_rad(ray->angle));
-	while ((int)ray->vertical_y / data->img_size > 0 && (int)ray->vertical_y
-		/ data->img_size < data->map.rows && (int)ray->vertical_x
-		/ data->img_size > 0 && (int)ray->vertical_x
-		/ data->img_size < data->map.columns
-		&& !is_wall_or_door(data->map.tab[(int)ray->vertical_y
-			/ data->img_size][(int)ray->vertical_x / data->img_size]))
-	{
-		if (ray->angle > 270 || ray->angle < 90)
-			ray->vertical_x += data->img_size;
-		else if (ray->angle > 90 && ray->angle < 270)
-			ray->vertical_x -= data->img_size;
-		if (tan(deg_to_rad(ray->angle)) != 0)
-			ray->vertical_y = data->player.y + (ray->vertical_x
-					- data->player.x) * tan(deg_to_rad(ray->angle));
-	}
-	if (map_value_at(data, ray->vertical_x, ray->vertical_y) == CLOSE_D)
-		ray->type = CLOSE_D;
-	else
-		ray->type = WALL;
+  sub_v(data, ray);
+  find_door(data, ray, ray->vertical_x, ray->vertical_y);
 	return (sqrt(pow(ray->vertical_x - data->player.x, 2) + pow(ray->vertical_y
 				- data->player.y, 2)));
+}
+
+
+void  sub_add_rays(t_data *data, t_ray *ray, float step)
+{
+  int i;
+
+  i = 0;
+	while (i < WIDTH)
+	{
+		ray->nb = i;
+		ray->horizontal_distance = check_horizontal_lines(data, ray);
+		ray->vertical_distance = check_vertical_lines(data, ray);
+		if (ray->horizontal_distance < ray->vertical_distance)
+			put_horizontal_wall(data, *ray);
+		else
+			put_vertical_wall(data, *ray);
+		ray->angle += step;
+		if (ray->angle >= 360)
+			ray->angle -= 360.0;
+		i++;
+	}
 }
 
 void	add_rays(t_data *data)
@@ -107,7 +143,6 @@ void	add_rays(t_data *data)
 	float	step;
 	float	fov;
 	float	width;
-	int		i;
 
 	fov = (float)FOV;
 	ray.angle = data->player.angle - fov / 2;
@@ -115,21 +150,7 @@ void	add_rays(t_data *data)
 	step = fov / width;
 	if (ray.angle < 0)
 		ray.angle += 360;
-	i = 0;
-	while (i < WIDTH)
-	{
-		ray.nb = i;
-		ray.horizontal_distance = check_horizontal_lines(data, &ray);
-		ray.vertical_distance = check_vertical_lines(data, &ray);
-		if (ray.horizontal_distance < ray.vertical_distance)
-			put_horizontal_wall(data, ray);
-		else
-			put_vertical_wall(data, ray);
-		ray.angle += step;
-		if (ray.angle >= 360)
-			ray.angle -= 360.0;
-		i++;
-	}
+  sub_add_rays(data, &ray, step);
 }
 
 void	add_player(t_data *data)

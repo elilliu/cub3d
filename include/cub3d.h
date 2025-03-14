@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 16:52:15 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 19:45:08 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// # define PI 3.1415926535
 # define RADIAN 0.0174533
 
 # define WIDTH 1600
@@ -101,7 +100,6 @@ typedef struct s_map
 	char				**tab;
 	int					rows;
 	int					columns;
-	// int					square_size;
 }						t_map;
 
 typedef struct s_map2
@@ -174,6 +172,8 @@ typedef struct s_draw
 {
 	float				start;
 	float				end;
+  float       x;
+
 }						t_draw;
 
 typedef struct s_data
