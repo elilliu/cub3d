@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   print_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 18:41:34 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:06:11 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void  print_wall(t_ray ray, t_draw draw, t_point tex, int tex_type)
+void	print_wall(t_ray ray, t_draw draw, t_point tex, int tex_type)
 {
-  int i;
-  int color;
-  t_data  *data;
+	int		i;
+	int		color;
+	t_data	*data;
 
-  data = get_data();
-  i = draw.start;
+	data = get_data();
+	i = draw.start;
 	while (i < draw.end)
 	{
 		if (ray.type == CLOSE_D)
@@ -54,7 +54,7 @@ void	print_north(t_data *data, t_ray ray, float x, float y)
 	else
 		tex.y = 0;
 	draw.x = x;
-  print_wall(ray, draw, tex, T_NO);
+	print_wall(ray, draw, tex, T_NO);
 }
 
 void	print_south(t_data *data, t_ray ray, float x, float y)
@@ -74,7 +74,7 @@ void	print_south(t_data *data, t_ray ray, float x, float y)
 	if (draw.end >= HEIGHT)
 		draw.end = HEIGHT;
 	draw.x = x;
-  print_wall(ray, draw, tex, T_SO);
+	print_wall(ray, draw, tex, T_SO);
 }
 
 void	print_west(t_data *data, t_ray ray, float x, float y)
@@ -96,7 +96,7 @@ void	print_west(t_data *data, t_ray ray, float x, float y)
 	if (draw.end >= HEIGHT)
 		draw.end = HEIGHT;
 	draw.x = x;
-  print_wall(ray, draw, tex, T_WE);
+	print_wall(ray, draw, tex, T_WE);
 }
 
 void	print_east(t_data *data, t_ray ray, float x, float y)
@@ -118,5 +118,5 @@ void	print_east(t_data *data, t_ray ray, float x, float y)
 	if (draw.end >= HEIGHT)
 		draw.end = HEIGHT;
 	draw.x = x;
-  print_wall(ray, draw, tex, T_EA);
+	print_wall(ray, draw, tex, T_EA);
 }

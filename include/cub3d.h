@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 19:45:08 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/14 21:15:24 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ typedef struct s_draw
 {
 	float				start;
 	float				end;
-  float       x;
+	float				x;
 
 }						t_draw;
 
@@ -238,10 +238,6 @@ void					set_rgb(t_data *data);
 float					deg_to_rad(float a);
 void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
-void					print_line(t_data *data, float x, float y, float size,
-							int color);
-void					put_square(t_img img, int x, int y, int color,
-							int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);
@@ -271,5 +267,8 @@ t_bool					is_valid_rgb(char *str);
 int						path_len(char *path);
 int						skip_tex_type(char *line, int i, int size);
 int						extract_line(char *line, t_data *data);
+t_bool					is_wall_or_out(char c);
+double					check_horizontal_lines(t_data *data, t_ray *ray);
+double					check_vertical_lines(t_data *data, t_ray *ray);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 19:45:18 by bineleon         ###   ########.fr       */
+/*   Updated: 2025/03/14 21:15:17 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,8 @@ typedef struct s_draw
 {
 	float				start;
 	float				end;
-  float       step;
-  float       x;
+	float				step;
+	float				x;
 }						t_draw;
 
 typedef struct s_mouse
@@ -219,7 +219,7 @@ typedef struct s_data
 	t_tex_path			t_paths;
 	t_mouse				mouse;
 	char				player_dir;
-  t_bool			mouse_on;
+	t_bool				mouse_on;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -262,10 +262,7 @@ void					set_rgb(t_data *data);
 float					deg_to_rad(float a);
 void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
-void					print_line(t_data *data, float x, float y, float size,
-							int color);
-void					put_square(t_img img, int x, int y, int color,
-							int size);
+void					put_square(t_img img, t_point p, int color, int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);
@@ -302,5 +299,9 @@ int						skip_tex_type(char *line, int i, int size);
 int						extract_line(char *line, t_data *data);
 t_bool					is_wall_door_or_empty(char c);
 void					toggle_mouse(t_data *data);
+double					check_horizontal_lines(t_data *data, t_ray *ray);
+double					check_vertical_lines(t_data *data, t_ray *ray);
+void					find_door(t_data *data, t_ray *ray, double x, double y);
+int						map_value_at(t_data *data, double x, double y);
 
 #endif

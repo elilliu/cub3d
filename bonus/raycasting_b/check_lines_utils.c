@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils.c                                    :+:      :+:    :+:   */
+/*   check_lines_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 20:03:05 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/14 20:46:51 by nelbi            ###   ########.fr       */
+/*   Created: 2025/03/14 21:01:04 by nelbi             #+#    #+#             */
+/*   Updated: 2025/03/14 21:02:40 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	put_square(t_img img, t_point p, int color, int size)
+int	map_value_at(t_data *data, double x, double y)
 {
-	int	i;
-	int	j;
+	int	map_x;
+	int	map_y;
 
-	j = 0;
-	while (j < size && p.min_y + j < img.h)
-	{
-		i = 0;
-		while (i < size && p.min_x + i < img.w)
-		{
-			put_pixel_img(img, p.min_x + i, p.min_y + j, color);
-			i++;
-		}
-		j++;
-	}
+	map_x = (int)x / data->img_size;
+	map_y = (int)y / data->img_size;
+	if (map_x < 0 || map_x >= data->map.columns || map_y < 0
+		|| map_y >= data->map.rows)
+		return (' ');
+	return (data->map.tab[map_y][map_x]);
+}
+
+void	find_door(t_data *data, t_ray *ray, double x, double y)
+{
+	if (map_value_at(data, x, y) == CLOSE_D)
+		ray->type = CLOSE_D;
+	else
+		ray->type = WALL;
 }

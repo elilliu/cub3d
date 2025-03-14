@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:46:29 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/13 14:34:47 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 20:53:27 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ int	xpm_to_img(t_data *data, int tex_type)
 
 void	init_textures(t_data *data)
 {
-	if (!xpm_to_img(data, T_NO)
-		|| !xpm_to_img(data, T_SO)
-		|| !xpm_to_img(data, T_WE)
-		|| !xpm_to_img(data, T_EA))
+	if (!xpm_to_img(data, T_NO) || !xpm_to_img(data, T_SO) || !xpm_to_img(data,
+			T_WE) || !xpm_to_img(data, T_EA))
 		print_clean(data, "Failed texture allocation");
 }

@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:54:16 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/13 16:51:30 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 20:55:23 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-t_bool	is_wall_or_door(char c)
-{
-	if (c == WALL || c == ' ' || !c)
-		return (true);
-	return (false);
-}
 
 int	is_wall_collision(t_data *data, float next_x, float next_y)
 {
@@ -26,7 +19,7 @@ int	is_wall_collision(t_data *data, float next_x, float next_y)
 
 	x = (int)next_x / data->img_size;
 	y = (int)next_y / data->img_size;
-	return (is_wall_or_door(data->map.tab[y][x]));
+	return (is_wall_or_out(data->map.tab[y][x]));
 }
 
 void	move_player_up(t_data *data)
@@ -71,7 +64,7 @@ void	move_player_left(t_data *data)
 
 	angle = data->player.angle - 90;
 	if (angle < 0)
-	angle += 360;
+		angle += 360;
 	delta_x = cos(deg_to_rad(angle)) * PLAYER_SPEED;
 	delta_y = sin(deg_to_rad(angle)) * PLAYER_SPEED;
 	next_x = data->player.x + delta_x;
@@ -95,7 +88,7 @@ void	move_player_right(t_data *data)
 
 	angle = data->player.angle + 90;
 	if (angle > 359)
-	angle -= 360;
+		angle -= 360;
 	delta_x = cos(deg_to_rad(angle)) * PLAYER_SPEED;
 	delta_y = sin(deg_to_rad(angle)) * PLAYER_SPEED;
 	next_x = data->player.x + delta_x;

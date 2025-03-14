@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 14:32:03 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 20:54:52 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ int	skip_whitespaces(char *line, int i)
 	while (line[i] && is_whitespace(line[i]))
 		i++;
 	return (i);
+}
+
+t_bool	is_wall_or_out(char c)
+{
+	if (c == WALL || c == ' ' || !c)
+		return (true);
+	return (false);
 }

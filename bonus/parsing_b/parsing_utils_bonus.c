@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:48:09 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/13 15:38:34 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 20:41:53 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static t_bool	is_other_texture(char *line)
 
 	i = 0;
 	i = skip_whitespaces(line, 0);
-	if (line[i] && line[i] == 'F'
-		&& line[i + 1] && is_whitespace(line[i + 1]))
+	if (line[i] && line[i] == 'F' && line[i + 1] && is_whitespace(line[i + 1]))
 		return (true);
 	else if (line[i] && line[i] == 'C'
 		&& line[i + 1] && is_whitespace(line[i + 1]))
