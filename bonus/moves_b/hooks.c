@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:31:37 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/13 18:09:13 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 17:35:49 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	handle_keypress(int keysym, t_data *data)
 		rotate_player_left(data);
 	if (keysym == XK_space)
 		open_or_close_door(data);
+  if (keysym == XK_m)
+    toggle_mouse(data);
 	return (1);
 }

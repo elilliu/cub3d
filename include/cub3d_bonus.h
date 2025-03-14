@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 17:54:04 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/14 17:33:16 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,7 @@ typedef struct s_data
 	t_tex_path			t_paths;
 	t_mouse				mouse;
 	char				player_dir;
-	float				**z_buffer;
+  t_bool			mouse_on;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -301,5 +301,6 @@ int						path_len(char *path);
 int						skip_tex_type(char *line, int i, int size);
 int						extract_line(char *line, t_data *data);
 t_bool					is_wall_door_or_empty(char c);
+void					toggle_mouse(t_data *data);
 
 #endif
