@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/11 18:21:29 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 11:00:30 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static t_bool	empty_around(char **map, int i, int j)
 {
 	int	len;
 
-	// if (map[i][j] == '0' || is_player_char(map[i][j]))
-	// {
 	if (i - 1 < 0)
 		return (true);
 	len = ft_strlen(map[i - 1]);
@@ -35,19 +33,20 @@ static t_bool	empty_around(char **map, int i, int j)
 	len = ft_strlen(map[i]);
 	if (j + 1 >= len || map[i][j + 1] == ' ')
 		return (true);
-	// }
 	return (false);
 }
 
 static void	check_open_map(t_data *data, char **map, int i, int j)
 {
-    if (empty_around(map, i, j))
+	if (empty_around(map, i, j))
 	{
-        if (map[i][j] == '0' || is_player_char(map[i][j]))
+		if (map[i][j] == '0' || is_player_char(map[i][j]))
 			print_clean(data, "Unclosed map");
         else if (is_door(map[i][j]))
             print_clean(data, "Door should not be on outside wall");
 
+		else if (is_door(map[i][j]))
+			print_clean(data, "Door should not be on outside wall");
 	}
 }
 

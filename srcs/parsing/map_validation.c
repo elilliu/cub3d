@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/03 16:59:33 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/13 12:04:27 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,35 @@ static t_bool	empty_around(char **map, int i, int j)
 	return (false);
 }
 
+void	sub_map_validation(t_data *data, char **map, t_point p, int *player)
+{
+	if (!is_valid_char_map(map[p.i][p.j]))
+		print_clean(data, "Invalid char in map");
+	if (is_player_char(map[p.i][p.j]))
+	{
+		data->player_dir = map[p.i][p.j];
+		*player += 1;
+	}
+	if (empty_around(map, p.i, p.j))
+		print_clean(data, "Unclosed map");
+}
+
 void	map_validation(t_data *data, char **map)
 {
-	int	i;
-	int	j;
-	int	player;
+	t_point	p;
+	int		player;
 
-	i = 0;
+	p.i = 0;
 	player = 0;
-	while (map[i])
+	while (map[p.i])
 	{
-		j = 0;
-		while (map[i][j])
+		p.j = 0;
+		while (map[p.i][p.j])
 		{
-			if (!is_valid_char_map(map[i][j]))
-				print_clean(data, "Invalid char in map");
-			if (is_player_char(map[i][j]))
-            {
-                data->player_dir = map[i][j];
-				player++;
-            }
-			if (empty_around(map, i, j))
-				print_clean(data, "Unclosed map");
-			j = j + 1;
+			sub_map_validation(data, map, p, &player);
+			p.j = p.j + 1;
 		}
-		i = i + 1;
+		p.i = p.i + 1;
 	}
 	if (player != 1)
 		print_clean(data, "Map should have 1 player");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/11 12:23:32 by elilliu          ###   ########.fr       */
+/*   Created: 2025/03/13 14:32:29 by neleon            #+#    #+#             */
+/*   Updated: 2025/03/13 14:32:32 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_data	*get_data(void)
 	return (&data);
 }
 
-void    assign_player_angle(t_data *data)
+void	assign_player_angle(t_data *data)
 {
-    if (data->player_dir == PL_NO)
-        data->player.angle = 270;
-    else if (data->player_dir == PL_WE)
-        data->player.angle = 180;
-    else if (data->player_dir == PL_SO)
-        data->player.angle = 90;
-    else if (data->player_dir == PL_EA)
-        data->player.angle = 360;
+	if (data->player_dir == PL_NO)
+		data->player.angle = 270;
+	else if (data->player_dir == PL_WE)
+		data->player.angle = 180;
+	else if (data->player_dir == PL_SO)
+		data->player.angle = 90;
+	else if (data->player_dir == PL_EA)
+		data->player.angle = 360;
 }
 
 int	player_init(t_data *data)
@@ -36,14 +36,9 @@ int	player_init(t_data *data)
 	int	i;
 	int	row;
 
-	// data->player.angle = 270;
-    assign_player_angle(data);
-	// printf("cet coucouuuuu angle: %.16f\n", data->player.angle);
-	// printf(" 3 * PI / 2: %.16f\n", 3 * PI / 2);
+	assign_player_angle(data);
 	data->player.delta_x = cos(deg_to_rad(data->player.angle)) * PLAYER_SPEED;
-	// printf("cos: %f\n", data->player.delta_x);
 	data->player.delta_y = sin(deg_to_rad(data->player.angle)) * PLAYER_SPEED;
-	// printf("sin:e %f\n", data->player.delta_y);
 	row = 0;
 	while (data->map.tab[row])
 	{
@@ -63,7 +58,7 @@ int	player_init(t_data *data)
 	return (0);
 }
 
-int	data_init(t_data *data, char *str)
+static void	init_data_values(t_data *data, char *str)
 {
 	data->map_path = gc_strdup(str);
 	data->map.rows = 0;
@@ -77,6 +72,11 @@ int	data_init(t_data *data, char *str)
 	data->t_paths.t_we = NULL;
 	data->t_paths.t_ce = NULL;
 	data->t_paths.t_fl = NULL;
+}
+
+int	data_init(t_data *data, char *str)
+{
+	init_data_values(data, str);
 	if (!parse_file(data))
 		return (0);
 	set_rgb(data);
@@ -86,7 +86,11 @@ int	data_init(t_data *data, char *str)
 		return (0);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
+	{
+		print_clean(data, "Could not initialize mlx");
 		return (0);
+	}
+	init_textures(data);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3d");
 	if (!data->win_ptr)
 		return (free(data->mlx_ptr), 0);

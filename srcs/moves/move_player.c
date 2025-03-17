@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:54:16 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/11 12:23:41 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/14 20:55:23 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_wall_collision(t_data *data, float next_x, float next_y)
 
 	x = (int)next_x / data->img_size;
 	y = (int)next_y / data->img_size;
-	return (data->map.tab[y][x] == WALL);
+	return (is_wall_or_out(data->map.tab[y][x]));
 }
 
 void	move_player_up(t_data *data)
@@ -64,7 +64,7 @@ void	move_player_left(t_data *data)
 
 	angle = data->player.angle - 90;
 	if (angle < 0)
-	angle += 360;
+		angle += 360;
 	delta_x = cos(deg_to_rad(angle)) * PLAYER_SPEED;
 	delta_y = sin(deg_to_rad(angle)) * PLAYER_SPEED;
 	next_x = data->player.x + delta_x;
@@ -88,7 +88,7 @@ void	move_player_right(t_data *data)
 
 	angle = data->player.angle + 90;
 	if (angle > 359)
-	angle -= 360;
+		angle -= 360;
 	delta_x = cos(deg_to_rad(angle)) * PLAYER_SPEED;
 	delta_y = sin(deg_to_rad(angle)) * PLAYER_SPEED;
 	next_x = data->player.x + delta_x;

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   check_lines_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 15:20:50 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/14 21:22:00 by bineleon         ###   ########.fr       */
+/*   Created: 2025/03/14 21:01:04 by nelbi             #+#    #+#             */
+/*   Updated: 2025/03/14 21:20:51 by bineleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-t_bool	is_door(char c)
+int	map_value_at(t_data *data, double x, double y)
 {
-	if (c == OPEN_D || c == CLOSE_D)
-		return (true);
-	return (false);
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)x / data->img_size;
+	map_y = (int)y / data->img_size;
+	if (map_x < 0 || map_x >= data->map.columns || map_y < 0
+		|| map_y >= data->map.rows)
+		return (' ');
+	return (data->map.tab[map_y][map_x]);
 }
 
-t_bool	is_wall_or_door(char c)
+void	find_door(t_data *data, t_ray *ray, double x, double y)
 {
-	if (c == CLOSE_D || c == WALL)
-		return (true);
-	return (false);
-}
-
-t_bool	is_wall_door_or_empty(char c)
-{
-	if (c == CLOSE_D || c == WALL || c == ' ' || !c)
-		return (true);
-	return (false);
+	if (map_value_at(data, x, y) == CLOSE_D)
+		ray->type = CLOSE_D;
+	else
+		ray->type = WALL;
 }

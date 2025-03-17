@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/11 17:52:33 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/14 21:15:17 by nelbi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// # define PI 3.1415926535
 # define RADIAN 0.0174533
 
 # define WIDTH 1600
@@ -32,8 +31,8 @@
 # define FOV 60
 # define IMG_SIZE 400
 # define MINIMAP_SIZE 256
-# define WALL_DIST 20
-# define DOOR_DIST 2
+# define WALL_DIST 50
+# define DOOR_DIST 1
 # define PLAYER_SPEED 20
 
 # define RESET "\033[0m"
@@ -105,7 +104,6 @@ typedef struct s_map
 	char				**tab;
 	int					rows;
 	int					columns;
-	// int					square_size;
 }						t_map;
 
 typedef struct s_map2
@@ -170,34 +168,36 @@ typedef struct s_ray
 
 typedef struct s_rotate
 {
-	t_img	src;
-	t_img	dst;
-	double	angle;
-	int		x;
-	int		y;
-}				t_rotate;
+	t_img				src;
+	t_img				dst;
+	double				angle;
+	int					x;
+	int					y;
+}						t_rotate;
 
 typedef struct s_point
 {
 	float				x;
 	float				y;
-  int         min_x;
-  int         min_y;
-  int         max_x;
-  int         max_y;
+	int					min_x;
+	int					min_y;
+	int					max_x;
+	int					max_y;
 }						t_point;
 
 typedef struct s_draw
 {
 	float				start;
 	float				end;
+	float				step;
+	float				x;
 }						t_draw;
 
 typedef struct s_mouse
 {
-	int	x;
-	int	y;
-}				t_mouse;
+	int					x;
+	int					y;
+}						t_mouse;
 
 typedef struct s_data
 {
@@ -219,7 +219,7 @@ typedef struct s_data
 	t_tex_path			t_paths;
 	t_mouse				mouse;
 	char				player_dir;
-	float				**z_buffer;
+	t_bool				mouse_on;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -262,10 +262,7 @@ void					set_rgb(t_data *data);
 float					deg_to_rad(float a);
 void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
-void					print_line(t_data *data, float x, float y, float size,
-							int color);
-void					put_square(t_img img, int x, int y, int color,
-							int size);
+void					put_square(t_img img, t_point p, int color, int size);
 void					put_horizontal_wall(t_data *data, t_ray ray);
 void					put_vertical_wall(t_data *data, t_ray ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);
@@ -279,9 +276,32 @@ void					minimap(t_data *data);
 t_bool					path_exist(char *path);
 t_bool					is_door(char c);
 t_bool					is_wall_or_door(char c);
-void	open_or_close_door(t_data *data);
-t_bool	door_around(t_data *data, int *door_x, int *door_y);
+void					open_or_close_door(t_data *data);
+t_bool					door_around(t_data *data, int *door_x, int *door_y);
 void					free_texture(t_data *data, int nb);
 int						handle_mouse(t_data *data);
+int						handle_keypress(int keysym, t_data *data);
+void					print_map(t_data *data);
+void					print_textures(t_data *data);
+void					print_rgb(t_data *data);
+int						set_texture_path(char **texture, char *line, int start);
+int						extract_t_path(char *line, t_data *data);
+void					check_textures(t_data *data, char *line,
+							int *texture_count);
+int						extract_rgb(char *line, t_data *data);
+int						parse_textures(t_data *data, char **line);
+int						check_texture(char *line);
+int						skip_empty_line(char **line, int fd);
+t_bool					is_valid_rgb_value(int value);
+t_bool					is_valid_rgb(char *str);
+int						path_len(char *path);
+int						skip_tex_type(char *line, int i, int size);
+int						extract_line(char *line, t_data *data);
+t_bool					is_wall_door_or_empty(char c);
+void					toggle_mouse(t_data *data);
+double					check_horizontal_lines(t_data *data, t_ray *ray);
+double					check_vertical_lines(t_data *data, t_ray *ray);
+void					find_door(t_data *data, t_ray *ray, double x, double y);
+int						map_value_at(t_data *data, double x, double y);
 
 #endif

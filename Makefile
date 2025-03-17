@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+         #
+#    By: bineleon <neleon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 16:43:24 by elilliu           #+#    #+#              #
-#    Updated: 2025/03/11 15:56:09 by elilliu          ###   ########.fr        #
+#    Updated: 2025/03/14 21:20:33 by bineleon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,19 +30,19 @@ RM						= rm -rf
 
 PARSING_DIR			= parsing/
 PARSING				= map_init.c map_validation.c parsing.c parsing2.c parsing_utils.c\
-					parsing_error.c
+					parsing_error.c parsing_utils2.c parsing_textures.c parsing_utils3.c
 SRCS				+= $(addprefix ${PARSING_DIR}, ${PARSING})
 
 MAIN_DIR			= main/
-MAIN				= main.c data_init.c
+MAIN				= main.c data_init.c init_textures.c
 SRCS				+= $(addprefix ${MAIN_DIR}, ${MAIN})
 
 MOVES_DIR			= moves/
-MOVES				= move_player.c rotate_player.c
+MOVES				= move_player.c rotate_player.c hooks.c
 SRCS				+= $(addprefix ${MOVES_DIR}, ${MOVES})
 
 RAYCASTING_DIR		= raycasting/
-RAYCASTING			= fill_window.c fill_window_utils.c put_walls.c
+RAYCASTING			= fill_window.c fill_window_utils.c put_walls.c check_lines.c
 SRCS				+= $(addprefix ${RAYCASTING_DIR}, ${RAYCASTING})
 
 RENDER_DIR			= render/
@@ -50,28 +50,24 @@ RENDER				= print_walls.c put_img_to_img.c
 SRCS				+= $(addprefix ${RENDER_DIR}, ${RENDER})
 
 UTILS_DIR			= utils/
-UTILS				= utils.c garbage_collector.c utils_gc.c error.c
+UTILS				= utils.c garbage_collector.c utils_gc.c clean.c debug.c
 SRCS				+= $(addprefix ${UTILS_DIR}, ${UTILS})
 
 PARSING_B_DIR		= parsing_b/
 PARSING_B			= map_init_bonus.c map_validation_bonus.c parsing_bonus.c parsing2_bonus.c parsing_utils_bonus.c\
-					parsing_error_bonus.c
+					parsing_error_bonus.c parsing_utils2_bonus.c parsing_textures.c parsing_utils3.c
 SRCS_B				+= $(addprefix ${PARSING_B_DIR}, ${PARSING_B})
 
 MAIN_B_DIR			= main_b/
-MAIN_B				= main_bonus.c data_init.c
+MAIN_B				= main_bonus.c data_init.c init_textures.c
 SRCS_B				+= $(addprefix ${MAIN_B_DIR}, ${MAIN_B})
-# SRCS_B              += $(addprefix ${MOVES_DIR}, ${MOVES})
-# SRCS_B				+= $(addprefix ${RAYCASTING_DIR}, ${RAYCASTING})
-# SRCS_B				+= $(addprefix ${RENDER_DIR}, ${RENDER})
-# SRCS_B				+= $(addprefix ${UTILS_DIR}, ${UTILS})
 
 MOVES_B_DIR			= moves_b/
-MOVES_B				= move_player.c rotate_player.c handle_mouse.c
+MOVES_B				= move_player.c rotate_player.c handle_mouse.c hooks.c
 SRCS_B				+= $(addprefix ${MOVES_B_DIR}, ${MOVES_B})
 
 RAYCASTING_B_DIR	= raycasting_b/
-RAYCASTING_B		= fill_window.c fill_window_utils.c put_walls.c minimap.c minimap_utils.c
+RAYCASTING_B		= fill_window.c fill_window_utils.c put_walls.c check_lines.c check_lines_utils.c
 SRCS_B				+= $(addprefix ${RAYCASTING_B_DIR}, ${RAYCASTING_B})
 
 RENDER_B_DIR		= render_b/
@@ -79,11 +75,11 @@ RENDER_B			= print_walls.c put_img_to_img.c
 SRCS_B				+= $(addprefix ${RENDER_B_DIR}, ${RENDER_B})
 
 UTILS_B_DIR			= utils_b/
-UTILS_B				= utils.c garbage_collector.c utils_gc.c error.c utils_bonus.c
+UTILS_B				= utils.c garbage_collector.c utils_gc.c clean.c utils_bonus.c debug.c
 SRCS_B				+= $(addprefix ${UTILS_B_DIR}, ${UTILS_B})
 
-BONUS_B_DIR		= bonus_b/
-BONUS_B					= door.c
+BONUS_B_DIR			= bonus_b/
+BONUS_B				= door.c minimap.c minimap_utils.c
 SRCS_B				+= $(addprefix ${BONUS_B_DIR}, ${BONUS_B})
 
 SRC_DIR				= ./srcs
