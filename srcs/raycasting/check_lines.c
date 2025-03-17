@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 20:57:10 by nelbi             #+#    #+#             */
-/*   Updated: 2025/03/14 21:05:07 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/17 16:45:38 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 static t_bool	is_in_map(t_data *data, double x, double y)
 {
 	if ((int)y / data->img_size > 0 && (int)y / data->img_size < data->map.rows
-		&& (int)x / data->img_size > 0 && (int)x
-		/ data->img_size < data->map.columns && data->map.tab[(int)y
-			/ data->img_size][(int)x / data->img_size] != WALL)
+		&& (int)x / data->img_size > 0
+		&& data->map.tab[(int)y / data->img_size]
+		&& (int)x / data->img_size < (int)ft_strlen(data->map.tab[(int)y / data->img_size])
+		&& data->map.tab[(int)y / data->img_size][(int)x / data->img_size] != WALL)
 		return (true);
 	return (false);
 }

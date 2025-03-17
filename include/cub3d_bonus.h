@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 16:16:37 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 16:26:47 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MINIMAP_SIZE 256
 # define WALL_DIST 50
 # define DOOR_DIST 1
-# define PLAYER_SPEED 20
+# define PLAYER_SPEED 30
 # define DOOR_SPEED 20000
 
 # define RESET "\033[0m"

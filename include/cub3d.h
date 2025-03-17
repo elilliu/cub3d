@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 21:15:24 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/17 16:47:12 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define IMG_SIZE 400
 # define MINIMAP_SIZE 256
 # define WALL_DIST 50
-# define PLAYER_SPEED 20
+# define PLAYER_SPEED 30
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
