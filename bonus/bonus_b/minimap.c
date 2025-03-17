@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 12:18:51 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 14:42:59 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	add_lines(t_data *data)
 		{
 			line++;
 			p.y += 32;
-			continue;
+			continue ;
 		}
 		p.x = 32 - ((data->player.x - (int)data->player.x / IMG_SIZE * IMG_SIZE)
 				/ IMG_SIZE * 32);
