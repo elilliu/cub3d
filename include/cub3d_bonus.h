@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 16:26:47 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:25:18 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 # define RADIAN 0.0174533
 
@@ -34,7 +35,7 @@
 # define WALL_DIST 50
 # define DOOR_DIST 1
 # define PLAYER_SPEED 30
-# define DOOR_SPEED 20000
+# define TIMER 800
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -229,8 +230,8 @@ typedef struct s_data
 	t_mouse				mouse;
 	char				player_dir;
 	t_bool				mouse_on;
+	struct timeval		start;
 	int					door;
-	int					timer;
 	t_garbage_co		*garbage;
 }						t_data;
 

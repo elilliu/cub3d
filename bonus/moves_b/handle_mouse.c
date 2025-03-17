@@ -6,11 +6,22 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:51:46 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 16:15:38 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:28:51 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
+
+long	elapsed_time(struct timeval start)
+{
+	struct timeval	current;
+	time_t			time;
+
+	gettimeofday(&current, NULL);
+	time = (current.tv_sec - start.tv_sec) * 1000000
+		+ (current.tv_usec - start.tv_usec);
+	return (time / 1000);
+}
 
 void	toggle_mouse(t_data *data)
 {
@@ -22,17 +33,14 @@ void	toggle_mouse(t_data *data)
 
 int	handle_mouse(t_data *data)
 {
-	if (data->timer == DOOR_SPEED * 4 + 1)
-		data->timer = 0;
-	if (data->timer == DOOR_SPEED || data->timer == 2 * DOOR_SPEED
-		|| data->timer == 3 * DOOR_SPEED || data->timer == 4 * DOOR_SPEED)
+	if (elapsed_time(data->start) > TIMER)
 	{
 		data->door++;
 		if (data->door == 5)
 			data->door = 1;
 		fill_window(data);
+		gettimeofday(&data->start, NULL);
 	}
-	data->timer++;
 	if (data->mouse_on)
 	{
 		mlx_mouse_get_pos(data->mlx_ptr, data->win_ptr, &data->mouse.x,
