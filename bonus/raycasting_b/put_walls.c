@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:33:14 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/13 15:52:33 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/17 20:02:57 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	put_horizontal_wall(t_data *data, t_ray ray)
 		* 1.5;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
+	find_door(data, &ray, ray.horizontal_x, ray.horizontal_y);
 	if (ray.angle > 0 && ray.angle < 180)
 		print_north(data, ray, x, y);
 	else
@@ -44,6 +45,7 @@ void	put_vertical_wall(t_data *data, t_ray ray)
 		* 1.5;
 	x = ray.nb;
 	y = ((float)HEIGHT / 2) - (ray.size / 2);
+	find_door(data, &ray, ray.vertical_x, ray.vertical_y);
 	if (ray.angle > 270 || ray.angle < 90)
 		print_west(data, ray, x, y);
 	else

@@ -6,7 +6,7 @@
 /*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 20:57:10 by nelbi             #+#    #+#             */
-/*   Updated: 2025/03/17 13:39:12 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/17 20:08:23 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ double	check_horizontal_lines(t_data *data, t_ray *ray)
 		ray->horizontal_x = data->player.x + (ray->horizontal_y
 				- data->player.y) / tan(deg_to_rad(ray->angle));
 	sub_h(data, ray);
-	find_door(data, ray, ray->horizontal_x, ray->horizontal_y);
 	return (sqrt(pow(ray->horizontal_x - data->player.x, 2)
 			+ pow(ray->horizontal_y - data->player.y, 2)));
 }
@@ -89,7 +88,6 @@ double	check_vertical_lines(t_data *data, t_ray *ray)
 		ray->vertical_y = data->player.y + (ray->vertical_x - data->player.x)
 			* tan(deg_to_rad(ray->angle));
 	sub_v(data, ray);
-	find_door(data, ray, ray->vertical_x, ray->vertical_y);
 	return (sqrt(pow(ray->vertical_x - data->player.x, 2) + pow(ray->vertical_y
 				- data->player.y, 2)));
 }

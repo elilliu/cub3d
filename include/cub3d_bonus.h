@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 17:58:09 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:14:47 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define DOOR_DIST 1
 # define PLAYER_SPEED 30
 # define TIMER 50
-# define MIKE 800
+# define MIKE 900
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"

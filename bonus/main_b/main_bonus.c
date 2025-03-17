@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 17:55:13 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:41:41 by neleon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ int	main(int ac, char **av)
 		return (1);
 	gettimeofday(&data->start, NULL);
 	gettimeofday(&data->mike, NULL);
-	print_textures(data);
-	print_rgb(data);
-	print_map(data);
 	fill_window(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_loop_hook(data->mlx_ptr, &handle_mouse, data);
