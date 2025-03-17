@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:20:55 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/17 11:00:30 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 11:02:24 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ static void	check_open_map(t_data *data, char **map, int i, int j)
 	{
 		if (map[i][j] == '0' || is_player_char(map[i][j]))
 			print_clean(data, "Unclosed map");
-        else if (is_door(map[i][j]))
-            print_clean(data, "Door should not be on outside wall");
-
+		else if (is_door(map[i][j]))
+			print_clean(data, "Door should not be on outside wall");
 		else if (is_door(map[i][j]))
 			print_clean(data, "Door should not be on outside wall");
 	}
