@@ -3,17 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:48:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 18:08:50 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/17 14:49:21 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-int	render(void)
+int	render(t_data *data)
 {
+	if (data->timer == DOOR_SPEED * 4 + 1)
+		data->timer = 0;
+	if (data->timer == DOOR_SPEED || data->timer == 2 * DOOR_SPEED
+		|| data->timer == 3 * DOOR_SPEED || data->timer == 4 * DOOR_SPEED)
+		data->door++;
+	if (data->door == 5)
+		data->door = 1;
+	data->timer++;
 	return (1);
 }
 

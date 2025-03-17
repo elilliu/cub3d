@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:31:01 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/14 20:17:06 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:34:22 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,13 @@ static void	init_data_values(t_data *data, char *str)
 	data->t_paths.t_ce = NULL;
 	data->t_paths.t_fl = NULL;
 	data->t_paths.t_do = "./textures/cub_door_400_20.xpm";
+	data->t_paths.t_do1 = "./textures/cub_door_400_20_1.xpm";
+	data->t_paths.t_do2 = "./textures/cub_door_400_20_2.xpm";
+	data->t_paths.t_do3 = "./textures/cub_door_400_20_3.xpm";
+	data->t_paths.t_do4 = "./textures/cub_door_400_20_4.xpm";
 	data->mouse_on = false;
+	data->timer = 0;
+	data->door = 1;
 }
 
 int	data_init(t_data *data, char *str)

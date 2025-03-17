@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:46:45 by bineleon          #+#    #+#             */
-/*   Updated: 2025/03/14 20:14:05 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:48:31 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	clean_all(t_data *data)
 	{
 		if (data->win_ptr)
 		{
-			free_texture(data, 5);
+			free_texture(data, 9);
 			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		}
 		mlx_destroy_display(data->mlx_ptr);

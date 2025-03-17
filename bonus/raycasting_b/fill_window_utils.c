@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:46:50 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/13 15:55:43 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/17 14:58:29 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ void	add_floor(t_data *data)
 		}
 		y++;
 	}
+}
+
+int	get_good_door_color(t_data *data, float x, float y)
+{
+	if (data->door == 1)
+		return (get_pixel_img(data->textures[T_DO1], x, (int)y % data->textures[T_DO1].h));
+	else if (data->door == 2)
+		return (get_pixel_img(data->textures[T_DO2], x, (int)y % data->textures[T_DO2].h));
+	else if (data->door == 3)
+		return (get_pixel_img(data->textures[T_DO3], x, (int)y % data->textures[T_DO3].h));
+	else if (data->door == 4)
+		return (get_pixel_img(data->textures[T_DO4], x, (int)y % data->textures[T_DO4].h));
+	return (0);
 }

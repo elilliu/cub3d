@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 21:15:17 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:41:31 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define WALL_DIST 50
 # define DOOR_DIST 1
 # define PLAYER_SPEED 20
+# define DOOR_SPEED 100
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -82,7 +83,11 @@ typedef enum e_textures
 	T_EA,
 	T_DO,
 	T_CE,
-	T_FL
+	T_FL,
+	T_DO1,
+	T_DO2,
+	T_DO3,
+	T_DO4
 }						t_textures;
 
 typedef struct s_garbage_co
@@ -137,6 +142,10 @@ typedef struct s_tex_path
 	char				*t_fl;
 	char				*t_ce;
 	char				*t_do;
+	char				*t_do1;
+	char				*t_do2;
+	char				*t_do3;
+	char				*t_do4;
 	t_rgb				fl;
 	t_rgb				ce;
 }						t_tex_path;
@@ -201,6 +210,8 @@ typedef struct s_mouse
 
 typedef struct s_data
 {
+	int					door;
+	int					timer;
 	int					*tex_buff[4];
 	int					test;
 	void				*mlx_ptr;
@@ -210,7 +221,7 @@ typedef struct s_data
 	int					fd_cub;
 	t_img				background;
 	t_img				minimap;
-	t_img				textures[7];
+	t_img				textures[11];
 	t_img				arrow;
 	t_map				map;
 	t_map2				*map2;
@@ -303,5 +314,6 @@ double					check_horizontal_lines(t_data *data, t_ray *ray);
 double					check_vertical_lines(t_data *data, t_ray *ray);
 void					find_door(t_data *data, t_ray *ray, double x, double y);
 int						map_value_at(t_data *data, double x, double y);
+int						get_good_door_color(t_data *data, float x, float y);
 
 #endif

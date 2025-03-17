@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:46:29 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/14 20:49:52 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:57:29 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ static char	*assign_path(t_data *data, int tex_type)
 		return (data->t_paths.t_we);
 	else if (tex_type == T_DO)
 		return (data->t_paths.t_do);
+	else if (tex_type == T_DO1)
+		return (data->t_paths.t_do1);
+	else if (tex_type == T_DO2)
+		return (data->t_paths.t_do2);
+	else if (tex_type == T_DO3)
+		return (data->t_paths.t_do3);
+	else if (tex_type == T_DO4)
+		return (data->t_paths.t_do4);
 	return (0);
 }
 
@@ -58,6 +66,8 @@ int	xpm_to_img(t_data *data, int tex_type)
 void	init_textures(t_data *data)
 {
 	if (!xpm_to_img(data, T_NO) || !xpm_to_img(data, T_SO) || !xpm_to_img(data,
-			T_WE) || !xpm_to_img(data, T_EA) || !xpm_to_img(data, T_DO))
+			T_WE) || !xpm_to_img(data, T_EA) || !xpm_to_img(data, T_DO)
+			|| !xpm_to_img(data, T_DO1) || !xpm_to_img(data, T_DO2)
+			|| !xpm_to_img(data, T_DO3) || !xpm_to_img(data, T_DO4))
 		print_clean(data, "Failed texture allocation");
 }
