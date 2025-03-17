@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:01:02 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/13 16:00:32 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:47:01 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,16 @@ int	skip_whitespaces(char *line, int i)
 	while (line[i] && is_whitespace(line[i]))
 		i++;
 	return (i);
+}
+
+void	free_texture(t_data *data, int nb)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb && data->textures[i].img_ptr)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->textures[i].img_ptr);
+		i++;
+	}
 }

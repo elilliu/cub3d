@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:51:57 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 16:16:16 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:42:02 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	print_wall(t_ray ray, t_draw draw, t_point tex, int tex_type)
 	{
 		if (ray.type == CLOSE_D)
 			color = get_good_door_color(data, tex.x, tex.y);
+		else if (tex_type == T_SO)
+			color = get_good_mike_color(data, tex.x, tex.y);
 		else
 			color = get_pixel_img(data->textures[tex_type], tex.x, (int)tex.y
 					% data->textures[tex_type].h);

@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:51:46 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 17:28:51 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:05:42 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	toggle_mouse(t_data *data)
 		data->mouse_on = true;
 }
 
-int	handle_mouse(t_data *data)
+void	timer(t_data *data)
 {
 	if (elapsed_time(data->start) > TIMER)
 	{
@@ -41,6 +41,19 @@ int	handle_mouse(t_data *data)
 		fill_window(data);
 		gettimeofday(&data->start, NULL);
 	}
+	if (elapsed_time(data->mike) > MIKE)
+	{
+		data->mike_no++;
+		if (data->mike_no == 5)
+			data->mike_no = 1;
+		fill_window(data);
+		gettimeofday(&data->mike, NULL);
+	}
+}
+
+int	handle_mouse(t_data *data)
+{
+	timer(data);
 	if (data->mouse_on)
 	{
 		mlx_mouse_get_pos(data->mlx_ptr, data->win_ptr, &data->mouse.x,

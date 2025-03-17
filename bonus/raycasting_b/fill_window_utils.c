@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:46:50 by elilliu@stu       #+#    #+#             */
-/*   Updated: 2025/03/17 16:19:59 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:56:53 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,23 @@ void	add_floor(t_data *data)
 		}
 		y++;
 	}
+}
+
+int	get_good_mike_color(t_data *data, float x, float y)
+{
+	if (data->mike_no == 1)
+		return (get_pixel_img(data->textures[T_SO1], x,
+				(int)y % data->textures[T_SO1].h));
+	else if (data->mike_no == 2)
+		return (get_pixel_img(data->textures[T_SO2], x,
+				(int)y % data->textures[T_SO2].h));
+	else if (data->mike_no == 3)
+		return (get_pixel_img(data->textures[T_SO3], x,
+				(int)y % data->textures[T_SO3].h));
+	else if (data->mike_no == 4)
+		return (get_pixel_img(data->textures[T_SO4], x,
+				(int)y % data->textures[T_SO4].h));
+	return (0);
 }
 
 int	get_good_door_color(t_data *data, float x, float y)

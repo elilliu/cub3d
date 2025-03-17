@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 17:25:18 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:58:09 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@
 # define WALL_DIST 50
 # define DOOR_DIST 1
 # define PLAYER_SPEED 30
-# define TIMER 800
+# define TIMER 50
+# define MIKE 800
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -80,6 +81,10 @@ typedef enum e_textures
 {
 	T_NO,
 	T_SO,
+	T_SO1,
+	T_SO2,
+	T_SO3,
+	T_SO4,
 	T_WE,
 	T_EA,
 	T_DO,
@@ -138,6 +143,10 @@ typedef struct s_tex_path
 {
 	char				*t_no;
 	char				*t_so;
+	char				*t_so1;
+	char				*t_so2;
+	char				*t_so3;
+	char				*t_so4;
 	char				*t_we;
 	char				*t_ea;
 	char				*t_fl;
@@ -220,7 +229,7 @@ typedef struct s_data
 	int					fd_cub;
 	t_img				background;
 	t_img				minimap;
-	t_img				textures[11];
+	t_img				textures[15];
 	t_img				arrow;
 	t_map				map;
 	t_map2				*map2;
@@ -231,7 +240,9 @@ typedef struct s_data
 	char				player_dir;
 	t_bool				mouse_on;
 	struct timeval		start;
+	struct timeval		mike;
 	int					door;
+	int					mike_no;
 	t_garbage_co		*garbage;
 }						t_data;
 
@@ -316,5 +327,7 @@ double					check_vertical_lines(t_data *data, t_ray *ray);
 void					find_door(t_data *data, t_ray *ray, double x, double y);
 int						map_value_at(t_data *data, double x, double y);
 int						get_good_door_color(t_data *data, float x, float y);
+void					init_mike_no(t_data *data);
+int						get_good_mike_color(t_data *data, float x, float y);
 
 #endif
