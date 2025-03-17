@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:31:01 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/17 14:34:22 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:25:23 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ static void	init_data_values(t_data *data, char *str)
 	data->t_paths.t_do3 = "./textures/cub_door_400_20_3.xpm";
 	data->t_paths.t_do4 = "./textures/cub_door_400_20_4.xpm";
 	data->mouse_on = false;
-	data->timer = 0;
 	data->door = 1;
 }
 
