@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelbi <neleon@student.42.fr>               +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:06:55 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/14 21:51:18 by nelbi            ###   ########.fr       */
+/*   Updated: 2025/03/17 12:18:51 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ void	add_lines(t_data *data)
 	while (p.y < MINIMAP_SIZE && line < data->map.rows
 		&& line <= (int)data->player.y / IMG_SIZE + 4)
 	{
+		if (line < 0 || !data->map.tab[line])
+		{
+			line++;
+			p.y += 32;
+			continue;
+		}
 		p.x = 32 - ((data->player.x - (int)data->player.x / IMG_SIZE * IMG_SIZE)
 				/ IMG_SIZE * 32);
 		column = (int)data->player.x / IMG_SIZE - 3;
