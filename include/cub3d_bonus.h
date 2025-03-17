@@ -6,7 +6,7 @@
 /*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 14:41:31 by elilliu          ###   ########.fr       */
+/*   Updated: 2025/03/17 16:16:37 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define WALL_DIST 50
 # define DOOR_DIST 1
 # define PLAYER_SPEED 20
-# define DOOR_SPEED 100
+# define DOOR_SPEED 20000
 
 # define RESET "\033[0m"
 # define SMRED "\033[0;31m"
@@ -82,12 +82,12 @@ typedef enum e_textures
 	T_WE,
 	T_EA,
 	T_DO,
-	T_CE,
-	T_FL,
 	T_DO1,
 	T_DO2,
 	T_DO3,
-	T_DO4
+	T_DO4,
+	T_CE,
+	T_FL
 }						t_textures;
 
 typedef struct s_garbage_co
@@ -210,8 +210,6 @@ typedef struct s_mouse
 
 typedef struct s_data
 {
-	int					door;
-	int					timer;
 	int					*tex_buff[4];
 	int					test;
 	void				*mlx_ptr;
@@ -231,6 +229,8 @@ typedef struct s_data
 	t_mouse				mouse;
 	char				player_dir;
 	t_bool				mouse_on;
+	int					door;
+	int					timer;
 	t_garbage_co		*garbage;
 }						t_data;
 
