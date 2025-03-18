@@ -1,0 +1,19 @@
+EA ./textures/prison_mike_400_25.xpm
+SO ./textures/prison_mike_400_25.xpm
+NO ./textures/prison_mike_400_25.xpm
+WE ./textures/prison_mike_400_25.xpm
+
+F 1,1,1 
+C 0,0,255
+
+1111111
+1000001
+1001001
+1001001
+1000001
+1001001
+1000001
+100S001
+1000001
+1000001
+1111111

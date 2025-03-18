@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:57:24 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/13 15:45:11 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/18 15:20:02 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	extract_rgb_values(char *line, t_rgb *rgb)
 
 void	set_rgb(t_data *data)
 {
+	if (!data->t_paths.t_fl || !data->t_paths.t_ce)
+		clean_all(data);
 	if (!is_valid_rgb(data->t_paths.t_fl)
 		|| !extract_rgb_values(data->t_paths.t_fl, &data->t_paths.fl))
 		clean_all(data);
