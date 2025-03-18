@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:50:20 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/13 11:51:38 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:09:48 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,8 @@ int	parse_textures(t_data *data, char **line)
 		free(*line);
 		*line = get_next_line(data->fd_cub, 0);
 	}
+	if (*line && check_texture(*line) != -1)
+		print_clean_reading(data, *line,
+			"Duplicate texture path or invalid texture");
 	return (1);
 }

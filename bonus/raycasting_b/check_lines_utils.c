@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 21:01:04 by nelbi             #+#    #+#             */
-/*   Updated: 2025/03/17 14:39:43 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:45:29 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ int	map_value_at(t_data *data, double x, double y)
 	int	map_x;
 	int	map_y;
 
+	map_x = 0;
+	map_y = 0;
 	map_x = (int)x / data->img_size;
 	map_y = (int)y / data->img_size;
-	if (map_x < 0
+	if (!map_x
+		|| !map_y
+		|| map_x < 0
 		|| map_y < 0
 		|| map_y >= data->map.rows
 		|| !data->map.tab[map_y]

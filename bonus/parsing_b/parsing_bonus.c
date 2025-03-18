@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:15:52 by neleon            #+#    #+#             */
-/*   Updated: 2025/03/13 15:36:10 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/18 13:59:05 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ int	parse_file(t_data *data)
 
 	data->fd_cub = open(data->map_path, O_RDONLY);
 	if (data->fd_cub < 0)
-		return (print_error("Failed to open file"), 0);
+		return (print_clean(data, "Failed to open file"), 0);
 	line = get_next_line(data->fd_cub, 0);
 	skip_empty_line(&line, data->fd_cub);
 	if (!line)
 	{
-		print_error("Empty .cub file");
+		print_clean(data, "Empty .cub file");
 		return (close(data->fd_cub), 0);
 	}
 	parse_textures(data, &line);

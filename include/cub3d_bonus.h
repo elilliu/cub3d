@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:50:30 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 19:14:47 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:36:07 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,8 +286,8 @@ float					deg_to_rad(float a);
 void					add_ceiling(t_data *data);
 void					add_floor(t_data *data);
 void					put_square(t_img img, t_point p, int color, int size);
-void					put_horizontal_wall(t_data *data, t_ray ray);
-void					put_vertical_wall(t_data *data, t_ray ray);
+void					put_horizontal_wall(t_data *data, t_ray *ray);
+void					put_vertical_wall(t_data *data, t_ray *ray);
 unsigned int			get_pixel_img(t_img img, float x, float y);
 void					init_textures(t_data *data);
 void					print_north(t_data *data, t_ray ray, float x, float y);

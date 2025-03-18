@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neleon <neleon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elilliu <elilliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:50:05 by elilliu           #+#    #+#             */
-/*   Updated: 2025/03/17 19:54:59 by neleon           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:53:21 by elilliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,17 @@ void	sub_add_rays(t_data *data, t_ray *ray, float step)
 	while (i < WIDTH)
 	{
 		ray->nb = i;
+		ray->horizontal_x = 0;
+		ray->horizontal_y = 0;
+		ray->vertical_x = 0;
+		ray->vertical_y = 0;
 		ray->horizontal_distance = check_horizontal_lines(data, ray);
 		ray->vertical_distance = check_vertical_lines(data, ray);
+		ray->type = -1;
 		if (ray->horizontal_distance < ray->vertical_distance)
-			put_horizontal_wall(data, *ray);
+			put_horizontal_wall(data, ray);
 		else
-			put_vertical_wall(data, *ray);
+			put_vertical_wall(data, ray);
 		ray->angle += step;
 		if (ray->angle >= 360)
 			ray->angle -= 360.0;

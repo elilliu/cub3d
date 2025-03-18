@@ -1,7 +1,7 @@
-            NO textures/wall.xpm
-SO textures/5.xpm
-WE textures/8.xpm
-EA textures/13.xpm
+NO textures/prison_mike_400_25.xpm
+SO textures/mike_nooo_400_25.xpm
+WE textures/dwight_wig_400_30.xpm
+EA textures/date_mike_400_30.xpm
 
 F 50,168,154
 C 50,109,168
@@ -12,5 +12,5 @@ C 50,109,168
 10001001
 10001001
 10100001
-100N0001
+100W0001
  1111111
